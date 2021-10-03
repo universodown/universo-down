@@ -1,0 +1,26 @@
+{
+  "name": "universo-down",
+  "version": "1.0.0",
+  "description": "Projeto SENAC-SC Universo Down",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksjm/universo-down.git"
+  },
+  "keywords": [
+    "universo-down;",
+    "senac-sc"
+  ],
+  "author": "SENAC-SC/Joinville",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacksjm/universo-down/issues"
+  },
+  "homepage": "https://github.com/jacksjm/universo-down#readme",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}
