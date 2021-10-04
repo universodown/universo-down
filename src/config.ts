@@ -16,10 +16,12 @@ type Database = {
 type Config = {
     port: number,
     database: Database
+    jwtSecret: string
 }
 
 const defaultConfig: Config = {
     port: Number(process.env.PORT) || 3000,
+    jwtSecret: process.env.SECRET || 'universodown',
     database: {
         type: 'mysql',
         url: 'localhost',
@@ -47,6 +49,6 @@ const config = {
     ...overrideConfig(process.env.NODE_ENV)
 }
 
-console.log(`Using config: ${JSON.stringify(config)}`)
+console.info(`Using config: ${JSON.stringify(config)}`)
 
 export default config

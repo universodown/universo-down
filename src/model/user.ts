@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm"
+import { UserRole } from "./enum/user-role"
+import { Organization } from "./organization"
 
 @Entity({ name: 'users' })
 export class User {
@@ -6,16 +8,26 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ name: 'first_name', type: 'text' })
+    @Column('text', { name: 'first_name' })
     firstName: string
 
-    @Column({ name: 'last_name', type: 'text' })
+    @Column('text', { name: 'last_name' })
     lastName: string
 
-    @Column({ type: 'text' })
+    @Column('text')
     email: string
 
-    @Column({ type: 'text' })
+    @Column('text')
     password: string
+
+    @Column('enum', { enum: UserRole, default: 'member' })
+    role: UserRole
+
+    @Column('int', { name: 'organization_id', nullable: false })
+    organizationId: number
+
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
+    organization: Organization
 
 }

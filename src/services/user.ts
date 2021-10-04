@@ -1,10 +1,12 @@
 import { Service } from 'typedi'
-import { getManager } from 'typeorm'
+import { EntityManager, getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 import UserRepository from '../repositories/user'
 import { cryptPassword } from '../fns/crypt-password'
 import { UserCreate, UserUpdate } from '../api/dto/user'
 import { User } from '../model/user'
+import { Context } from '../api/dto/context'
+import { verifyPassword } from '../fns/verify-password'
 
 @Service()
 export default class UserService {
@@ -13,11 +15,16 @@ export default class UserService {
     private readonly repository: UserRepository
 
     async create(userInfo: UserCreate): Promise<User> {
+        
+        verifyPassword(
+            userInfo.plainPassword,
+            userInfo.plainPasswordConfirmation
+        )
+        const password = await cryptPassword(userInfo.plainPassword)
+
         return getManager().transaction(async db => {
-            const repository = db.getCustomRepository(UserRepository)
-            console.log(userInfo.plainPassword)
-            const password = await cryptPassword(userInfo.plainPassword)
-            console.log(`api pass ${password}`)
+            const repository = db.getCustomRepository(UserRepository)   
+            
             return repository.save({
                 ...userInfo,
                 password
@@ -26,6 +33,12 @@ export default class UserService {
     }
 
     async update(userInfo: UserUpdate): Promise<User> {
+
+        verifyPassword(
+            userInfo.plainPassword,
+            userInfo.plainPasswordConfirmation
+        )
+        
         return getManager().transaction(async db => {
             const repository = db.getCustomRepository(UserRepository)
             const user = await repository.findById(userInfo.id, db)
@@ -50,8 +63,12 @@ export default class UserService {
         return this.repository.findById(id)
     }
 
-    async findAll(): Promise<User[]> {
-        return this.repository.findAll()
+    async findByEmail(email: string): Promise<User | undefined> {
+        return this.repository.findByEmail(email)
+    }
+
+    async findAll(context: Context): Promise<User[]> {
+        return this.repository.findAll(context)
     }
 
 }

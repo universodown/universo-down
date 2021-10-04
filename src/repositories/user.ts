@@ -1,4 +1,5 @@
 import { EntityManager, EntityRepository, Repository } from "typeorm";
+import { Context } from "../api/dto/context";
 import { User } from "../model/user";
 
 @EntityRepository(User)
@@ -11,7 +12,15 @@ export default class UserRepository extends Repository<User> {
         return repository.findOne({ where: { id }})
     }
 
-    async findAll(): Promise<User[]> {
-        return this.find()
+    async findByEmail(email: string, db?: EntityManager): Promise<User | undefined> {
+        const repository = db 
+            ? db.getRepository(User)
+            : this
+
+        return repository.findOne({ where: { email }})
+    }
+
+    async findAll(context: Context): Promise<User[]> {
+        return this.find({ where: { organizationId: context.organization.id }})
     }
 }

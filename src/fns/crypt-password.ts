@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcrypt'
+import { User } from '../model/user'
 
 export async function cryptPassword(plainPassword: string): Promise<string> {
     const saltRounds = 10
@@ -8,4 +9,8 @@ export async function cryptPassword(plainPassword: string): Promise<string> {
     }
 
     return bcrypt.hash(plainPassword, saltRounds)
+}
+
+export async function verifyUser(user: User, password: string) {
+    return bcrypt.compare(password, user.password)
 }
