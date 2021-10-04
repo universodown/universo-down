@@ -2,8 +2,34 @@ import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-const defaultConfig = {
-    port: Number(process.env.PORT) || 3000
+type Database = {
+    type: 'mysql'
+    url: string
+    port: number
+    username: string
+    password: string
+    name: string
+    pollSize: number
+    connectionTimeoutMillis: number
+}
+
+type Config = {
+    port: number,
+    database: Database
+}
+
+const defaultConfig: Config = {
+    port: Number(process.env.PORT) || 3000,
+    database: {
+        type: 'mysql',
+        url: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: '',
+        name: 'test',
+        pollSize: 20,
+        connectionTimeoutMillis: 30000
+    }
 }
 
 function overrideConfig(env: string) {
