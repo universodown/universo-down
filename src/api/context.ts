@@ -8,7 +8,9 @@ export async function getContext(userId: number): Promise<Context> {
     const organizationService = Container.get(OrganizationService)
 
     const user = await userService.find(userId)
-    const organization = await organizationService.find(user.organizationId)
+    const organization = user 
+        ? await organizationService.find(user.organizationId)
+        : undefined
 
     return { user, organization }
 }

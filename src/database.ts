@@ -8,10 +8,12 @@ const { database } = config
 
 useContainer(Container)
 
+const entities = process.platform === 'win32'
+    ? [ `${__dirname}\\model\\*` ]
+    : [ `${__dirname}/model/*` ]
+
 export default createConnection({
-    entities: [
-        `${__dirname}\\model\\*`
-    ],
+    entities,
     type: database.type,
     host: database.url,
     port: database.port,

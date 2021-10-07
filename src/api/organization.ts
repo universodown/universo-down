@@ -12,15 +12,17 @@ export class OrganizationRoutes {
 
     public static organizationRoutes(app: core.Express) {
         
-        app.get("/organization/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        const baseUrl = '/api/v1/organization'
+
+        app.get(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }' })
                     return
                 }
-                const context = await getContext(request.userId)
+                const context = request.context
                 if (context.user.role === UserRole.Member) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
                 }
                 const id = Number(request.params.id)
@@ -28,56 +30,58 @@ export class OrganizationRoutes {
                 const organization = await organizationService.find(id)
                 
                 if (!organization) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Organização não encontrada.' })
                     return
                 }
 
                 response.status(200).json(organization)    
             } catch (e) {
-                response.status(500)
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
 
         })
         
-        app.post("/organization", async (request: Request, response: Response) => {
+        app.post(baseUrl, async (request: Request, response: Response) => {
             try{
                 const organizationService = Container.get(OrganizationService)
                 const body = request.body
                 if(!isOrganizationCreate(body)) {
-                    response.status(400).json({ error: 'Estrutura da requisição inválida' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }' })
                     return
                 }
                 organizationService.create(body)
                     .then(organization => response.status(200).json(organization))
                     .catch(e => response.status(400).json({ error: e }))
             } catch (e) {
-                response.status(500)
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
         
-        app.put("/organization/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.put(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }.' })
                     return
                 }
-                const context = await getContext(request.userId)
-                if (context.user.role === UserRole.Member) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
-                    return
-                }
+                const context = request.context
                 const id = Number(request.params.id)
                 const organizationService = Container.get(OrganizationService)
                 const body = request.body
 
                 if(!isOrganizationUpdate(body)) {
-                    response.status(400).json({ error: 'Estrutura da requisição inválida' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }' })
                     return
                 }
                 const organization = await organizationService.find(id)
-                
                 if (!organization) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Organização não encontrada.' })
+                    return
+                }
+                if (
+                    context.user.role === UserRole.Member
+                    || context.user.organizationId !== organization.id
+                ) {
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
                 }
 
@@ -88,34 +92,37 @@ export class OrganizationRoutes {
                     .then(organization => response.status(200).json(organization))
                     .catch(e => response.status(400).json({ error: e }))
             } catch (e) {
-                response.status(500)
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
         
-        app.delete("/organization/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.delete(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }' })
                     return
                 }
-                const context = await getContext(request.userId)
-                if (context.user.role === UserRole.Member) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
-                    return
-                }
+                const context = request.context
                 const id = Number(request.params.id)
                 const organizationService = Container.get(OrganizationService)
                 const organization = await organizationService.find(id)
                 
                 if (!organization) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Organização não encontrada.' })
+                    return
+                }
+                if (
+                    context.user.role === UserRole.Member
+                    || context.user.organizationId !== organization.id
+                ) {
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
                 }
 
                 organizationService.delete(id)
                 response.status(200).json(organization)    
             } catch (e) {
-                response.status(500)
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
     }

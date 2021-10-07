@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm"
-import { UserRole } from "./enum/user-role"
-import { Organization } from "./organization"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { UserRole } from './enum/user-role'
+import { Organization } from './organization'
 
 @Entity({ name: 'users' })
 export class User {

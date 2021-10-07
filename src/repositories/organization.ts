@@ -1,5 +1,5 @@
-import { EntityManager, EntityRepository, Repository } from "typeorm"
-import { Organization } from "../model/organization"
+import { EntityManager, EntityRepository, Repository } from 'typeorm'
+import { Organization } from '../model/organization'
 
 @EntityRepository(Organization)
 export default class OrganizationRepository extends Repository<Organization> {

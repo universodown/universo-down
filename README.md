@@ -39,3 +39,7 @@ npm start
 `curl --request POST http://localhost:3000/login -H "Content-Type: application/json" --data "{ \"email\": \"admin@domain.com\", \"password\": \"123456\" }"`
 
 * Logout
+`curl --request POST http://localhost:3000/logout -H "x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjMzMzIyNzExLCJleHAiOjE2MzM0MDkxMTF9.5D9K0LJM6Kv4u03tvrEPyvIg1RdQR8UVTQyXtwN8054"`
+
+* Criar Nova Organiação
+`curl --request POST http://localhost:3000/organization -H "Content-Type: application/json" --data "{ \"name\": \"Organização\", \"description\": \"Teste\", \"domain\": \"domain.com\" }"`

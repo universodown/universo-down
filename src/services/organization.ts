@@ -5,7 +5,6 @@ import OrganizationRepository from '../repositories/organization'
 import { cryptPassword } from '../fns/crypt-password'
 import { OrganizationCreate, OrganizationUpdate } from '../api/dto/organization'
 import { Organization } from '../model/organization'
-import UserService from './user'
 import { UserRole } from '../model/enum/user-role'
 
 @Service()
@@ -23,8 +22,8 @@ export default class OrganizationService {
                 ...organizationInfo,
                 users: [{
                     email: `admin@${organizationInfo.domain}`,
-                    firstName: "Administrador",
-                    lastName: "",
+                    firstName: 'Administrador',
+                    lastName: '',
                     password,
                     role: UserRole.Owner
                 }]

@@ -4,23 +4,25 @@ import Container from 'typedi'
 import { verifyUser } from '../fns/crypt-password'
 import UserService from '../services/user'
 import * as jwt from 'jsonwebtoken'
-import { isUserCreate, isUserLogin, isUserUpdate, UserCreate } from './dto/user'
+import { isUserCreate, isUserLogin, isUserUpdate } from './dto/user'
 import config from '../config'
 import { verifyJWT } from '../fns/verify-jwt'
 import { getContext } from './context'
 import { UserRole } from '../model/enum/user-role'
+import { Context } from './dto/context'
 
-export type RequestWithUser = Request & { userId: number }
+export type RequestWithUser = Request & { context: Context }
 
 export class UserRoutes {
 
     public static userRoutes(app: core.Express) {
+        const baseUrl = '/api/v1/user'
 
-        app.get("/user", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.get(baseUrl, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
-                const context = await getContext(request.userId)
+                const context = request.context
                 if (context.user.role === UserRole.Member) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação. { (Função: Membro) }' })
                     return
                 }
 
@@ -29,56 +31,56 @@ export class UserRoutes {
                 
                 response.status(200).json(users)    
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
             
         })
         
-        app.get("/user/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.get(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }' })
                     return
                 }
-                const context = await getContext(request.userId)
+                const context = request.context
                 const id = Number(request.params.id)
                 const userService = Container.get(UserService)
                 const user = await userService.find(id)
-                
+
                 if (!user) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 } else if (user.organization.id !== context.organization.id) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 } else if (
                     context.user.role === UserRole.Member 
                     && context.user.id !== user.id
                 ) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 }
 
                 response.status(200).json(user)    
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
 
         })
         
-        app.post("/user", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.post(baseUrl, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 const userService = Container.get(UserService)
                 const body = request.body
                 if(!isUserCreate(body)) {
-                    response.status(400).json({ error: 'Estrutura da requisição inválida.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }' })
                     return
                 }
 
-                const context = await getContext(request.userId)
+                const context = request.context
 
                 if (context.user.role === 'member') {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação. { (Função: Membro) }' })
                     return
                 }
 
@@ -86,17 +88,17 @@ export class UserRoutes {
                     ...body,
                     organizationId: context.organization.id
                 })
-                    .then(user => response.status(200).json(user))
-                    .catch(e => response.status(400).json({ error: e }))
+                    .then(user => response.status(201).json(user))
+                    .catch(e => response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` }))
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
         
-        app.put("/user/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.put(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }' })
                     return
                 }
                 
@@ -104,22 +106,22 @@ export class UserRoutes {
                 const userService = Container.get(UserService)
                 const body = request.body
 
-                if(!isUserUpdate(body)) {
-                    response.status(400).json({ error: 'Estrutura da requisição inválida.' })
+                if(!isUserUpdate(body) || id != body.id) {
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }' })
                     return
                 }
 
-                const context = await getContext(request.userId)
+                const context = request.context
                 const user = await userService.find(id)
 
                 if (!user) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 } else if (user.organizationId !== context.organization.id) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
-                } else if (context.user.role === 'member') {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                } else if (context.user.role === 'member' && context.user.id !== user.id) {
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
                 }
 
@@ -130,71 +132,71 @@ export class UserRoutes {
                     .then(user => response.status(200).json(user))
                     .catch(e => response.status(400).json({ error: e }))
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
         
-        app.delete("/user/:id", verifyJWT, async (request: RequestWithUser, response: Response) => {
+        app.delete(`${baseUrl}/:id`, verifyJWT, async (request: RequestWithUser, response: Response) => {
             try{
                 if(!('params' in request) || !('id' in request.params)) {
-                    response.status(400).json({ error: 'Necessário informar o ID.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Necessário informar o ID }' })
                     return
                 }
                 const id = Number(request.params.id)
                 const userService = Container.get(UserService)
-                const context = await getContext(request.userId)
+                const context = request.context
                 const user = await userService.find(id)
                 
                 if (!user) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 } else if (user.organizationId !== context.organization.id) {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
-                } else if (context.user.role === 'member') {
-                    response.status(400).json({ error: 'Usuário não possui permissão para esta ação.' })
+                } else if (context.user.role === 'member' || context.user.id === user.id) {
+                    response.status(401).json({ error: 'Usuário não possui permissão para esta ação.' })
                     return
                 }
 
                 userService.delete(id)
                 response.status(200).json(user)    
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
 
-        app.post('/login', async (request: Request, response: Response) => {
+        app.post('/api/v1/login', async (request: Request, response: Response) => {
             try {
                 const body = request.body
                 if (!isUserLogin(body)) {
-                    response.status(400).json({ error: 'Estrutura da requisição inválida.' })
+                    response.status(400).json({ error: 'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }' })
                     return
                 }
                 const userService = Container.get(UserService)
 
                 const user = await userService.findByEmail(body.email)
                 if (!user) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 }
                 const isUser = await verifyUser(user, body.plainPassword)
                 if (!isUser) {
-                    response.status(400).json({ error: 'Usuário não encontrado.' })
+                    response.status(404).json({ error: 'Usuário não encontrado.' })
                     return
                 }
 
                 const token = jwt.sign({ id: user.id }, config.jwtSecret, { expiresIn: 86400 })
-                response.status(200).json({ auth: true, token })
+                response.status(201).json({ auth: true, token })
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
 
-        app.post('/logout', async (_: Request, response: Response) => {
+        app.post('/api/v1/logout', verifyJWT, async (_: Request, response: Response) => {
             try {
                 response.status(200).json({ auth: false, token: null })
             } catch (e) {
-                response.status(500).json({ error: e})
+                response.status(500).json({ error: `O servidor encontrou uma situação com a qual não sabe lidar. {${e}}` })
             }
         })
     }

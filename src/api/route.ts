@@ -5,7 +5,7 @@ import { UserRoutes } from './user'
 
 export class Route {
     public static getRoutes(app: core.Express): void {
-        app.route('/')
+        app.route('/v1/health-check')
             .get((_: Request, response: Response) => {
                 response.status(200).send({ healthcheck: 'OK' })
             })
