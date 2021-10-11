@@ -10,7 +10,7 @@ export const pathUsersBase = {
     parameters: [],
     post: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['users'],
         summary: 'Criação de um novo usuário',
         operationId: 'createUser',
         parameters: [
@@ -45,7 +45,7 @@ export const pathUsersBase = {
     },
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['users'],
         summary: 'Retorna todos os usuários conforme login',
         operationId: 'getUsers',
         parameters: [],
@@ -73,9 +73,49 @@ export const pathUsersBase = {
 
 export const pathUsersId = {
     parameters: [],
+    get: {
+        security: [{ BearerJWT: [] }],
+        tags: ['users'],
+        summary: 'Retorna o usuário conforme ID',
+        operationId: 'getUser',
+        parameters: [
+            {
+              name: 'userId',
+              in: 'path',
+              description: 'ID do usuário',
+              required: true,
+              type: 'integer',
+              format: 'int64'
+            }
+        ],
+        responses: {
+            200: {
+                description: 'Usuário selecionado',
+                schema: {
+                    $ref: '#/definitions/User'
+                }
+            },
+            400: {
+                description: 'Estrutura da requisição inválida. { (details) }',
+                schema: sampleErros[400]
+            },
+            401: {
+                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                schema: sampleErros[401]
+            },
+            404: {
+                description: `Usuário não encontrado.`,
+                schema: sampleErros[404]
+            },
+            500: {
+                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                schema: propertiesError
+            }
+        }
+    },
     put: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['users'],
         summary: 'Alteração de um usuário conforme ID',
         operationId: 'updateUser',
         parameters: [
@@ -120,49 +160,9 @@ export const pathUsersId = {
             }
         }
     },
-    get: {
-        security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
-        summary: 'Retorna o usuário conforme ID',
-        operationId: 'getUser',
-        parameters: [
-            {
-              name: 'userId',
-              in: 'path',
-              description: 'ID do usuário',
-              required: true,
-              type: 'integer',
-              format: 'int64'
-            }
-        ],
-        responses: {
-            200: {
-                description: 'Usuário selecionado',
-                schema: {
-                    $ref: '#/definitions/User'
-                }
-            },
-            400: {
-                description: 'Estrutura da requisição inválida. { (details) }',
-                schema: sampleErros[400]
-            },
-            401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
-                schema: sampleErros[401]
-            },
-            404: {
-                description: `Usuário não encontrado.`,
-                schema: sampleErros[404]
-            },
-            500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
-                schema: propertiesError
-            }
-        }
-    },
     delete: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['users'],
         summary: 'Delete o usuário conforme ID',
         operationId: 'deleteUser',
         parameters: [

@@ -10,7 +10,7 @@ export const pathOrganizationBase = {
     parameters: [],
     post: {
         security: [],
-        tags: ['universo-down'],
+        tags: ['organizations'],
         summary: 'Criação de uma nova organização',
         operationId: 'createOrganization',
         parameters: [
@@ -44,9 +44,49 @@ export const pathOrganizationBase = {
 
 export const pathOrganizationId = {
     parameters: [],
+    get: {
+        security: [{ BearerJWT: [] }],
+        tags: ['organizations'],
+        summary: 'Retorna a organização conforme ID',
+        operationId: 'getOrganization',
+        parameters: [
+            {
+              name: 'organizationId',
+              in: 'path',
+              description: 'ID da organização',
+              required: true,
+              type: 'integer',
+              format: 'int64'
+            }
+        ],
+        responses: {
+            200: {
+                description: 'Organização selecionada',
+                schema: {
+                    $ref: '#/definitions/Organization'
+                }
+            },
+            400: {
+                description: 'Estrutura da requisição inválida. { Necessário informar o ID }',
+                schema: sampleErros[400]
+            },
+            401: {
+                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                schema: sampleErros[401]
+            },
+            404: {
+                description: `Organização não encontrada.`,
+                schema: sampleErros[404]
+            },
+            500: {
+                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                schema: propertiesError
+            }
+        }
+    },
     put: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['organizations'],
         summary: 'Alteração de uma organização conforme ID',
         operationId: 'updateOrganization',
         parameters: [
@@ -91,49 +131,9 @@ export const pathOrganizationId = {
             }
         }
     },
-    get: {
-        security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
-        summary: 'Retorna a organização conforme ID',
-        operationId: 'getOrganization',
-        parameters: [
-            {
-              name: 'organizationId',
-              in: 'path',
-              description: 'ID da organização',
-              required: true,
-              type: 'integer',
-              format: 'int64'
-            }
-        ],
-        responses: {
-            200: {
-                description: 'Organização selecionada',
-                schema: {
-                    $ref: '#/definitions/Organization'
-                }
-            },
-            400: {
-                description: 'Estrutura da requisição inválida. { Necessário informar o ID }',
-                schema: sampleErros[400]
-            },
-            401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
-                schema: sampleErros[401]
-            },
-            404: {
-                description: `Organização não encontrada.`,
-                schema: sampleErros[404]
-            },
-            500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
-                schema: propertiesError
-            }
-        }
-    },
     delete: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['organizations'],
         summary: 'Deletar a organização conforme ID',
         operationId: 'deleteOrganization',
         parameters: [

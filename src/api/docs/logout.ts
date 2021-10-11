@@ -6,7 +6,7 @@ export const pathLogout = {
     parameters: [],
     post: {
         security: [{ BearerJWT: [] }],
-        tags: ['universo-down'],
+        tags: ['auth'],
         summary: 'Desconecta a autenticação do usuário',
         operationId: 'logout',
         parameters: [],

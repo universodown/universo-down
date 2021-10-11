@@ -6,7 +6,7 @@ export const pathLogin = {
     parameters: [],
     post: {
         security: [],
-        tags: ['universo-down'],
+        tags: ['auth'],
         summary: 'Gerar token para autenticação do usuário',
         operationId: 'login',
         parameters: [

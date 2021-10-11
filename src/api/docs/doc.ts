@@ -31,8 +31,16 @@ export const apiDoc = {
 
     tags: [
         {
-            name: 'universo-down',
-            description: 'Universo Down API.'
+            name: 'users',
+            description: 'Controle de Usuário'
+        },
+        {
+            name: 'organizations',
+            description: 'Controle de Organização'
+        },
+        {
+            name: 'auth',
+            description: 'Autenticação'
         }
     ],
 
