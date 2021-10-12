@@ -15,4 +15,4 @@ jobs:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           eslint-rc: ./backend/.eslintrc.json
           execute-on-files:
-            - ./backend/src
+            - ./backend
