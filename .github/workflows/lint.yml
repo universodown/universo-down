@@ -14,6 +14,6 @@ jobs:
         uses: Krizzu/eslint-check-action@v1.1.0
         with:
           ghToken: ${{ secrets.GITHUB_TOKEN }}
-          eslintFiles: "backend/src"
+          eslintFiles: "backend/src",
           eslintConfig: "backend/.eslintrc.json",
           eslintExt: "ts, tsx"
