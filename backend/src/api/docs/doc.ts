@@ -1,6 +1,6 @@
 import { loginCreate, loginDefinition, pathLogin } from './login'
 import { logoutDefinition, pathLogout } from './logout'
-import { 
+import {
     organizationCreateDefinition,
     organizationDefinition,
     organizationUpdateDefinition,
@@ -20,11 +20,13 @@ export const apiDoc = {
     basePath: '/',
     info: {
         title: 'universo-down',
-        description: 'Documentação da api universo-down, que disponibiliza os endpoints para controle da aplicação do Universo Down.',
+        description: 'Documentação da api universo-down,'
+            + ' que disponibiliza os endpoints para controle da aplicação do'
+            + ' Universo Down.',
         version: '1.0.0'
     },
     host: 'localhost:3000',
-    schemes:[
+    schemes: [
         'http',
         'https'
     ],

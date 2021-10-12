@@ -1,8 +1,12 @@
 import { getError, propertiesError } from './objects'
 
 const sampleErros = {
-    400: getError('Estrutura da requisição inválida. { Corpo da Mensagem incorreto }'),
-    401: getError('Usuário não possui permissão para esta ação.'),
+    400: getError(
+        'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }'
+    ),
+    401: getError(
+        'Usuário não possui permissão para esta ação.'
+    ),
     404: getError('Organização não encontrada.')
 }
 
@@ -30,17 +34,17 @@ export const pathOrganizationBase = {
                 }
             },
             400: {
-                description: `Estrutura da requisição inválida. { (details) }`,
+                description: 'Estrutura da requisição inválida. { (details) }',
                 schema: sampleErros[400]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
     }
 }
-
 
 export const pathOrganizationId = {
     parameters: [],
@@ -51,12 +55,12 @@ export const pathOrganizationId = {
         operationId: 'getOrganization',
         parameters: [
             {
-              name: 'organizationId',
-              in: 'path',
-              description: 'ID da organização',
-              required: true,
-              type: 'integer',
-              format: 'int64'
+                name: 'organizationId',
+                in: 'path',
+                description: 'ID da organização',
+                required: true,
+                type: 'integer',
+                format: 'int64'
             }
         ],
         responses: {
@@ -67,19 +71,22 @@ export const pathOrganizationId = {
                 }
             },
             400: {
-                description: 'Estrutura da requisição inválida. { Necessário informar o ID }',
+                description: 'Estrutura da requisição inválida.'
+                    + ' { Necessário informar o ID }',
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Organização não encontrada.`,
+                description: 'Organização não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -114,19 +121,21 @@ export const pathOrganizationId = {
                 }
             },
             400: {
-                description: `Estrutura da requisição inválida. { (details) }`,
+                description: 'Estrutura da requisição inválida. { (details) }',
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Organização não encontrada.`,
+                description: 'Organização não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -138,12 +147,12 @@ export const pathOrganizationId = {
         operationId: 'deleteOrganization',
         parameters: [
             {
-              name: 'organizationId',
-              in: 'path',
-              description: 'ID do organização',
-              required: true,
-              type: 'integer',
-              format: 'int64'
+                name: 'organizationId',
+                in: 'path',
+                description: 'ID do organização',
+                required: true,
+                type: 'integer',
+                format: 'int64'
             }
         ],
         responses: {
@@ -154,19 +163,22 @@ export const pathOrganizationId = {
                 }
             },
             400: {
-                description: 'Estrutura da requisição inválida. { Necessário informar o ID }',
+                description: 'Estrutura da requisição inválida.'
+                    + ' { Necessário informar o ID }',
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Organização não encontrada.`,
+                description: 'Organização não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -176,22 +188,22 @@ export const pathOrganizationId = {
 export const organizationDefinition = {
     type: 'object',
     properties: {
-        id: { 
+        id: {
             type: 'integer',
             format: 'int64',
             description: 'Id da Organização'
         },
-        name: { 
+        name: {
             type: 'string',
             example: 'Lar de Luz',
             description: 'Nome da Organização'
         },
-        description: { 
+        description: {
             type: 'string',
             example: 'Organização de acolhimento',
             description: 'Descrição detalhada da organização'
         },
-        domain: { 
+        domain: {
             type: 'string',
             example: 'domain.com',
             description: 'Domínio de emails'
@@ -203,17 +215,17 @@ export const organizationDefinition = {
 export const organizationCreateDefinition = {
     type: 'object',
     properties: {
-        name: { 
+        name: {
             type: 'string',
             example: 'Lar de Luz',
             description: 'Nome da Organização'
         },
-        description: { 
+        description: {
             type: 'string',
             example: 'Organização de acolhimento',
             description: 'Descrição detalhada da organização'
         },
-        domain: { 
+        domain: {
             type: 'string',
             example: 'domain.com',
             description: 'Domínio de emails'
@@ -225,22 +237,22 @@ export const organizationCreateDefinition = {
 export const organizationUpdateDefinition = {
     type: 'object',
     properties: {
-        id: { 
+        id: {
             type: 'integer',
             format: 'int64',
             description: 'Id da Organização'
         },
-        name: { 
+        name: {
             type: 'string',
             example: 'Lar de Luz',
             description: 'Nome da Organização'
         },
-        description: { 
+        description: {
             type: 'string',
             example: 'Organização de acolhimento',
             description: 'Descrição detalhada da organização'
         },
-        domain: { 
+        domain: {
             type: 'string',
             example: 'domain.com',
             description: 'Domínio de emails'

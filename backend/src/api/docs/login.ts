@@ -26,15 +26,16 @@ export const pathLogin = {
                 }
             },
             400: {
-                description: `Estrutura da requisição inválida. { (details) }`,
+                description: 'Estrutura da requisição inválida. { (details) }',
                 schema: propertiesError
             },
             404: {
-                description: `Usuário não encontrado.`,
+                description: 'Usuário não encontrado.',
                 schema: propertiesError
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -44,14 +45,17 @@ export const pathLogin = {
 export const loginDefinition = {
     type: 'object',
     properties: {
-        auth: { 
+        auth: {
             type: 'boolean',
             example: true,
             description: 'Indica se realizou a autenticação corretamente'
         },
-        token: { 
+        token: {
             type: 'string',
-            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+            example:
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3'
+                + 'ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.S'
+                + 'flKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
             description: 'Token de acesso JWT'
         }
     }

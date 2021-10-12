@@ -1,36 +1,38 @@
 import * as express from 'express'
 import * as swaggerUi from 'swagger-ui-express'
-import { apiDoc } from './api/docs/doc'
 
+import { apiDoc } from './api/docs/doc'
 import { Route } from './api/route'
 import config from './config'
 import dbConnection from './database'
+import logger from './fns/logger'
 
-// create and setup express app
-console.info(`Process id: ${process.pid}`)
+// Create and setup express app
+logger.info(`Process id: ${process.pid}`)
 const api = JSON.stringify(apiDoc)
 
 const app = express()
 app.use(express.json())
-// register routes
+// Register routes
 Route.getRoutes(app)
 
+const swaggerJson = JSON.parse(api) as swaggerUi.JsonObject
 app.use(
     '/',
     swaggerUi.serve,
-    swaggerUi.setup(JSON.parse(api))
+    swaggerUi.setup(swaggerJson)
 )
 
 async function run() {
     await dbConnection
-    
-    // start express server
+
+    // Start express server
     app.listen(config.port)
-    console.info(`Aplication Running on Port: ${config.port}`)
+    logger.info(`Aplication Running on Port: ${config.port}`)
 }
 
 export default run().catch((err: Error) => {
-    console.error(err)
+    logger.error(err)
 
     process.exit(1)
 })

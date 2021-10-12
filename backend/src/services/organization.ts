@@ -1,6 +1,7 @@
-import { Inject, Service } from 'typedi'
+import { Service } from 'typedi'
 import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
+
 import OrganizationRepository from '../repositories/organization'
 import { cryptPassword } from '../fns/crypt-password'
 import { OrganizationCreate, OrganizationUpdate } from '../api/dto/organization'
@@ -28,6 +29,7 @@ export default class OrganizationService {
                     role: UserRole.Owner
                 }]
             })
+
             return organization
         })
     }
@@ -35,7 +37,8 @@ export default class OrganizationService {
     async update(organizationInfo: OrganizationUpdate): Promise<Organization> {
         return getManager().transaction(async db => {
             const repository = db.getCustomRepository(OrganizationRepository)
-            const organization = await repository.findById(organizationInfo.id, db)
+            const organization = await repository
+                .findById(organizationInfo.id, db)
 
             return repository.save({
                 ...organization,

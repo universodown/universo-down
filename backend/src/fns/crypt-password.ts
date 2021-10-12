@@ -1,7 +1,10 @@
 import * as bcrypt from 'bcrypt'
+
 import { User } from '../model/user'
 
-export async function cryptPassword(plainPassword: string): Promise<string> {
+export async function cryptPassword(
+    plainPassword: string
+): Promise<string> {
     const saltRounds = 10
     if (plainPassword === '') {
         // The password should not be empty
@@ -11,6 +14,9 @@ export async function cryptPassword(plainPassword: string): Promise<string> {
     return bcrypt.hash(plainPassword, saltRounds)
 }
 
-export async function verifyUser(user: User, password: string) {
+export async function verifyUser(
+    user: User,
+    password: string
+): Promise<boolean> {
     return bcrypt.compare(password, user.password)
 }

@@ -1,8 +1,12 @@
 import { getError, propertiesError } from './objects'
 
 const sampleErros = {
-    400: getError('Estrutura da requisição inválida. { Corpo da Mensagem incorreto }'),
-    401: getError('Usuário não possui permissão para esta ação. { (Função: Membro) }'),
+    400: getError(
+        'Estrutura da requisição inválida. { Corpo da Mensagem incorreto }'
+    ),
+    401: getError(
+        'Usuário não possui permissão para esta ação. { (Função: Membro) }'
+    ),
     404: getError('Usuário não encontrado.')
 }
 
@@ -30,15 +34,17 @@ export const pathUsersBase = {
                 }
             },
             400: {
-                description: `Estrutura da requisição inválida. { (details) }`,
+                description: 'Estrutura da requisição inválida. { (details) }',
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual '
+                    + 'não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -60,11 +66,13 @@ export const pathUsersBase = {
                 }
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -80,12 +88,12 @@ export const pathUsersId = {
         operationId: 'getUser',
         parameters: [
             {
-              name: 'userId',
-              in: 'path',
-              description: 'ID do usuário',
-              required: true,
-              type: 'integer',
-              format: 'int64'
+                name: 'userId',
+                in: 'path',
+                description: 'ID do usuário',
+                required: true,
+                type: 'integer',
+                format: 'int64'
             }
         ],
         responses: {
@@ -100,15 +108,17 @@ export const pathUsersId = {
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Usuário não encontrado.`,
+                description: 'Usuário não encontrado.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -143,19 +153,21 @@ export const pathUsersId = {
                 }
             },
             400: {
-                description: `Estrutura da requisição inválida. { (details) }`,
+                description: 'Estrutura da requisição inválida. { (details) }',
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Usuário não encontrado.`,
+                description: 'Usuário não encontrado.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -167,12 +179,12 @@ export const pathUsersId = {
         operationId: 'deleteUser',
         parameters: [
             {
-              name: 'userId',
-              in: 'path',
-              description: 'ID do usuário',
-              required: true,
-              type: 'integer',
-              format: 'int64'
+                name: 'userId',
+                in: 'path',
+                description: 'ID do usuário',
+                required: true,
+                type: 'integer',
+                format: 'int64'
             }
         ],
         responses: {
@@ -187,15 +199,17 @@ export const pathUsersId = {
                 schema: sampleErros[400]
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: sampleErros[401]
             },
             404: {
-                description: `Usuário não encontrado.`,
+                description: 'Usuário não encontrado.',
                 schema: sampleErros[404]
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -205,107 +219,122 @@ export const pathUsersId = {
 export const userDefinition = {
     type: 'object',
     properties: {
-        id: { 
+        id: {
             type: 'integer',
             format: 'int64',
             description: 'Id do Usuário'
         },
-        firstName: { 
+        firstName: {
             type: 'string',
             example: 'Dolores',
             description: 'Primeiro nome do Usuário'
         },
-        lastName: { 
+        lastName: {
             type: 'string',
             example: 'Marcela da Mata',
             description: 'Nome final do Usuário'
         },
-        email: { 
+        email: {
             type: 'string',
             example: 'dolores.mata@domain.com',
             description: 'Email do Usuário'
         },
-        password: { 
+        password: {
             type: 'string',
-            example: '$2a$12$C3ImsyO8dwLu7YcPuzjY8OGG7O1SOorplAASONk8PqKuqyFu2yylG',
+            example:
+                '$2a$12$C3ImsyO8dwLu7YcPuzjY8OGG7O1SOorplAASONk8PqKuqyFu2yylG',
             description: 'Senha Criptografada do Usuário'
         },
-        role: { 
+        role: {
             type: 'string',
             description: 'Função de Usuário',
-            enum: [ 'owner', 'admin', 'member' ],
+            enum: ['owner', 'admin', 'member'],
             example: 'owner'
         },
-        organizationId: { 
+        organizationId: {
             type: 'integer',
             format: 'int64',
             description: 'Organização na qual compõe o Usuário'
         }
     },
-    required: ['id', 'firstName', 'lastName', 'email', 'password', 'role', 'organizationId']
+    required: [
+        'id',
+        'firstName',
+        'lastName',
+        'email',
+        'password',
+        'role',
+        'organizationId'
+    ]
 }
 
 export const userCreateDefinition = {
     type: 'object',
     properties: {
-        firstName: { 
+        firstName: {
             type: 'string',
             example: 'Dolores',
             description: 'Primeiro nome do Usuário'
         },
-        lastName: { 
+        lastName: {
             type: 'string',
             example: 'Marcela da Mata',
             description: 'Nome final do Usuário'
         },
-        email: { 
+        email: {
             type: 'string',
             example: 'dolores.mata@domain.com',
             description: 'Email do Usuário'
         },
-        plainPassword: { 
+        plainPassword: {
             type: 'string',
             example: '123456',
             description: 'Senha em texto planificado.'
         },
-        plainPasswordConfirmation: { 
+        plainPasswordConfirmation: {
             type: 'string',
             example: '123456',
             description: 'Confirmação de senha em texto planificado.'
         }
     },
-    required: ['firstName', 'lastName', 'email', 'plainPassword', 'plainPasswordConfirmation']
+    required: [
+        'firstName',
+        'lastName',
+        'email',
+        'plainPassword',
+        'plainPasswordConfirmation'
+    ]
 }
 
 export const userUpdateDefinition = {
     type: 'object',
     properties: {
-        id: { 
+        id: {
             type: 'integer',
             format: 'int64',
             description: 'Id do Usuário'
         },
-        firstName: { 
+        firstName: {
             type: 'string',
             example: 'Dolores',
             description: 'Primeiro nome do Usuário'
         },
-        lastName: { 
+        lastName: {
             type: 'string',
             example: 'Marcela da Mata',
             description: 'Nome final do Usuário'
         },
-        email: { 
+        email: {
             type: 'string',
             example: 'dolores.mata@domain.com',
             description: 'Email do Usuário'
         },
-        plainPassword: { 
+        plainPassword: {
             type: 'string',
             example: '123456',
             description: 'Senha em texto planificado.'
         },
-        plainPasswordConfirmation: { 
+        plainPasswordConfirmation: {
             type: 'string',
             example: '123456',
             description: 'Confirmação de senha em texto planificado.'

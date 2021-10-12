@@ -1,6 +1,7 @@
 import { Service } from 'typedi'
-import { EntityManager, getManager } from 'typeorm'
+import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
+
 import UserRepository from '../repositories/user'
 import { cryptPassword } from '../fns/crypt-password'
 import { UserCreate, UserUpdate } from '../api/dto/user'
@@ -15,7 +16,6 @@ export default class UserService {
     private readonly repository: UserRepository
 
     async create(userInfo: UserCreate): Promise<User> {
-        
         verifyPassword(
             userInfo.plainPassword,
             userInfo.plainPasswordConfirmation
@@ -23,8 +23,8 @@ export default class UserService {
         const password = await cryptPassword(userInfo.plainPassword)
 
         return getManager().transaction(async db => {
-            const repository = db.getCustomRepository(UserRepository)   
-            
+            const repository = db.getCustomRepository(UserRepository)
+
             return repository.save({
                 ...userInfo,
                 password
@@ -33,12 +33,11 @@ export default class UserService {
     }
 
     async update(userInfo: UserUpdate): Promise<User> {
-
         verifyPassword(
             userInfo.plainPassword,
             userInfo.plainPasswordConfirmation
         )
-        
+
         return getManager().transaction(async db => {
             const repository = db.getCustomRepository(UserRepository)
             const user = await repository.findById(userInfo.id, db)

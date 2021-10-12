@@ -1,5 +1,7 @@
 import * as dotenv from 'dotenv'
 
+import logger from './fns/logger'
+
 dotenv.config()
 
 type Database = {
@@ -14,14 +16,38 @@ type Database = {
 }
 
 type Config = {
-    port: number,
+    port: number
     database: Database
     jwtSecret: string
+    logs: {
+        color: boolean
+        level: 'crit' | 'error' | 'warning' | 'info' | 'debug'
+        db: boolean
+    }
 }
+
+function getLogLevel(level?: string) {
+    switch (level) {
+        case 'crit':
+        case 'error':
+        case 'warning':
+        case 'info':
+            return level
+        default:
+            return 'debug'
+    }
+}
+
+const logLevel = getLogLevel(process.env.LOG_LEVEL)
 
 const defaultConfig: Config = {
     port: Number(process.env.PORT) || 3000,
     jwtSecret: process.env.SECRET || 'universodown',
+    logs: {
+        color: true,
+        level: logLevel,
+        db: logLevel === 'debug' && !process.env.OMIT_DB_LOGS
+    },
     database: {
         type: 'mysql',
         url: 'localhost',
@@ -40,15 +66,15 @@ function overrideConfig(env: string) {
             return {
                 port: Number(process.env.PORT) || 80
             }
+        default:
+            return {}
     }
-
-    return {}
 }
 const config = {
     ...defaultConfig,
     ...overrideConfig(process.env.NODE_ENV)
 }
 
-console.info(`Using config: ${JSON.stringify(config)}`)
+logger.info(`Using config: ${JSON.stringify(config)}`)
 
 export default config

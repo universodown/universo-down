@@ -18,11 +18,13 @@ export const pathLogout = {
                 }
             },
             401: {
-                description: `Usuário não possui permissão para esta ação. { (details) }`,
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
                 schema: propertiesError
             },
             500: {
-                description: `O servidor encontrou uma situação com a qual não sabe lidar. { (details) }`,
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
                 schema: propertiesError
             }
         }
@@ -32,12 +34,12 @@ export const pathLogout = {
 export const logoutDefinition = {
     type: 'object',
     properties: {
-        auth: { 
+        auth: {
             type: 'boolean',
             example: false,
             description: 'Indica se realizou a desconexão corretamente'
         },
-        token: { 
+        token: {
             type: 'string',
             example: null,
             description: 'Token de acesso JWT limpo'
