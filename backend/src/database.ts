@@ -5,7 +5,7 @@ import { Container } from 'typedi'
 import config from './config'
 import logger from './fns/logger'
 
-const { database } = config
+const { logs, database } = config
 
 useContainer(Container)
 
@@ -21,7 +21,7 @@ export default createConnection({
     username: database.username,
     password: database.password,
     database: database.name,
-    logging: 'all',
+    logging: logs.db ? 'all' : false,
     synchronize: true,
     extra: {
         max: database.pollSize,

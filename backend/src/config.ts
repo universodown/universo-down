@@ -1,7 +1,5 @@
 import * as dotenv from 'dotenv'
 
-import logger from './fns/logger'
-
 dotenv.config()
 
 type Database = {
@@ -74,7 +72,5 @@ const config = {
     ...defaultConfig,
     ...overrideConfig(process.env.NODE_ENV)
 }
-
-logger.info(`Using config: ${JSON.stringify(config)}`)
 
 export default config

@@ -28,6 +28,7 @@ async function run() {
 
     // Start express server
     app.listen(config.port)
+    logger.info(`Using config: ${JSON.stringify(config)}`)
     logger.info(`Aplication Running on Port: ${config.port}`)
 }
 
