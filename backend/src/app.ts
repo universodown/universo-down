@@ -6,6 +6,13 @@ import { Route } from './api/route'
 import config from './config'
 import dbConnection from './database'
 import logger from './fns/logger'
+/* Import {
+    createSpeciality,
+    updateSpeciality,
+    deleteSpeciality,
+    findAllSpeciality,
+    findSpeciality
+} from './test/speciality'*/
 
 // Create and setup express app
 logger.info(`Process id: ${process.pid}`)
@@ -25,6 +32,16 @@ app.use(
 
 async function run() {
     await dbConnection
+    // Execute Tests
+    /* Const obj = await createSpeciality()
+    await findAllSpeciality()
+    await findSpeciality(obj.id)
+    await updateSpeciality(obj.id)
+    await findAllSpeciality()
+    await findSpeciality(obj.id)
+    await deleteSpeciality(obj.id)
+    await findAllSpeciality()
+    await findSpeciality(obj.id)*/
 
     // Start express server
     app.listen(config.port)
