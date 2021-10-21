@@ -3,11 +3,13 @@ import {
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
 } from 'typeorm'
 
 import { UserRole } from './enum/user-role'
 import { Organization } from './organization'
+import { Restriction } from './restriction'
 
 @Entity({ name: 'users' })
 export class User {
@@ -36,5 +38,8 @@ export class User {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
+
+    @OneToMany (_ => Restriction, restriction => restriction.user)
+    restriction: Restriction[];
 
 }
