@@ -39,7 +39,7 @@ export class User {
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @OneToMany (_ => Restriction, restriction => restriction.user)
+    @OneToMany (_ => Restriction, restriction => restriction.user, { onDelete: 'CASCADE' })
     restriction: Restriction[];
 
 }
