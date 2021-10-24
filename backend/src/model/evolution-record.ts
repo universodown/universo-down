@@ -9,6 +9,7 @@ import {
 } from 'typeorm'
 
 import { Assisted } from './assisted'
+import { Organization } from './organization'
 import { User } from './user'
 
 @Entity({ name: 'evolution_records' })
@@ -45,5 +46,16 @@ export class EvolutionRecord {
     @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
     @OneToMany(_=> Assisted, a => a.evolutionRecord, { onDelete: 'RESTRICT' })
     assisted: Assisted
+
+    @Column('int', { name: 'organization_id', nullable: false })
+    organizationId: number
+
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(
+        _ => Organization,
+        o => o.evolutionRecord,
+        { onDelete: 'RESTRICT' }
+    )
+    organization: Organization
 
 }

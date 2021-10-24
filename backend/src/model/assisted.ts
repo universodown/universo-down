@@ -1,10 +1,13 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    JoinColumn,
+    ManyToOne
 } from 'typeorm'
 
 import { EvolutionRecord } from './evolution-record'
+import { Organization } from './organization'
 
 @Entity({ name: 'assisteds' })
 export class Assisted {
@@ -86,6 +89,13 @@ export class Assisted {
 
     @Column('text')
     socialIdentificationNumber: string
-    evolutionRecord: EvolutionRecord
+    evolutionRecord: EvolutionRecord[]
+
+    @Column('int', { name: 'organization_id', nullable: false })
+    organizationId: number
+
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Organization, o => o.assited, { onDelete: 'RESTRICT' })
+    organization: Organization
 
 }
