@@ -9,7 +9,7 @@ import {
 
 import { UserRole } from './enum/user-role'
 import { Organization } from './organization'
-import { Restriction } from './restriction'
+import { Calendar } from './calendar'
 
 @Entity({ name: 'users' })
 export class User {
@@ -39,7 +39,7 @@ export class User {
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @OneToMany(_ => Restriction, r => r.user, { onDelete: 'CASCADE' })
-    restriction: Restriction[];
+    @ManyToOne(_ => Calendar, c => c.user, { cascade: true })
+    calendars: Calendar[]
 
 }
