@@ -7,7 +7,7 @@ import { verifyUser } from '../fns/crypt-password'
 import UserService from '../services/user'
 import config from '../config'
 import { verifyJWT } from '../fns/verify-jwt'
-import { UserRole } from '../model/enum/user-role'
+import { AdminRole } from '../model/enum/admin-role'
 
 import { isUserCreate, isUserLogin, isUserUpdate } from './dto/user'
 import { Context } from './dto/context'
@@ -25,7 +25,7 @@ export class UserRoutes {
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.role === UserRole.Member) {
+                    if (context.user.role === AdminRole.Member) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + ' esta ação. { (Função: Membro) }'
@@ -80,7 +80,7 @@ export class UserRoutes {
 
                         return
                     } else if (
-                        context.user.role === UserRole.Member
+                        context.user.role === AdminRole.Member
                     && context.user.id !== user.id
                     ) {
                         response.status(404).json({

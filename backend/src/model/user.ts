@@ -6,6 +6,7 @@ import {
     JoinColumn
 } from 'typeorm'
 
+import { AdminRole } from './enum/admin-role'
 import { UserRole } from './enum/user-role'
 import { Organization } from './organization'
 
@@ -27,8 +28,53 @@ export class User {
     @Column('text')
     password: string
 
+    @Column('enum', { enum: AdminRole, default: 'member' })
+    admin_role: AdminRole
+
     @Column('enum', { enum: UserRole, default: 'member' })
-    role: UserRole
+    user_role: UserRole
+
+    @Column('date')
+    birthday: Date
+
+    @Column('text')
+    gender: string
+
+    @Column('text')
+    identification: string
+
+    @Column('text')
+    general_registration: string
+
+    @Column('date')
+    issue: Date
+
+    @Column('text')
+    issuer: string
+
+    @Column('text')
+    zip_code: string
+
+    @Column('text')
+    address: string
+
+    @Column('text')
+    number: string
+
+    @Column('text')
+    neighborhood: string
+
+    @Column('text')
+    city: string
+
+    @Column('text')
+    state: string
+
+    @Column('text')
+    phone: string
+
+    @Column('text')
+    national_identity: string
 
     @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
@@ -36,5 +82,6 @@ export class User {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
+    evolution_records: any
 
 }
