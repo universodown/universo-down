@@ -1,11 +1,11 @@
 import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  Double,
-  JoinColumn,
-  OneToMany,
-  ManyToOne
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    Double,
+    JoinColumn,
+    OneToMany,
+    ManyToOne
 } from 'typeorm'
 
 import { Assisted } from './assisted'
@@ -14,35 +14,36 @@ import { User } from './user'
 @Entity({ name: 'evolution_records' })
 export class EvolutionRecord {
 
-  @PrimaryGeneratedColumn()
-  id: number
+    @PrimaryGeneratedColumn()
+    id: number
 
-  @Column('date')
-  date: Date
+    @Column('date')
+    date: Date
 
-  @Column('text')
-  status: string
+    @Column('text')
+    status: string
 
-  @Column('double')
-  wight: Double
+    @Column('double')
+    wight: Double
 
-  @Column('double')
-  height: Double
+    @Column('double')
+    height: Double
 
-  @Column('text')
-  report: string
+    @Column('text')
+    report: string
 
-  @Column('int', { name: 'user_id', nullable: false })
-  user_id: number
+    @Column('int', { name: 'user_id', nullable: false })
+    userId: number
 
-  @JoinColumn({ name:'user_id', referencedColumnName: 'id' })
-  @ManyToOne(_=> User, u => u.evolution_records, { onDelete: 'CASCADE' })
-  user: User
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+    @ManyToOne(_=> User, u => u.evolutionRecord, { onDelete: 'RESTRICT' })
+    user: User
 
-  @Column('int', { name: 'assisted_id', nullable: false })
-  assisted_id: number
+    @Column('int', { name: 'assisted_id', nullable: false })
+    assistedId: number
 
-  @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-  @OneToMany(_=> Assisted, a => a.evolution_records, { onDelete: 'CASCADE' })
-  assisted: Assisted
+    @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
+    @OneToMany(_=> Assisted, a => a.evolutionRecord, { onDelete: 'RESTRICT' })
+    assisted: Assisted
+
 }

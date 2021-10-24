@@ -8,6 +8,7 @@ import {
 
 import { AdminRole } from './enum/admin-role'
 import { UserRole } from './enum/user-role'
+import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 
 @Entity({ name: 'users' })
@@ -29,10 +30,10 @@ export class User {
     password: string
 
     @Column('enum', { enum: AdminRole, default: 'member' })
-    admin_role: AdminRole
+    adminRole: AdminRole
 
     @Column('enum', { enum: UserRole, default: 'member' })
-    user_role: UserRole
+    userRole: UserRole
 
     @Column('date')
     birthday: Date
@@ -44,7 +45,7 @@ export class User {
     identification: string
 
     @Column('text')
-    general_registration: string
+    generalRegistration: string
 
     @Column('date')
     issue: Date
@@ -53,7 +54,7 @@ export class User {
     issuer: string
 
     @Column('text')
-    zip_code: string
+    zipCode: string
 
     @Column('text')
     address: string
@@ -74,7 +75,7 @@ export class User {
     phone: string
 
     @Column('text')
-    national_identity: string
+    nationalIdentity: string
 
     @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
@@ -82,6 +83,6 @@ export class User {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
-    evolution_records: any
+    evolutionRecord: EvolutionRecord
 
 }
