@@ -30,4 +30,5 @@ export class Calendar {
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
     @OneToMany(_ => User, u => u.calendars, { onDelete: 'CASCADE' })
     user: User
+
 }

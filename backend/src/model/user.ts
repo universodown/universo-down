@@ -3,8 +3,7 @@ import {
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
-    JoinColumn,
-    OneToMany
+    JoinColumn
 } from 'typeorm'
 
 import { UserRole } from './enum/user-role'
