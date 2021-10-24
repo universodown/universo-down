@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToMany } from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    JoinColumn,
+    OneToMany
+} from 'typeorm'
 
 import { User } from './user'
+import { Weekday } from './enum/weekday'
 
 @Entity({ name: 'calendar' })
 export class Calendar {
@@ -8,7 +15,7 @@ export class Calendar {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('text', { name: 'day_of_week' })
+    @Column('enum', { enum: Weekday, default: 'member' })
     dayOfWeek: string
 
     @Column('text', { name: 'start_hour' })

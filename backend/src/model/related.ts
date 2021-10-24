@@ -1,6 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    ManyToOne,
+    JoinColumn
+} from 'typeorm'
 
-//import { Assisted } from './assisted'
+import { Assisted } from './assisted'
 
 @Entity({ name: 'related' })
 export class Related {
@@ -73,5 +79,12 @@ export class Related {
 
     @Column({ type: 'boolean' })
     responsible: boolean
+
+    @Column('int', { name: 'assisted_id', nullable: false })
+    organizationId: number
+
+    @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Assisted, a => a.related, { onDelete: 'CASCADE' })
+    assisted: Assisted
 
 }
