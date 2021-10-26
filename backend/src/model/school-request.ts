@@ -7,6 +7,7 @@ import {
     // C> OneToMany,
     // C> JoinColumn
 } from 'typeorm'
+
 import { Status } from './enum/status'
 import { Organization } from './organization'
 
@@ -31,7 +32,7 @@ export class SchoolRequest {
     responseDate: string
 
     @Column('enum', { enum: Status, name: 'status' })
-    status: Status   
+    status: Status
 
     // C> @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
     // C> @ManyToOne(_ => Assisted, a => a.schoolRequests)

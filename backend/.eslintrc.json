@@ -30,7 +30,7 @@
         "dot-notation": "error",
         "eol-last": "error",
         "guard-for-in": "off",
-        "linebreak-style": ["error", "unix"],
+        //"linebreak-style": ["error", "unix"],
         "max-classes-per-file": "off",
         "max-lines": "off",
         "new-parens": "error",
