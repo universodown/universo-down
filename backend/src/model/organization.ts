@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { SchoolRequest } from './school-request'
 
 import { User } from './user'
 
@@ -19,5 +20,8 @@ export class Organization {
 
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
+
+    @OneToMany(_ => SchoolRequest, s => s.organization, { onDelete: 'CASCADE' })
+    schoolRequests: SchoolRequest[]
 
 }
