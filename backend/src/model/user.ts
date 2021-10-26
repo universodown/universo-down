@@ -3,7 +3,8 @@ import {
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
 } from 'typeorm'
 
 import { AdminRole } from './enum/admin-role'
@@ -23,66 +24,68 @@ export class User {
     @Column('text', { name: 'last_name' })
     lastName: string
 
-    @Column('text')
+    @Column('text', { name: 'email' })
     email: string
 
-    @Column('text')
+    @Column('text', { name: 'password' })
     password: string
 
-    @Column('enum', { enum: AdminRole, default: 'member' })
+    @Column('enum', { name: 'admin_role' ,enum: AdminRole, default: 'member' })
     adminRole: AdminRole
 
-    @Column('enum', { enum: UserRole, default: 'member' })
+    @Column('enum', { name: 'user_role', enum: UserRole, default: 'member' })
     userRole: UserRole
 
-    @Column('date')
+    @Column('date', { name: 'birthday' })
     birthday: Date
 
-    @Column('text')
+    @Column('text', { name: 'gender' })
     gender: string
 
-    @Column('text')
+    @Column('text', { name: 'indentification' })
     identification: string
 
-    @Column('text')
+    @Column('text', { name: 'general_registration' })
     generalRegistration: string
 
-    @Column('date')
+    @Column('date', { name: 'issue' })
     issue: Date
 
-    @Column('text')
+    @Column('text', { name: 'issuer' })
     issuer: string
 
-    @Column('text')
+    @Column('text', { name: 'zip_code' })
     zipCode: string
 
-    @Column('text')
+    @Column('text', { name: 'adress' })
     address: string
 
-    @Column('text')
+    @Column('text', { name: 'number' })
     number: string
 
-    @Column('text')
+    @Column('text', { name: 'neighborhood' })
     neighborhood: string
 
-    @Column('text')
+    @Column('text', { name: 'city' })
     city: string
 
-    @Column('text')
+    @Column('text', { name: 'state' })
     state: string
 
-    @Column('text')
+    @Column('text', { name: 'phone' })
     phone: string
 
-    @Column('text')
+    @Column('text', { name: 'national_indentity' })
     nationalIdentity: string
 
     @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
+    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'RESTRICT' })
     organization: Organization
+
+    @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'RESTRICT' })
     evolutionRecord: EvolutionRecord
 
 }

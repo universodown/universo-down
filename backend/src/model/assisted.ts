@@ -18,76 +18,76 @@ export class Assisted {
     @Column('text', { name: 'name' })
     name: string
 
-    @Column('date')
+    @Column('date', { name: 'birthday' })
     birthday: Date
 
-    @Column('text')
+    @Column('text', { name: 'gender' })
     gender: Text
 
-    @Column('text')
+    @Column('text', { name: 'identification' })
     identification: string
 
-    @Column('text')
+    @Column('text', { name: 'general_registration' })
     generalRegistration: string
 
-    @Column('date')
+    @Column('date', { name: 'issue' })
     issue: Date
 
-    @Column('text')
+    @Column('text', { name: 'issuer' })
     issuer: string
 
-    @Column('text')
-    zip_code: string
+    @Column('text', { name: 'zip_code' })
+    zipCode: string
 
-    @Column('text')
+    @Column('text', { name: 'address' })
     address: string
 
-    @Column('text')
+    @Column('text', { name: 'number' })
     number: string
 
-    @Column('text')
+    @Column('text', { name: 'neighborhood' })
     neighborhood: string
 
-    @Column('text')
+    @Column('text', { name: 'city' })
     city: string
 
-    @Column('text')
+    @Column('text', { name: 'state' })
     state: string
 
-    @Column('text')
+    @Column('text', { name: 'phone' })
     phone: string
 
-    @Column('boolean')
+    @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
 
-    @Column('blob')
+    @Column('blob', { name: 'scholarity' })
     scholarity: Blob
 
-    @Column('text')
+    @Column('text', { name: 'naturalness' })
     naturalness: string
 
-    @Column('text')
+    @Column('text', { name: 'nationality' })
     nationality: string
 
-    @Column('text')
+    @Column('text', { name: 'occupation' })
     occupation: string
 
-    @Column('text')
+    @Column('text', { name: 'national_identity' })
     nationalIdentity: string
 
-    @Column('boolean')
+    @Column('boolean', { name: 'active' })
     active: boolean
 
-    @Column('text')
+    @Column('text', { name: 'additional_information' })
     additionalInformation: string
 
-    @Column('blob')
+    @Column('blob', { name: 'photo' })
     photo: Blob
 
-    @Column('blob')
+    @Column('blob', { name: 'benefits' })
     benefits: Blob
 
-    @Column('text')
+    @Column('text', { name: 'social_identification_number' })
     socialIdentificationNumber: string
     evolutionRecord: EvolutionRecord[]
 

@@ -25,7 +25,11 @@ export class Organization {
 
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
+
+    @OneToMany(_ => EvolutionRecord, e => e.organization, { cascade: true })
     evolutionRecord: EvolutionRecord[]
+
+    @OneToMany(_ => Assisted, a => a.organization, { cascade: true })
     assited: Assisted[]
 
 }

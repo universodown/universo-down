@@ -18,19 +18,19 @@ export class EvolutionRecord {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('date')
+    @Column('date', { name: 'date' })
     date: Date
 
-    @Column('text')
+    @Column('text', { name: 'status' })
     status: string
 
-    @Column('double')
+    @Column('double', { name: 'wight' })
     wight: Double
 
-    @Column('double')
+    @Column('double', { name: 'height' })
     height: Double
 
-    @Column('text')
+    @Column('text', { name: 'report' })
     report: string
 
     @Column('int', { name: 'user_id', nullable: false })
