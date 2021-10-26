@@ -22,8 +22,8 @@ export class Specialities {
     @Column('int', { name: 'user_id' })
     userId: number
 
-    @Column('int')
-    speciality_id: number
+    @Column('int', { name: 'speciality_id' })
+    specialityId: number
 
     @JoinColumn({ name: 'speciality_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Speciality, s => s.specialities)

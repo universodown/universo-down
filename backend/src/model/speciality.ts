@@ -20,14 +20,14 @@ export class Speciality {
     @Column('int', { name: 'organization_id' })
     organizationId: number
 
-    @Column({ type: 'text' })
-    name_speciality: string
+    @Column('text', { name: 'name_speciality' })
+    nameSpeciality: string
 
     @OneToMany(_ => Specialities, s => s.speciality, { onDelete: 'RESTRICT' })
     specialities: Specialities[]
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    @ManyToOne(_ => Organization, s => s.specialities)
+    @ManyToOne(_ => Organization, s => s.speciality)
     organization: Organization
 
 }
