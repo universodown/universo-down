@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 import { SchoolRequest } from './school-request'
+import { NeedSpeciality } from './need-speciality'
 
 import { User } from './user'
 
@@ -23,5 +24,8 @@ export class Organization {
 
     @OneToMany(_ => SchoolRequest, s => s.organization, { onDelete: 'CASCADE' })
     schoolRequests: SchoolRequest[]
+
+    @OneToMany(_ => NeedSpeciality, s => s.organization, { onDelete: 'CASCADE' })
+    needSpecialities: NeedSpeciality[]
 
 }
