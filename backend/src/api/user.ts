@@ -25,7 +25,7 @@ export class UserRoutes {
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.role === AdminRole.Member) {
+                    if (context.user.adminRole === AdminRole.Member) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + ' esta ação. { (Função: Membro) }'
@@ -80,7 +80,7 @@ export class UserRoutes {
 
                         return
                     } else if (
-                        context.user.role === AdminRole.Member
+                        context.user.adminRole === AdminRole.Member
                     && context.user.id !== user.id
                     ) {
                         response.status(404).json({
@@ -118,7 +118,7 @@ export class UserRoutes {
 
                     const context = request.context
 
-                    if (context.user.role === 'member') {
+                    if (context.user.adminRole === 'member') {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para esta'
                             + ' ação. { (Função: Membro) }'
@@ -189,7 +189,7 @@ export class UserRoutes {
 
                         return
                     } else if (
-                        context.user.role === 'member'
+                        context.user.adminRole === 'member'
                         && context.user.id !== user.id
                     ) {
                         response.status(401).json({
@@ -249,7 +249,7 @@ export class UserRoutes {
 
                         return
                     } else if (
-                        context.user.role === 'member'
+                        context.user.adminRole === 'member'
                         || context.user.id === user.id
                     ) {
                         response.status(401).json({

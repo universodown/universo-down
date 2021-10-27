@@ -10,6 +10,8 @@ import { EvolutionRecord } from './evolution-record'
 import { Specialities } from './specialities'
 import { Speciality } from './speciality'
 import { User } from './user'
+import { Related } from './related'
+import { Calendar } from './calendar'
 
 @Entity({ name: 'organization' })
 export class Organization {
@@ -28,6 +30,12 @@ export class Organization {
 
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
+
+    @OneToMany(_ => Related, r => r.organization, { cascade: true })
+    related: Related[]
+
+    @OneToMany(_ => Calendar, r => r.organization, { cascade: true })
+    calendar: Calendar[]
 
     @OneToMany(_ => EvolutionRecord, e => e.organization, { cascade: true })
     evolutionRecord: EvolutionRecord[]
