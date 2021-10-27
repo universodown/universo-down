@@ -2,47 +2,29 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    ManyToOne,
     JoinColumn,
-    OneToMany
+    ManyToOne
 } from 'typeorm'
 
-import { AdminRole } from './enum/admin-role'
-import { UserRole } from './enum/user-role'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 
-@Entity({ name: 'users' })
-export class User {
+@Entity({ name: 'assisteds' })
+export class Assisted {
 
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('text', { name: 'first_name' })
-    firstName: string
-
-    @Column('text', { name: 'last_name' })
-    lastName: string
-
-    @Column('text', { name: 'email' })
-    email: string
-
-    @Column('text', { name: 'password' })
-    password: string
-
-    @Column('enum', { name: 'admin_role' ,enum: AdminRole, default: 'member' })
-    adminRole: AdminRole
-
-    @Column('enum', { name: 'user_role', enum: UserRole, default: 'member' })
-    userRole: UserRole
+    @Column('text', { name: 'name' })
+    name: string
 
     @Column('date', { name: 'birthday' })
     birthday: Date
 
     @Column('text', { name: 'gender' })
-    gender: string
+    gender: Text
 
-    @Column('text', { name: 'indentification' })
+    @Column('text', { name: 'identification' })
     identification: string
 
     @Column('text', { name: 'general_registration' })
@@ -57,7 +39,7 @@ export class User {
     @Column('text', { name: 'zip_code' })
     zipCode: string
 
-    @Column('text', { name: 'adress' })
+    @Column('text', { name: 'address' })
     address: string
 
     @Column('text', { name: 'number' })
@@ -75,18 +57,45 @@ export class User {
     @Column('text', { name: 'phone' })
     phone: string
 
-    @Column('text', { name: 'national_indentity' })
+    @Column('boolean', { name: 'has_benefits' })
+    hasBenefits: boolean
+
+    @Column('blob', { name: 'scholarity' })
+    scholarity: Blob
+
+    @Column('text', { name: 'naturalness' })
+    naturalness: string
+
+    @Column('text', { name: 'nationality' })
+    nationality: string
+
+    @Column('text', { name: 'occupation' })
+    occupation: string
+
+    @Column('text', { name: 'national_identity' })
     nationalIdentity: string
+
+    @Column('boolean', { name: 'active' })
+    active: boolean
+
+    @Column('text', { name: 'additional_information' })
+    additionalInformation: string
+
+    @Column('blob', { name: 'photo' })
+    photo: Blob
+
+    @Column('blob', { name: 'benefits' })
+    benefits: Blob
+
+    @Column('text', { name: 'social_identification_number' })
+    socialIdentificationNumber: string
+    evolutionRecord: EvolutionRecord[]
 
     @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
+    @ManyToOne(_ => Organization, o => o.assited, { onDelete: 'RESTRICT' })
     organization: Organization
-
-    @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'CASCADE' })
-    evolutionRecord: EvolutionRecord
-    role: AdminRole
 
 }

@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    OneToMany
+} from 'typeorm'
 
+import { Assisted } from './assisted'
+import { EvolutionRecord } from './evolution-record'
 import { Specialities } from './specialities'
 import { Speciality } from './speciality'
 import { User } from './user'
@@ -21,6 +28,12 @@ export class Organization {
 
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
+
+    @OneToMany(_ => EvolutionRecord, e => e.organization, { cascade: true })
+    evolutionRecord: EvolutionRecord[]
+
+    @OneToMany(_ => Assisted, a => a.organization, { cascade: true })
+    assited: Assisted[]
 
     @OneToMany(_ => Specialities, s => s.organization)
     specialities: Specialities[]
