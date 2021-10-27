@@ -82,10 +82,10 @@ export class User {
     organizationId: number
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'RESTRICT' })
+    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'RESTRICT' })
+    @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'CASCADE' })
     evolutionRecord: EvolutionRecord
     role: AdminRole
 
