@@ -1,5 +1,5 @@
 export enum UserRole {
-  Secretary = 'Secretary',
-  Profissional = 'Profissional',
-  SocialAssistence = 'SocialAssistence'
+  Secretary = 'secretary',
+  Profissional = 'profissional',
+  SocialAssistence = 'social-assistence'
 }

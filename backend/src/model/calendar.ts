@@ -16,8 +16,8 @@ export class Calendar {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('enum', { enum: Weekday, default: 'member' })
-    dayOfWeek: string
+    @Column('enum', { enum: Weekday, default: 'monday' })
+    dayOfWeek: Weekday
 
     @Column('text', { name: 'start_hour' })
     startHour: string

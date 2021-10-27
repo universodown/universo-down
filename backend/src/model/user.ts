@@ -11,7 +11,9 @@ import { AdminRole } from './enum/admin-role'
 import { UserRole } from './enum/user-role'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
+import { ProfessionalAttendance } from './professional-attendance'
 import { Calendar } from './calendar'
+import { Gender } from './enum/gender'
 
 @Entity({ name: 'users' })
 export class User {
@@ -34,14 +36,17 @@ export class User {
     @Column('enum', { name: 'admin_role' ,enum: AdminRole, default: 'member' })
     adminRole: AdminRole
 
-    @Column('enum', { name: 'user_role', enum: UserRole, default: 'member' })
+    @Column(
+        'enum',
+        { name: 'user_role', enum: UserRole, default: 'profissional' }
+    )
     userRole: UserRole
 
     @Column('date', { name: 'birthday' })
     birthday: Date
 
-    @Column('text', { name: 'gender' })
-    gender: string
+    @Column('enum', { enum: Gender })
+    gender: Gender
 
     @Column('text', { name: 'indentification' })
     identification: string
@@ -86,7 +91,14 @@ export class User {
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @OneToMany(_ => Calendar, c => c.user, { cascade: true })
+    @OneToMany(
+        _ => ProfessionalAttendance,
+        p => p.user,
+        { onDelete: 'RESTRICT' }
+    )
+    professionalAttendances: ProfessionalAttendance[]
+
+    @OneToMany(_ => Calendar, c => c.user)
     calendars: Calendar[]
 
     @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'CASCADE' })

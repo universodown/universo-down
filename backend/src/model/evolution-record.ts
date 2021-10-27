@@ -4,12 +4,13 @@ import {
     PrimaryGeneratedColumn,
     Double,
     JoinColumn,
-    OneToMany,
-    ManyToOne
+    ManyToOne,
+    OneToMany
 } from 'typeorm'
 
 import { Assisted } from './assisted'
 import { Organization } from './organization'
+import { ProfessionalAttendance } from './professional-attendance'
 import { User } from './user'
 
 @Entity({ name: 'evolution_records' })
@@ -36,19 +37,22 @@ export class EvolutionRecord {
     @Column('int', { name: 'user_id', nullable: false })
     userId: number
 
+    @Column('int', { name: 'assisted_id', nullable: false })
+    assistedId: number
+
+    @Column('int', { name: 'organization_id', nullable: false })
+    organizationId: number
+
+    @OneToMany(_ => ProfessionalAttendance, p => p.evolutionRecord)
+    professionalAttendances: ProfessionalAttendance[]
+
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
     @ManyToOne(_=> User, u => u.evolutionRecord, { onDelete: 'RESTRICT' })
     user: User
 
-    @Column('int', { name: 'assisted_id', nullable: false })
-    assistedId: number
-
     @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-    @OneToMany(_=> Assisted, a => a.evolutionRecord, { onDelete: 'RESTRICT' })
+    @ManyToOne(_=> Assisted, a => a.evolutionRecord, { onDelete: 'RESTRICT' })
     assisted: Assisted
-
-    @Column('int', { name: 'organization_id', nullable: false })
-    organizationId: number
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(

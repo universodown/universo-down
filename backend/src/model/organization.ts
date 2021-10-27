@@ -5,6 +5,8 @@ import {
     OneToMany
 } from 'typeorm'
 
+import { ProfessionalAttendance } from './professional-attendance'
+import { TransportRequest } from './transport_request'
 import { Assisted } from './assisted'
 import { EvolutionRecord } from './evolution-record'
 import { Specialities } from './specialities'
@@ -31,6 +33,19 @@ export class Organization {
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
 
+    @OneToMany(
+        _ => ProfessionalAttendance,
+        p => p.organization,
+        { onDelete: 'CASCADE' }
+    )
+    professionalAttendances: ProfessionalAttendance[]
+
+    @OneToMany(
+        _ => TransportRequest,
+        t => t.organization,
+        { onDelete: 'CASCADE' }
+    )
+    transportRequests: TransportRequest[]
     @OneToMany(_ => Related, r => r.organization, { cascade: true })
     related: Related[]
 
