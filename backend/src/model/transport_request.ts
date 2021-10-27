@@ -7,7 +7,7 @@ import {
 } from 'typeorm'
 
 import { Organization } from './organization'
-// Import { Assisted } from './assisted'
+import { Assisted } from './assisted'
 
 @Entity({ name: 'transport_requests' })
 export class TransportRequest {
@@ -34,8 +34,8 @@ export class TransportRequest {
     @ManyToOne(_ => Organization, o => o.transportRequests)
     organization: Organization
 
-    // @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-    // @ManyToOne(_ => Assisted, a => a.transportRequests)
-    // Assisted: Assisted
+    @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Assisted, a => a.transportRequests)
+    assisted: Assisted
 
 }

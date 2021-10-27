@@ -3,7 +3,7 @@ import * as core from 'express-serve-static-core'
 import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
-import { UserRole } from '../model/enum/user-role'
+import { AdminRole } from '../model/enum/admin-role'
 import OrganizationService from '../services/organization'
 
 import { isOrganizationCreate, isOrganizationUpdate } from './dto/organization'
@@ -28,7 +28,7 @@ export class OrganizationRoutes {
                         return
                     }
                     const context = request.context
-                    if (context.user.role === UserRole.Member) {
+                    if (context.user.adminRole === AdminRole.Member) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para esta'
                                 + ' ação.'
@@ -119,7 +119,7 @@ export class OrganizationRoutes {
                         return
                     }
                     if (
-                        context.user.role === UserRole.Member
+                        context.user.adminRole === AdminRole.Member
                     || context.user.organizationId !== organization.id
                     ) {
                         response.status(401).json({
@@ -173,7 +173,7 @@ export class OrganizationRoutes {
                         return
                     }
                     if (
-                        context.user.role === UserRole.Member
+                        context.user.adminRole === AdminRole.Member
                     || context.user.organizationId !== organization.id
                     ) {
                         response.status(401).json({

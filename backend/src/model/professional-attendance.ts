@@ -7,7 +7,7 @@ import {
 } from 'typeorm'
 
 import { User } from './user'
-// Import { EvolutionRecord } from './evolution_record'
+import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 
 @Entity({ name: 'professional_attendances' })
@@ -38,9 +38,9 @@ export class ProfessionalAttendance {
     @ManyToOne(_ => User, u => u.professionalAttendances)
     user: User
 
-    // @JoinColumn({ name: 'evolution_record_id', referencedColumnName: 'id' })
-    // @ManyToOne(_ => EvolutionRecord, e => e.professionalAttendances)
-    // EvolutionRecords: EvolutionRecord
+    @JoinColumn({ name: 'evolution_record_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => EvolutionRecord, e => e.professionalAttendances)
+    evolutionRecord: EvolutionRecord
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.professionalAttendances)
