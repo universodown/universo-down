@@ -40,10 +40,9 @@ export class ProfessionalAttendance {
 
     // @JoinColumn({ name: 'evolution_record_id', referencedColumnName: 'id' })
     // @ManyToOne(_ => EvolutionRecord, e => e.professionalAttendances)
-    // evolutionRecords: EvolutionRecord
+    // EvolutionRecords: EvolutionRecord
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.professionalAttendances)
-    organization: Organization  
-
+    organization: Organization
 }

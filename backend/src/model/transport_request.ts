@@ -15,7 +15,7 @@ export class TransportRequest {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('int', { name: 'organization_id'})
+    @Column('int', { name: 'organization_id' })
     organizationId: number
 
     @Column('datetime')
@@ -36,6 +36,5 @@ export class TransportRequest {
 
     // @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
     // @ManyToOne(_ => Assisted, a => a.transportRequests)
-    // assisted: Assisted
-
+    // Assisted: Assisted
 }

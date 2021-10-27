@@ -1,4 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    OneToMany
+} from 'typeorm'
 
 import { ProfessionalAttendance } from './professional_attendance'
 import { TransportRequest } from './transport_request'
@@ -23,10 +28,18 @@ export class Organization {
     @OneToMany(_ => User, u => u.organization, { cascade: true })
     users: User[]
 
-    @OneToMany(_ => ProfessionalAttendance, p => p.organization, { onDelete: 'RESTRICT' })
+    @OneToMany(
+        _ => ProfessionalAttendance,
+        p => p.organization,
+        { onDelete: 'CASCADE' }
+    )
     professionalAttendances: ProfessionalAttendance[]
 
-    @OneToMany(_ => TransportRequest, t => t.organization, { onDelete: 'RESTRICT' })
+    @OneToMany(
+        _ => TransportRequest,
+        t => t.organization,
+        { onDelete: 'CASCADE' }
+    )
     transportRequests: TransportRequest[]
 
 }

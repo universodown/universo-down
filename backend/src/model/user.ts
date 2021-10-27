@@ -39,7 +39,11 @@ export class User {
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @OneToMany(_ => ProfessionalAttendance, p => p.user, { onDelete: 'RESTRICT' })
+    @OneToMany(
+        _ => ProfessionalAttendance,
+        p => p.user,
+        { onDelete: 'RESTRICT' }
+    )
     professionalAttendances: ProfessionalAttendance[]
 
 }
