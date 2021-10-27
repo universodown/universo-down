@@ -1,13 +1,7 @@
-import {
-    Entity,
-    Column,
-    PrimaryGeneratedColumn,
-    OneToMany
-} from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 
 import { ProfessionalAttendance } from './professional_attendance'
 import { TransportRequest } from './transport_request'
-
 import { User } from './user'
 
 @Entity({ name: 'organization' })
