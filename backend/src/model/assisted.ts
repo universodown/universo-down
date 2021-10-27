@@ -7,8 +7,10 @@ import {
     OneToMany
 } from 'typeorm'
 
+import { Gender } from './enum/gender'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
+import { Related } from './related'
 import { TransportRequest } from './transport_request'
 
 @Entity({ name: 'assisteds' })
@@ -23,8 +25,8 @@ export class Assisted {
     @Column('date', { name: 'birthday' })
     birthday: Date
 
-    @Column('text', { name: 'gender' })
-    gender: Text
+    @Column('enum', { enum: Gender, name: 'gender' })
+    gender: Gender
 
     @Column('text', { name: 'identification' })
     identification: string
@@ -62,8 +64,8 @@ export class Assisted {
     @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
 
-    @Column('blob', { name: 'scholarity' })
-    scholarity: Blob
+    @Column('text', { name: 'scholarity' })
+    scholarity: string
 
     @Column('text', { name: 'naturalness' })
     naturalness: string
@@ -83,14 +85,17 @@ export class Assisted {
     @Column('text', { name: 'additional_information' })
     additionalInformation: string
 
-    @Column('blob', { name: 'photo' })
-    photo: Blob
+    @Column('text', { name: 'photo' })
+    photo: string
 
-    @Column('blob', { name: 'benefits' })
-    benefits: Blob
+    @Column('text', { name: 'benefits' })
+    benefits: string
 
     @Column('text', { name: 'social_identification_number' })
     socialIdentificationNumber: string
+
+    @Column('int', { name: 'organization_id', nullable: false })
+    organizationId: number
 
     @OneToMany(_ => EvolutionRecord, e => e.assisted)
     evolutionRecord: EvolutionRecord[]
@@ -98,8 +103,8 @@ export class Assisted {
     @OneToMany(_ => TransportRequest, t => t.assisted)
     transportRequests: TransportRequest[]
 
-    @Column('int', { name: 'organization_id', nullable: false })
-    organizationId: number
+    @OneToMany(_ => Related, t => t.assisted)
+    relateds: Related[]
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.assited, { onDelete: 'RESTRICT' })

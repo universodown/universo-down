@@ -13,6 +13,7 @@ import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 import { ProfessionalAttendance } from './professional-attendance'
 import { Calendar } from './calendar'
+import { Gender } from './enum/gender'
 
 @Entity({ name: 'users' })
 export class User {
@@ -35,14 +36,17 @@ export class User {
     @Column('enum', { name: 'admin_role' ,enum: AdminRole, default: 'member' })
     adminRole: AdminRole
 
-    @Column('enum', { name: 'user_role', enum: UserRole, default: 'member' })
+    @Column(
+        'enum',
+        { name: 'user_role', enum: UserRole, default: 'profissional' }
+    )
     userRole: UserRole
 
     @Column('date', { name: 'birthday' })
     birthday: Date
 
-    @Column('text', { name: 'gender' })
-    gender: string
+    @Column('enum', { enum: Gender })
+    gender: Gender
 
     @Column('text', { name: 'indentification' })
     identification: string

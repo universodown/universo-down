@@ -4,11 +4,10 @@ import {
     PrimaryGeneratedColumn,
     JoinColumn,
     ManyToOne
-    // C> JoinColumn,
-    // C> OneToMany
 } from 'typeorm'
 
-// C> import { Assisted } from './assisted'
+import { Gender } from './enum/gender'
+import { Assisted } from './assisted'
 import { Organization } from './organization'
 
 @Entity({ name: 'relateds' })
@@ -23,8 +22,8 @@ export class Related {
     @Column({ type: 'date' })
     birthday: string
 
-    @Column({ type: 'text' })
-    gender: string
+    @Column('enum', { enum: Gender })
+    gender: Gender
 
     @Column('text', { name: 'civil_status' })
     civilStatus: string
@@ -86,9 +85,9 @@ export class Related {
     @Column('int', { name: 'assisted_id', nullable: false })
     organizationId: number
 
-    // C> @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-    // C> @ManyToOne(_ => Assisted, a => a.related, { onDelete: 'CASCADE' })
-    // C> assisted: Assisted
+    @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Assisted, a => a.relateds, { onDelete: 'CASCADE' })
+    assisted: Assisted
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.related)
