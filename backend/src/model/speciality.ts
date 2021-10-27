@@ -8,6 +8,7 @@ import {
     JoinColumn
 } from 'typeorm'
 
+import { NeedSpeciality } from './need-speciality'
 import { Organization } from './organization'
 import { Specialities } from './specialities'
 
@@ -29,5 +30,12 @@ export class Speciality {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, s => s.speciality)
     organization: Organization
+
+    @OneToMany(
+        _ => NeedSpeciality,
+        n => n.speciality,
+        { onDelete: 'RESTRICT' }
+    )
+    needSpecialities: NeedSpeciality[]
 
 }

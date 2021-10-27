@@ -11,6 +11,7 @@ import { Gender } from './enum/gender'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 import { Related } from './related'
+import { SchoolRequest } from './school-request'
 import { TransportRequest } from './transport_request'
 
 @Entity({ name: 'assisteds' })
@@ -105,6 +106,9 @@ export class Assisted {
 
     @OneToMany(_ => Related, t => t.assisted)
     relateds: Related[]
+
+    @OneToMany(_ => SchoolRequest, s => s.assisted)
+    schoolRequests: SchoolRequest[]
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.assited, { onDelete: 'RESTRICT' })
