@@ -28,7 +28,7 @@ export class OrganizationRoutes {
                         return
                     }
                     const context = request.context
-                    if (context.user.role === AdminRole.Member) {
+                    if (context.user.adminRole === AdminRole.Member) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para esta'
                                 + ' ação.'
@@ -119,7 +119,7 @@ export class OrganizationRoutes {
                         return
                     }
                     if (
-                        context.user.role === AdminRole.Member
+                        context.user.adminRole === AdminRole.Member
                     || context.user.organizationId !== organization.id
                     ) {
                         response.status(401).json({
@@ -173,7 +173,7 @@ export class OrganizationRoutes {
                         return
                     }
                     if (
-                        context.user.role === AdminRole.Member
+                        context.user.adminRole === AdminRole.Member
                     || context.user.organizationId !== organization.id
                     ) {
                         response.status(401).json({
