@@ -87,5 +87,6 @@ export class User {
 
     @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'RESTRICT' })
     evolutionRecord: EvolutionRecord
+    role: AdminRole
 
 }
