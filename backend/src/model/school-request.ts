@@ -4,14 +4,11 @@ import {
     PrimaryGeneratedColumn,
     JoinColumn,
     ManyToOne
-    // C> OneToMany,
-    // C> JoinColumn
 } from 'typeorm'
 
 import { Status } from './enum/status'
 import { Organization } from './organization'
-
-// C> import { Assisted } from './assisted'
+import { Assisted } from './assisted'
 
 @Entity({ name: 'school_request' })
 export class SchoolRequest {
@@ -34,9 +31,9 @@ export class SchoolRequest {
     @Column('enum', { enum: Status, name: 'status' })
     status: Status
 
-    // C> @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-    // C> @ManyToOne(_ => Assisted, a => a.schoolRequests)
-    // C> assisted: Assisted
+    @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Assisted, a => a.schoolRequests)
+    assisted: Assisted
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.schoolRequests)

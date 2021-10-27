@@ -2,13 +2,14 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    ManyToOne
+    ManyToOne,
+    JoinColumn,
+    OneToMany
 } from 'typeorm'
 
-// Import C> { User } from './user'
-// Import C> { Speciality } from './speciality'
-// Import C> { EvolutionRecord } from './evolutionRecord'
+import { Speciality } from './speciality'
 import { Organization  } from './organization'
+import { ProfessionalAttendance } from './professional-attendance'
 
 @Entity({ name: 'need_speciality' })
 export class NeedSpeciality  {
@@ -20,39 +21,32 @@ export class NeedSpeciality  {
     attendanceId: number
 
     @Column('int', { name: 'speciality_id' })
-    speciallyId: number
+    specialityId: number
 
     @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
 
-    // C> @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    // C> @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
-    // C> organization: Organization
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
+    organization: Organization
 
-    // C> @JoinColumn({ name: 'attendance_id', referencedColumnName: 'id' })
-    /* C> @OneToMany(
-        _ => evolutionRecord,
-        a => a.professionalAttendance,
-        { onDelete: 'CASCADE' }
-    )*/
-    // C> assisted: Assisted
-
-    /* C> @JoinColumn({
-        name: 'specialy_id',
-        referencedColumnName: 'id'
-    })*/
-    /* C> @OneToMany(
-        _ => speciality,
-        a => a.specialties,
-        { onDelete: 'CASCADE' }
-    )*/
-    // C> assisted: Assisted
-
+    @JoinColumn({ name: 'attendance_id', referencedColumnName: 'id' })
     @ManyToOne(
-        _ => Organization,
-        o => o.needSpecialities,
+        _ => ProfessionalAttendance,
+        p => p.needSpecialities,
         { onDelete: 'CASCADE' }
     )
-    organization: Organization
+    attendance: ProfessionalAttendance
+
+    @JoinColumn({
+        name: 'specialy_id',
+        referencedColumnName: 'id'
+    })
+    @OneToMany(
+        _ => Speciality,
+        s => s.needSpecialities,
+        { onDelete: 'CASCADE' }
+    )
+    speciality: Speciality
 
 }
