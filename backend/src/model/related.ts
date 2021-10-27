@@ -1,12 +1,15 @@
 import {
     Entity,
     Column,
-    PrimaryGeneratedColumn
+    PrimaryGeneratedColumn,
+    JoinColumn,
+    ManyToOne
     // C> JoinColumn,
     // C> OneToMany
 } from 'typeorm'
 
 // C> import { Assisted } from './assisted'
+import { Organization } from './organization'
 
 @Entity({ name: 'relateds' })
 export class Related {
@@ -84,7 +87,11 @@ export class Related {
     organizationId: number
 
     // C> @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
-    // C> @OneToMany(_ => Assisted, a => a.related, { onDelete: 'CASCADE' })
+    // C> @ManyToOne(_ => Assisted, a => a.related, { onDelete: 'CASCADE' })
     // C> assisted: Assisted
+
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Organization, o => o.related)
+    organization: Organization
 
 }

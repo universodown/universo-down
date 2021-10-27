@@ -3,7 +3,8 @@ import {
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
 } from 'typeorm'
 
 import { UserRole } from './enum/user-role'
@@ -38,7 +39,7 @@ export class User {
     @ManyToOne(_ => Organization, o => o.users, { onDelete: 'CASCADE' })
     organization: Organization
 
-    @ManyToOne(_ => Calendar, c => c.user, { cascade: true })
+    @OneToMany(_ => Calendar, c => c.user, { cascade: true })
     calendars: Calendar[]
 
 }

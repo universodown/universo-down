@@ -3,11 +3,12 @@ import {
     Column,
     PrimaryGeneratedColumn,
     JoinColumn,
-    OneToMany
+    ManyToOne
 } from 'typeorm'
 
 import { User } from './user'
 import { Weekday } from './enum/weekday'
+import { Organization } from './organization'
 
 @Entity({ name: 'calendar' })
 export class Calendar {
@@ -28,7 +29,11 @@ export class Calendar {
     userId: number
 
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-    @OneToMany(_ => User, u => u.calendars, { onDelete: 'CASCADE' })
+    @ManyToOne(_ => User, u => u.calendars, { onDelete: 'CASCADE' })
     user: User
+
+    @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => Organization, o => o.related)
+    organization: Organization
 
 }
