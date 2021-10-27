@@ -45,4 +45,5 @@ export class ProfessionalAttendance {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.professionalAttendances)
     organization: Organization
+    
 }

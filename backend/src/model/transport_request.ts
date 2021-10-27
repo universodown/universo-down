@@ -37,4 +37,5 @@ export class TransportRequest {
     // @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
     // @ManyToOne(_ => Assisted, a => a.transportRequests)
     // Assisted: Assisted
+
 }
