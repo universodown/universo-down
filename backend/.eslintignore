@@ -1,2 +1,5 @@
 node_modules
 build
+test
+babel.config.js
+jest.config.js

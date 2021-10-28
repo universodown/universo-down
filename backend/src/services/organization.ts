@@ -7,6 +7,8 @@ import { cryptPassword } from '../fns/crypt-password'
 import { OrganizationCreate, OrganizationUpdate } from '../api/dto/organization'
 import { Organization } from '../model/organization'
 import { AdminRole } from '../model/enum/admin-role'
+import { UserRole } from '../model/enum/user-role'
+import { Gender } from '../model/enum/gender'
 
 @Service()
 export default class OrganizationService {
@@ -26,7 +28,22 @@ export default class OrganizationService {
                     firstName: 'Administrador',
                     lastName: '',
                     password,
-                    role: AdminRole.Owner
+                    adminRole: AdminRole.Owner,
+                    userRole: UserRole.Secretary,
+                    birthday: new Date(),
+                    gender: Gender.NotInformed,
+                    identification: '',
+                    generalRegistration: '',
+                    issue: new Date(),
+                    issuer: '',
+                    zipCode: '',
+                    address: '',
+                    number: '',
+                    neighborhood: '',
+                    city: '',
+                    state: '',
+                    phone: '',
+                    nationalIdentity: ''
                 }]
             })
 

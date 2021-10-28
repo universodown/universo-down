@@ -8,7 +8,7 @@ export async function cryptPassword(
     const saltRounds = 10
     if (plainPassword === '') {
         // The password should not be empty
-        throw new Error('A senha não pode ser vazia')
+        throw new Error('A senha não pode ser vazia.')
     }
 
     return bcrypt.hash(plainPassword, saltRounds)

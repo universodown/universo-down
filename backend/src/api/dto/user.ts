@@ -1,4 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
+import { AdminRole } from "../../model/enum/admin-role"
+import { Gender } from "../../model/enum/gender"
+import { UserRole } from "../../model/enum/user-role"
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class UserCreate {
 
@@ -8,6 +13,22 @@ export class UserCreate {
     plainPassword: string
     plainPasswordConfirmation: string
     organizationId?: number
+    adminRole: AdminRole
+    userRole: UserRole
+    birthday: Date
+    gender: Gender
+    identification: string
+    generalRegistration: string
+    issue: Date
+    issuer: string
+    zipCode: string
+    address: string
+    number: string
+    neighborhood: string
+    city: string
+    state: string
+    phone: string
+    nationalIdentity: string
 
 }
 
@@ -26,6 +47,22 @@ export class UserUpdate {
     email?: string
     plainPassword?: string
     plainPasswordConfirmation?: string
+    adminRole?: AdminRole
+    userRole?: UserRole
+    birthday?: Date
+    gender?: Gender
+    identification?: string
+    generalRegistration?: string
+    issue?: Date
+    issuer?: string
+    zipCode?: string
+    address?: string
+    number?: string
+    neighborhood?: string
+    city?: string
+    state?: string
+    phone?: string
+    nationalIdentity?: string
 
 }
 
