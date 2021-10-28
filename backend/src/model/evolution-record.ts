@@ -23,7 +23,7 @@ export class EvolutionRecord {
     @Column('date')
     date: Date
 
-    @Column('enum', { enum: Status, default: 'peding' })
+    @Column('enum', { enum: Status, default: 'pending' })
     status: Status
 
     @Column('double')

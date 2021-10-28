@@ -28,13 +28,13 @@ export class Related {
     @Column('enum', { enum: Gender, default: 'not-informed' })
     gender: Gender
 
-    @Column('enum', { enum: CivilStatus, name: 'civil-status' })
+    @Column('enum', { name: 'civil_status', enum: CivilStatus, default: 'single' })
     civilStatus: CivilStatus
 
     @Column({ type: 'text' })
     identification: string
 
-    @Column({ enum: Relationship, default: 'mother' })
+    @Column('enum', { enum: Relationship, default: 'mother' })
     relationship: Relationship
 
     @Column('text', { name: 'general_registration' })
@@ -73,7 +73,7 @@ export class Related {
     @Column({ type: 'text' })
     nationality: string
 
-    @Column({ enum: Scholarity, default: 'elementary-school' })
+    @Column('enum', { enum: Scholarity, default: 'elementary-school' })
     scholarity: Scholarity
 
     @Column({ type: 'float' })
