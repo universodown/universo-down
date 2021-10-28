@@ -75,7 +75,8 @@ export class Related {
 
     @Column(
         'enum',
-        { enum: Scholarity, default: 'elementary-school' })
+        { enum: Scholarity, default: 'elementary-school' }
+    )
     scholarity: Scholarity
 
     @Column({ type: 'float' })
