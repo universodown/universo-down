@@ -73,7 +73,8 @@ export class Related {
     @Column({ type: 'text' })
     nationality: string
 
-    @Column('enum', { enum: Scholarity, default: 'elementary-school' })
+    @Column('enum', 
+            { enum: Scholarity, default: 'elementary-school' })
     scholarity: Scholarity
 
     @Column({ type: 'float' })
