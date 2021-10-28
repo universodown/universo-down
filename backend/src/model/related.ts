@@ -7,8 +7,11 @@ import {
 } from 'typeorm'
 
 import { Gender } from './enum/gender'
+import { CivilStatus } from './enum/civil-status'
+import { Relationship } from './enum/relationship'
 import { Assisted } from './assisted'
 import { Organization } from './organization'
+import { Scholarity } from './enum/scholarity'
 
 @Entity({ name: 'relateds' })
 export class Related {
@@ -20,25 +23,25 @@ export class Related {
     name: string
 
     @Column({ type: 'date' })
-    birthday: string
+    birthday: Date
 
-    @Column('enum', { enum: Gender })
+    @Column('enum', { enum: Gender, default: 'not-informed' })
     gender: Gender
 
-    @Column('text', { name: 'civil_status' })
-    civilStatus: string
+    @Column('enum', { enum: CivilStatus, name: 'civil-status' })
+    civilStatus: CivilStatus
 
     @Column({ type: 'text' })
     identification: string
 
-    @Column({ type: 'text' })
-    relationship: string
+    @Column({ enum: Relationship, default: 'mother' })
+    relationship: Relationship
 
     @Column('text', { name: 'general_registration' })
     generalRegistration: string
 
     @Column({ type: 'date' })
-    issue: string
+    issue: Date
 
     @Column({ type: 'text' })
     issuer: string
@@ -70,8 +73,8 @@ export class Related {
     @Column({ type: 'text' })
     nationality: string
 
-    @Column({ type: 'text' })
-    scholarity: string
+    @Column({ enum: Scholarity, default: 'elementary-school' })
+    scholarity: Scholarity
 
     @Column({ type: 'float' })
     revenue: number

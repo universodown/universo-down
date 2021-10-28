@@ -8,10 +8,11 @@ import {
     OneToMany
 } from 'typeorm'
 
+import { User } from './user'
 import { Assisted } from './assisted'
 import { Organization } from './organization'
 import { ProfessionalAttendance } from './professional-attendance'
-import { User } from './user'
+import { Status } from './enum/status'
 
 @Entity({ name: 'evolution_records' })
 export class EvolutionRecord {
@@ -19,19 +20,19 @@ export class EvolutionRecord {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('date', { name: 'date' })
+    @Column('date')
     date: Date
 
-    @Column('text', { name: 'status' })
-    status: string
+    @Column('enum', { enum: Status, default: 'peding' })
+    status: Status
 
-    @Column('double', { name: 'wight' })
+    @Column('double')
     wight: Double
 
-    @Column('double', { name: 'height' })
+    @Column('double')
     height: Double
 
-    @Column('text', { name: 'report' })
+    @Column('text')
     report: string
 
     @Column('int', { name: 'user_id', nullable: false })

@@ -7,13 +7,13 @@ import {
     OneToMany
 } from 'typeorm'
 
-import { AdminRole } from './enum/admin-role'
-import { UserRole } from './enum/user-role'
+import { Calendar } from './calendar'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 import { ProfessionalAttendance } from './professional-attendance'
-import { Calendar } from './calendar'
+import { AdminRole } from './enum/admin-role'
 import { Gender } from './enum/gender'
+import { UserRole } from './enum/user-role'
 
 @Entity({ name: 'users' })
 export class User {
@@ -27,13 +27,13 @@ export class User {
     @Column('text', { name: 'last_name' })
     lastName: string
 
-    @Column('text', { name: 'email' })
+    @Column('text')
     email: string
 
-    @Column('text', { name: 'password' })
+    @Column('text')
     password: string
 
-    @Column('enum', { name: 'admin_role' ,enum: AdminRole, default: 'member' })
+    @Column('enum', { name: 'admin_role', enum: AdminRole, default: 'member' })
     adminRole: AdminRole
 
     @Column(
@@ -42,43 +42,43 @@ export class User {
     )
     userRole: UserRole
 
-    @Column('date', { name: 'birthday' })
+    @Column('date')
     birthday: Date
 
-    @Column('enum', { enum: Gender })
+    @Column('enum', { enum: Gender, default: 'not-informed' })
     gender: Gender
 
-    @Column('text', { name: 'indentification' })
+    @Column('text')
     identification: string
 
     @Column('text', { name: 'general_registration' })
     generalRegistration: string
 
-    @Column('date', { name: 'issue' })
+    @Column('date')
     issue: Date
 
-    @Column('text', { name: 'issuer' })
+    @Column('text')
     issuer: string
 
     @Column('text', { name: 'zip_code' })
     zipCode: string
 
-    @Column('text', { name: 'adress' })
+    @Column('text')
     address: string
 
-    @Column('text', { name: 'number' })
+    @Column('text')
     number: string
 
-    @Column('text', { name: 'neighborhood' })
+    @Column('text')
     neighborhood: string
 
-    @Column('text', { name: 'city' })
+    @Column('text')
     city: string
 
-    @Column('text', { name: 'state' })
+    @Column('text')
     state: string
 
-    @Column('text', { name: 'phone' })
+    @Column('text')
     phone: string
 
     @Column('text', { name: 'national_indentity' })
