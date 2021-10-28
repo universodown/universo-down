@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 
-import { AdminRole } from "../../model/enum/admin-role"
-import { Gender } from "../../model/enum/gender"
-import { UserRole } from "../../model/enum/user-role"
+import { AdminRole } from '../../model/enum/admin-role'
+import { Gender } from '../../model/enum/gender'
+import { UserRole } from '../../model/enum/user-role'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class UserCreate {
