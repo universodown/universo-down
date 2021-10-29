@@ -1,5 +1,5 @@
 BEGIN;
-    
+
     DROP TABLE IF EXISTS assisted;
     DROP TABLE IF EXISTS calendar;
     DROP TABLE IF EXISTS evolution-record;
