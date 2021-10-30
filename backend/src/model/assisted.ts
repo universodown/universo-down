@@ -7,12 +7,13 @@ import {
     OneToMany
 } from 'typeorm'
 
-import { Gender } from './enum/gender'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
 import { Related } from './related'
 import { SchoolRequest } from './school-request'
 import { TransportRequest } from './transport_request'
+import { Gender } from './enum/gender'
+import { Scholarity } from './enum/scholarity'
 
 @Entity({ name: 'assisteds' })
 export class Assisted {
@@ -20,73 +21,77 @@ export class Assisted {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('text', { name: 'name' })
+    @Column('text')
     name: string
 
-    @Column('date', { name: 'birthday' })
+    @Column('date')
     birthday: Date
 
-    @Column('enum', { enum: Gender, name: 'gender' })
+    @Column('enum', { enum: Gender, default: 'not-informed' })
     gender: Gender
 
-    @Column('text', { name: 'identification' })
+    @Column('text')
     identification: string
 
     @Column('text', { name: 'general_registration' })
     generalRegistration: string
 
-    @Column('date', { name: 'issue' })
+    @Column('date')
     issue: Date
 
-    @Column('text', { name: 'issuer' })
+    @Column('text')
     issuer: string
 
     @Column('text', { name: 'zip_code' })
     zipCode: string
 
-    @Column('text', { name: 'address' })
+    @Column('text')
     address: string
 
-    @Column('text', { name: 'number' })
+    @Column('text')
     number: string
 
-    @Column('text', { name: 'neighborhood' })
+    @Column('text')
     neighborhood: string
 
-    @Column('text', { name: 'city' })
+    @Column('text')
     city: string
 
-    @Column('text', { name: 'state' })
+    @Column('text')
     state: string
 
-    @Column('text', { name: 'phone' })
+    @Column('text')
     phone: string
 
     @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
 
     @Column('text', { name: 'naturalness' })
+    @Column('enum', { enum: Scholarity, default: 'elementary-school' })
+    scholarity: Scholarity
+
+    @Column('text')
     naturalness: string
 
-    @Column('text', { name: 'nationality' })
+    @Column('text')
     nationality: string
 
-    @Column('text', { name: 'occupation' })
+    @Column('text')
     occupation: string
 
     @Column('text', { name: 'national_identity' })
     nationalIdentity: string
 
-    @Column('boolean', { name: 'active' })
+    @Column('boolean')
     active: boolean
 
     @Column('text', { name: 'additional_information' })
     additionalInformation: string
 
-    @Column('text', { name: 'photo' })
+    @Column('text')
     photo: string
 
-    @Column('text', { name: 'benefits' })
+    @Column('text')
     benefits: string
 
     @Column('text', { name: 'social_identification_number' })

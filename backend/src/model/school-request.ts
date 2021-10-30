@@ -22,16 +22,17 @@ export class SchoolRequest {
     @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('date', { name: 'date' })
-    date: string
+    @Column('date')
+    date: Date
 
     @Column('date', { name: 'response_date' })
-    responseDate: string
+    responseDate: Date
 
     @Column('text', { name: 'observation' })
     observation: string
 
     @Column('enum', { enum: Status, name: 'status' })
+    @Column('enum', { enum: Status, default: 'pending' })
     status: Status
 
     @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
