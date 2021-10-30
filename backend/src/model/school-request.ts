@@ -28,6 +28,9 @@ export class SchoolRequest {
     @Column('date', { name: 'response_date' })
     responseDate: string
 
+    @Column('text', { name: 'observation' })
+    observation: string
+
     @Column('enum', { enum: Status, name: 'status' })
     status: Status
 
