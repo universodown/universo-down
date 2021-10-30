@@ -7,8 +7,8 @@ import {
 } from 'typeorm'
 
 import { User } from './user'
-import { Weekday } from './enum/weekday'
 import { Organization } from './organization'
+import { Weekday } from './enum/weekday'
 
 @Entity({ name: 'calendar' })
 export class Calendar {
@@ -33,7 +33,7 @@ export class Calendar {
     user: User
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
-    @ManyToOne(_ => Organization, o => o.related)
+    @ManyToOne(_ => Organization, o => o.related, { onDelete: 'CASCADE' })
     organization: Organization
 
 }
