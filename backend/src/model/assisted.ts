@@ -65,9 +65,6 @@ export class Assisted {
     @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
 
-    @Column('text', { name: 'scholarity' })
-    scholarity: string
-
     @Column('text', { name: 'naturalness' })
     naturalness: string
 

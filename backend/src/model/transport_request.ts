@@ -30,6 +30,9 @@ export class TransportRequest {
     @Column('int', { name: 'assisted_id' })
     assistedId: number
 
+    @Column('text', { name: 'observation' })
+    observation: string
+
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.transportRequests)
     organization: Organization
