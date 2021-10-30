@@ -66,10 +66,6 @@ export class Assisted {
     @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
 
-    @Column('text', { name: 'naturalness' })
-    @Column('enum', { enum: Scholarity, default: 'elementary-school' })
-    scholarity: Scholarity
-
     @Column('text')
     naturalness: string
 
