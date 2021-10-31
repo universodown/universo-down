@@ -13,6 +13,7 @@ import { Related } from './related'
 import { SchoolRequest } from './school-request'
 import { TransportRequest } from './transport_request'
 import { Gender } from './enum/gender'
+import { Scholarity } from './enum/scholarity'
 
 @Entity({ name: 'assisteds' })
 export class Assisted {
