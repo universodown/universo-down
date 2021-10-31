@@ -31,8 +31,6 @@ export class SchoolRequest {
     @Column('text')
     observation: string
 
-    @Column('enum', { enum: Status, name: 'status' })
-
     @Column('enum', { enum: Status, default: 'pending' })
     status: Status
 
