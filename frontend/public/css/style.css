@@ -1,0 +1,294 @@
+:root {
+  --verde-escuro: color: rgb(60, 152, 165);
+  --verde-claro: color: rgb(165, 214, 219);
+  --laranja: color: rgb(244, 176, 95);
+}
+
+/* ---------------------------------------------------
+    ESTILOS GERAIS
+----------------------------------------------------- */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #efefef;
+}
+
+p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #b3b3b3;
+}
+
+.ml-1 {
+    margin-left: 10px;
+}
+
+.ml-2 {
+    margin-left: 15px;
+}
+
+.titulo {
+  text-align: center;
+}
+
+
+/* img {
+    display: block;
+    max-width: 100%;
+  } */
+
+/* ---------------------------------------------------
+    ESTILO #SIDEBAR 
+----------------------------------------------------- */
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 80px;
+  max-width: 80px;
+  background: transparent;
+  /* color: transparent; */
+  transition: all 0.3s;
+}
+
+#sidebar.active {
+  margin-left: 180px;
+}
+
+/* ---------------------------------------------------
+    ESTILO #CONTENT 
+----------------------------------------------------- */
+
+#content {
+  width: 100%;
+  padding: 20px;
+  padding-top: 50px;
+  min-height: 100vh;
+  transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    LOGIN   
+----------------------------------------------------- */
+
+#user {
+    background-color: rgb(165, 214, 219);
+    color: #000;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 18px;
+}
+
+#pass {
+    background-color: rgb(165, 214, 219);
+    color: #000;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 18px;
+}
+
+#login-card {
+  height: 400px;
+  width: 350px;
+  margin-left: -100px;
+  margin-top: -100px; 
+  position: absolute;
+  top: 35%;
+  left: 44%;
+}
+
+.card {
+    box-shadow: inset 0 0 1em rgba(158, 158, 158, 0.274), 0 0 1em rgba(0, 0, 0, 0.26);
+}
+
+span.input-group-addon {
+    background-color: rgb(60, 152, 165);
+    padding-left: 11px;
+    width: 40px;
+    height: 34px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+i.fa.fa-user.fa-2x {
+    color: #fff;
+    font-size: 2.2rem;
+}
+
+i.fa.fa-lock.fa-2x {
+    color: #fff;
+    font-size: 2.2rem;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE USUARIO   
+----------------------------------------------------- */
+
+select.form-control {
+  background-color: #f8f8f8;
+  border: 1px solid #efefef;
+}
+
+/* ---------------------------------------------------
+    ATENDIMENTO   
+----------------------------------------------------- */
+
+.linha {
+  display: flex;
+  align-items: center;
+}
+
+.linha hr {
+  flex:1;
+  margin-bottom: 1.90em;
+  margin-right: 20px;
+}
+
+.linha p i {
+  font-size: 28px; 
+  color: rgb(60, 152, 165);
+}
+
+button.add_form_field {
+  border: 0 !important;
+  background-color: transparent;
+  padding: 0 !important;
+}
+
+.delete {
+  color: #000;
+}
+
+
+/* ---------------------------------------------------
+    FORMULÁRIO
+----------------------------------------------------- */
+
+input.form-control {
+  background-color: #f8f8f8;
+  border: 1px solid #efefef;
+}
+
+.card-body {
+  padding: 1rem 1rem !important;
+}
+
+.btn-danger {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .085rem;
+    font-size: 12px;
+}
+
+.btn-success {
+    background-color: rgb(60, 152, 165) !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: .085rem;
+    font-size: 12px;
+}
+
+.btn-success:hover {
+    background-color: rgb(255, 255, 255) !important;
+    color: black !important;
+    border: 0 solid #fff ;
+}
+
+.card > hr {
+    margin-right: 35px !important;
+    margin-left: 35px !important;
+}
+
+/* ---------------------------------------------------
+    FORMULÁRIO TELA CADASTRO
+----------------------------------------------------- */
+
+textarea.form-control {
+  background-color: #f8f8f8;
+  border: 1px solid #efefef;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+
+@media (min-width: 768px) {
+    #sidebar {
+      margin-left: -250px;
+    }
+    #sidebar.active {
+      margin-left: 0;
+    }
+    #sidebarCollapse span {
+      display: none;
+    }
+    div.card.col-9 {
+        width: auto !important;
+    }
+  }
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 180px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+}
+
+@media (min-width: 425px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 180px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  span.wrap-icon.fa.fa-home.p-4 {
+    padding: 0 !important;
+  }
+  span.menu-text.p-4 {
+    padding: 0 !important;
+    height: 30px !important;
+  }
+}
+
+@media (min-width: 320px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 180px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  aside {
+    height: 100% !important;
+  }
+}
+
