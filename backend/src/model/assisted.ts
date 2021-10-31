@@ -13,6 +13,7 @@ import { Related } from './related'
 import { SchoolRequest } from './school-request'
 import { TransportRequest } from './transport_request'
 import { Gender } from './enum/gender'
+import { Scholarity } from './enum/scholarity'
 
 @Entity({ name: 'assisteds' })
 export class Assisted {
@@ -64,6 +65,9 @@ export class Assisted {
 
     @Column('boolean', { name: 'has_benefits' })
     hasBenefits: boolean
+
+    @Column('enum', { enum: Scholarity, default: 'elementary-school' })
+    scholarity: Scholarity
 
     @Column('text')
     naturalness: string

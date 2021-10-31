@@ -28,7 +28,7 @@ export class SchoolRequest {
     @Column('date', { name: 'response_date' })
     responseDate: Date
 
-    @Column('text', { name: 'observation' })
+    @Column('text')
     observation: string
 
     @Column('enum', { enum: Status, name: 'status' })

@@ -31,7 +31,7 @@ export class TransportRequest {
     @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('text', { name: 'observation' })
+    @Column('text')
     observation: string
 
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
