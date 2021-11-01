@@ -10,7 +10,8 @@ Projeto Universo Down - Web Service
 ```
 1. Apertar: F1 ou ctrl+shift+p
 2. Digitar: "Live Server: Open with Live Server"
-3. A página inicial irá abrir no endereço: http://127.0.0.1:5501/index.html
+3. A página inicial irá abrir no endereço: 
+    - http://127.0.0.1:5501/index.html ou http://127.0.0.1:5501/
 obs: a porta pode mudar em alguns casos
 
 ```
