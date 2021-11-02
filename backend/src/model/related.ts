@@ -28,7 +28,11 @@ export class Related {
     @Column('enum', { enum: Gender, default: 'not-informed' })
     gender: Gender
 
-    @Column('enum', { name: 'civil_status', enum: CivilStatus, default: 'single' })
+    @Column('enum', {
+        name: 'civil_status',
+        enum: CivilStatus,
+        default: 'single'
+    })
     civilStatus: CivilStatus
 
     @Column({ type: 'text' })
