@@ -8,6 +8,13 @@ import {
     pathOrganizationId
 } from './organization'
 import {
+    pathSpecialitysBase,
+    pathSpecialitysId,
+    specialityCreateDefinition,
+    specialityDefinition,
+    specialityUpdateDefinition
+} from './speciality'
+import {
     pathUsersBase,
     pathUsersId,
     userDefinition,
@@ -60,6 +67,8 @@ export const apiDoc = {
         '/api/v1/user/{userId}': pathUsersId,
         '/api/v1/organization': pathOrganizationBase,
         '/api/v1/organization/{organizationId}': pathOrganizationId,
+        '/api/v1/speciality': pathSpecialitysBase,
+        '/api/v1/speciality/{specialityId}': pathSpecialitysId,
         '/api/v1/login': pathLogin,
         '/api/v1/logout': pathLogout
     },
@@ -70,6 +79,9 @@ export const apiDoc = {
         Organization: organizationDefinition,
         OrganizationCreate: organizationCreateDefinition,
         OrganizationUpdate: organizationUpdateDefinition,
+        Speciality: specialityDefinition,
+        SpecialityCreate: specialityCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition
