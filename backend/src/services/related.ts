@@ -65,4 +65,10 @@ export default class RelatedService {
         return this.repository.findAll(context)
     }
 
+    async findByIdentification(
+        identification: string
+    ): Promise<Related | undefined> {
+        return this.repository.findByNationalIdentity(identification)
+    }
+
 }

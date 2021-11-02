@@ -1,13 +1,14 @@
+/* eslint-disable complexity */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import { CivilStatus } from "../../model/enum/civil-status"
-import { Gender } from "../../model/enum/gender"
-import { Relationship } from "../../model/enum/relationship"
-import { Scholarity } from "../../model/enum/scholarity"
+import { CivilStatus } from '../../model/enum/civil-status'
+import { Gender } from '../../model/enum/gender'
+import { Relationship } from '../../model/enum/relationship'
+import { Scholarity } from '../../model/enum/scholarity'
 
 export class RelatedCreate {
-    
+
     name: string
     birthday: Date
     gender: Gender

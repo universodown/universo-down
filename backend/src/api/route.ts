@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import * as core from 'express-serve-static-core'
 
 import { OrganizationRoutes } from './organization'
+import { RelatedRoutes } from './related'
 import { UserRoutes } from './user'
 
 export class Route {
@@ -14,6 +15,7 @@ export class Route {
 
         UserRoutes.userRoutes(app)
         OrganizationRoutes.organizationRoutes(app)
+        RelatedRoutes.relatedRoutes(app)
     }
 
 }
