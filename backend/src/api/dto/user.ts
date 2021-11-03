@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+import { AdminRole } from '../../model/enum/admin-role'
+import { Gender } from '../../model/enum/gender'
+import { UserRole } from '../../model/enum/user-role'
 export class UserCreate {
 
     firstName: string
@@ -7,6 +11,22 @@ export class UserCreate {
     email: string
     plainPassword: string
     plainPasswordConfirmation: string
+    adminRole: AdminRole
+    userRole:UserRole
+    birthday: Date
+    gender: Gender
+    identification: string
+    generalRegistration: string
+    issue: Date
+    issuer: string
+    zipCode: string
+    address: string
+    number: string
+    neighborhood: string
+    city: string
+    state: string
+    phone: string
+    nationalIdentity: string
     organizationId?: number
 
 }
@@ -16,6 +36,12 @@ export function isUserCreate(obj: any): obj is UserCreate {
         && obj.lastName !== undefined
         && obj.email !== undefined
         && obj.plainPassword !== undefined
+        && obj.birthday !== undefined
+        && obj.identification !== undefined
+        && obj.address !== undefined
+        && obj.city !== undefined
+        && obj.state !== undefined
+        && obj.phone !== undefined
 }
 
 export class UserUpdate {
@@ -26,6 +52,23 @@ export class UserUpdate {
     email?: string
     plainPassword?: string
     plainPasswordConfirmation?: string
+    adminRole?: AdminRole
+    userRole?:UserRole
+    birthday?: Date
+    gender?: Gender
+    identification?: string
+    generalRegistration?: string
+    issue?: Date
+    issuer?: string
+    zipCode?: string
+    address?: string
+    number?: string
+    neighborhood?: string
+    city?: string
+    state?: string
+    phone?: string
+    nationalIdentity?: string
+    organizationId?: number
 
 }
 

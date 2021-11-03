@@ -32,4 +32,15 @@ export default class UserRepository extends Repository<User> {
         return this.find({ where: { organizationId: context.organization.id } })
     }
 
+    async findByIdentification(
+        identification: string,
+        db?: EntityManager
+    ): Promise<User | undefined> {
+        const repository = db
+            ? db.getRepository(User)
+            : this
+
+        return repository.findOne({ where: { identification } })
+    }
+
 }
