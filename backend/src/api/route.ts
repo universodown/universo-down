@@ -3,6 +3,7 @@ import * as core from 'express-serve-static-core'
 
 import { OrganizationRoutes } from './organization'
 import { UserRoutes } from './user'
+import { ProfessionalAttendaceRoutes } from './professional-attendance'
 
 export class Route {
 
@@ -14,6 +15,7 @@ export class Route {
 
         UserRoutes.userRoutes(app)
         OrganizationRoutes.organizationRoutes(app)
+        ProfessionalAttendaceRoutes.professionalAttendaceRoutes(app)
     }
 
 }

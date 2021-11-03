@@ -14,6 +14,20 @@ import {
     userCreateDefinition,
     userUpdateDefinition
 } from './users'
+import {
+    pathProfessionalAttendanceBase,
+    pathProfessionalAttendanceId,
+    professionalAttendanceCreateDefinition,
+    professionalAttendanceUpdateDefinition,
+    professionalAttendanceDefinition
+} from './professional-attendance'
+import {
+    pathSpecialitysBase,
+    pathSpecialitysId,
+    specialityCreateDefinition,
+    specialityDefinition,
+    specialityUpdateDefinition
+} from './speciality'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -43,6 +57,14 @@ export const apiDoc = {
         {
             name: 'auth',
             description: 'Autenticação'
+        },
+        {
+            name: 'speciality',
+            description: 'Controle de Especialidades'
+        },
+        {
+            name: 'professionalsAttendances',
+            description: 'Controle do Atendimento Profissional'
         }
     ],
 
@@ -60,6 +82,11 @@ export const apiDoc = {
         '/api/v1/user/{userId}': pathUsersId,
         '/api/v1/organization': pathOrganizationBase,
         '/api/v1/organization/{organizationId}': pathOrganizationId,
+        '/api/v1/Speciality': pathSpecialitysBase,
+        '/api/v1/Speciality{specialityId}': pathSpecialitysId,
+        '/api/v1/professionalAttendance': pathProfessionalAttendanceBase,
+        // eslint-disable-next-line max-len
+        '/api/v1/professionalAttendance/{professionalAttendanceId}': pathProfessionalAttendanceId,
         '/api/v1/login': pathLogin,
         '/api/v1/logout': pathLogout
     },
@@ -70,6 +97,12 @@ export const apiDoc = {
         Organization: organizationDefinition,
         OrganizationCreate: organizationCreateDefinition,
         OrganizationUpdate: organizationUpdateDefinition,
+        Speciality: specialityDefinition,
+        SpecialityCreate: specialityCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
+        ProfessionalAttendance: professionalAttendanceDefinition,
+        ProfessionalAttendanceCreate: professionalAttendanceCreateDefinition,
+        ProfessionalAttendanceUpdate: professionalAttendanceUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition
