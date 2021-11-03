@@ -46,8 +46,16 @@ export default class ProfessionalAttendanceRepository
     }
     */
 
-    async findAll(context: Context): Promise<ProfessionalAttendance[]> {
-        return this.find({ where: { organizationId: context.organization.id } })
+    async findAll(
+        context: Context,
+        evolutionRecordId
+    ): Promise<ProfessionalAttendance[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id,
+                evolutionRecordId
+            }
+        })
     }
 
 }

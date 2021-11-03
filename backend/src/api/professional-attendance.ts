@@ -20,7 +20,7 @@ export class ProfessionalAttendaceRoutes {
         const baseUrl = '/api/v1/professionalAttendance'
 
         app.get(
-            baseUrl,
+            `${baseUrl}/evolutionRecord/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
@@ -28,17 +28,27 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Membro) }'
+                            + ' esta ação. { (Função: Profissional ou'
+                            + ' Assistente Social) }'
                         })
 
                         return
                     }
 
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+                    const evolutionRecordId = Number(request.params.id)
                     const professionalAttendaceService = Container.get(
                         ProfessionalAttendaceService
                     )
                     const users = await professionalAttendaceService
-                        .findAll(context)
+                        .findAll(context, evolutionRecordId)
                     response.status(200).json(users)
                 } catch (e) {
                     response.status(500).json({
@@ -48,6 +58,7 @@ export class ProfessionalAttendaceRoutes {
                 }
             }
         )
+
         app.get(
             `${baseUrl}/:id`,
             verifyJWT,
@@ -58,7 +69,8 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                            + ' esta ação. { (Função: Profissional ou'
+                            + ' Assistente Social) }'
                         })
 
                         return
@@ -87,6 +99,7 @@ export class ProfessionalAttendaceRoutes {
                 }
             }
         )
+
         app.post(
             baseUrl,
             verifyJWT,
@@ -94,10 +107,10 @@ export class ProfessionalAttendaceRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Profissional )}'
                         })
 
                         return
@@ -108,15 +121,6 @@ export class ProfessionalAttendaceRoutes {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
-                        })
-
-                        return
-                    }
-
-                    if (context.user.adminRole === 'member') {
-                        response.status(401).json({
-                            error: 'Usuário não possui permissão para esta'
-                            + ' ação. { (Função: Membro) }'
                         })
 
                         return
@@ -145,10 +149,10 @@ export class ProfessionalAttendaceRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Profissional )}'
                         })
 
                         return
@@ -176,10 +180,36 @@ export class ProfessionalAttendaceRoutes {
                     const id = Number(request.params.id)
                     const professionalAttendaceService = Container
                         .get(ProfessionalAttendaceService)
-                    const professionalAttendace = await
-                    professionalAttendaceService.update(context, id, body)
+                    const professionalAttendace
+                        = await professionalAttendaceService.find(id)
 
-                    response.status(200).json(professionalAttendace)
+                    if (!professionalAttendace) {
+                        response.status(404).json({
+                            error: 'Atendimento profissional não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    if (
+                        professionalAttendace
+                            .organizationId !== context.organization.id
+                        || professionalAttendace.userId !== context.user.id
+                    ) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Atendimento não realizado'
+                                + ' por este profissional)}'
+                        })
+
+                        return
+                    }
+
+                    const savedProfessionalAttendace
+                        = await professionalAttendaceService
+                            .update(context, id, body)
+
+                    response.status(200).json(savedProfessionalAttendace)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -196,10 +226,10 @@ export class ProfessionalAttendaceRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Profissional )}'
                         })
 
                         return
@@ -217,8 +247,32 @@ export class ProfessionalAttendaceRoutes {
                     const id = Number(request.params.id)
                     const professionalAttendaceService = Container
                         .get(ProfessionalAttendaceService)
-                    const professionalAttendance = await
-                    professionalAttendaceService.delete(id)
+                    const professionalAttendace
+                        = await professionalAttendaceService.find(id)
+
+                    if (!professionalAttendace) {
+                        response.status(404).json({
+                            error: 'Atendimento profissional não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    if (
+                        professionalAttendace
+                            .organizationId !== context.organization.id
+                        || professionalAttendace.userId !== context.user.id
+                    ) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Atendimento não realizado'
+                                + ' por este profissional)}'
+                        })
+
+                        return
+                    }
+                    const professionalAttendance
+                        = await professionalAttendaceService.delete(id)
 
                     response.status(200).json(professionalAttendance)
                 } catch (e) {

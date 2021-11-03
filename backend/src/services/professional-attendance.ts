@@ -27,6 +27,7 @@ export default class ProfessionalAttendanceService {
             )
             const ProfessionalAttendance = await repository.save({
                 ...professionalAttendanceInfo,
+                userId: context.user.id,
                 organizationId: context.organization.id
             })
 
@@ -43,13 +44,12 @@ export default class ProfessionalAttendanceService {
             const repository = db.getCustomRepository(
                 ProfessionalAttendanceRepository
             )
-            const ProfessionalAttendance = await repository
-                .findById(professionalAttendanceInfo.id, db)
+            const professionalAttendance = await repository
+                .findById(id, db)
 
             return repository.save({
-                ...ProfessionalAttendance,
+                ...professionalAttendance,
                 ...professionalAttendanceInfo,
-                id,
                 organizationId: context.organization.id
             })
         })
@@ -73,8 +73,11 @@ export default class ProfessionalAttendanceService {
     : Promise<ProfessionalAttendance | undefined> {
         return this.repository.findSpecialities(id)
     }
-    async findAll(context: Context): Promise<ProfessionalAttendance[]> {
-        return this.repository.findAll(context)
+    async findAll(
+        context: Context,
+        evolutionRecordId: number
+    ): Promise<ProfessionalAttendance[]> {
+        return this.repository.findAll(context, evolutionRecordId)
     }
 
 }

@@ -13,7 +13,7 @@ const sampleErros = {
 export const pathProfessionalAttendanceBase = {
     parameters: [],
     post: {
-        security: [],
+        security: [{ BearerJWT: [] }],
         tags: ['professionalsAttendances'],
         summary: 'Criação de um novo Atendimento Profissional',
         operationId: 'createProfessionalAttendance',
@@ -43,13 +43,26 @@ export const pathProfessionalAttendanceBase = {
                 schema: propertiesError
             }
         }
-    },
+    }
+}
+
+export const pathProfessionalAttendanceEvolution = {
+    parameters: [],
     get: {
         security: [{ BearerJWT: [] }],
         tags: ['professionalsAttendances'],
-        summary: 'Retorna todos os Atendimentos conforme login',
+        summary: 'Retorna todos os Atendimentos conforme Evolução do Atendido',
         operationId: 'getProfessionalAttendance',
-        parameters: [],
+        parameters: [
+            {
+                name: 'evolutionRecordId',
+                in: 'path',
+                description: 'ID da Evolução do Atendido',
+                required: true,
+                type: 'integer',
+                format: 'int64'
+            }
+        ],
         responses: {
             200: {
                 description: 'Lista de Atendimentos cadastrados',
@@ -222,8 +235,8 @@ export const professionalAttendanceDefinition = {
             description: 'Id do Atendimento Profissional'
         },
         date: {
-            type: 'Date',
-            example: '10/10/2021 HH:mm:ss',
+            type: 'datetime',
+            example: '2021-10-10T10:00:00.000Z',
             description: 'Horário do Atendimento'
         },
         result: {
@@ -267,8 +280,8 @@ export const professionalAttendanceCreateDefinition = {
     type: 'object',
     properties: {
         date: {
-            type: 'Date',
-            example: '10/10/2021 HH:mm:ss',
+            type: 'datetime',
+            example: '2021-10-10T10:00:00.000Z',
             description: 'Horário do Atendimento'
         },
         result: {
@@ -280,11 +293,6 @@ export const professionalAttendanceCreateDefinition = {
             type: 'number',
             example: '4',
             description: 'Quantidade de Atendimentos'
-        },
-        userId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Usuário'
         },
         evolutionRecordId: {
             type: 'integer',
@@ -297,7 +305,6 @@ export const professionalAttendanceCreateDefinition = {
         'date',
         'result',
         'quantify',
-        'userId',
         'evolutionRecordId'
     ]
 }
@@ -305,14 +312,9 @@ export const professionalAttendanceCreateDefinition = {
 export const professionalAttendanceUpdateDefinition = {
     type: 'object',
     properties: {
-        id: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Atendimento Profissional'
-        },
         date: {
-            type: 'Date',
-            example: '10/10/2021 HH:mm:ss',
+            type: 'datetime',
+            example: '2021-10-10T10:00:00.000Z',
             description: 'Horário do Atendimento'
         },
         result: {
@@ -324,17 +326,6 @@ export const professionalAttendanceUpdateDefinition = {
             type: 'number',
             example: '4',
             description: 'Quantidade de Atendimentos'
-        },
-        userId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Usuário'
-        },
-        evolutionRecordId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Registro de Evolução'
         }
-    },
-    required: ['id']
+    }
 }
