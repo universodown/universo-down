@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
     JoinColumn,
     ManyToOne
-} from 'typeorm'
+} from 'typeorm';
 
 import { Status } from './enum/status'
 import { Organization } from './organization'
@@ -41,5 +41,4 @@ export class SchoolRequest {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.schoolRequests)
     organization: Organization
-
 }
