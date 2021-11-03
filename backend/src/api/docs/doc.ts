@@ -53,10 +53,6 @@ export const apiDoc = {
             description: 'Autenticação'
         },
         {
-            name: 'speciality',
-            description: 'Controle de Especialidades'
-        },
-        {
             name: 'professionalsAttendances',
             description: 'Controle do Atendimento Profissional'
         }
