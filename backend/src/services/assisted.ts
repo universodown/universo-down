@@ -18,25 +18,27 @@ export default class AssistedService {
         assistedInfo: AssistedCreate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Assisted)
+            const repository = db.getCustomRepository(AssistedRepository)
 
             return repository.save({
-                ...assistedInfo
+                ...assistedInfo,
+                organizationId: context.organization.id
             })
         })
     }
 
     async update(
-        context: Context,
+        _: Context,
         id: number,
         assistedInfo: AssistedUpdate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Assisted)
+            const repository = db.getCustomRepository(AssistedRepository)
+            const assisted = await repository.findById(id)
 
             return repository.save({
-                ...assistedInfo,
-                id
+                ...assisted,
+                ...assistedInfo
             })
         })
     }
@@ -45,9 +47,10 @@ export default class AssistedService {
         id: number
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Assisted)
+            const repository = db.getCustomRepository(AssistedRepository)
+            const assisted = await repository.findById(id, db)
 
-            return repository.delete(id)
+            return repository.remove(assisted)
         })
     }
 

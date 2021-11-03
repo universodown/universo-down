@@ -6,8 +6,6 @@ import { Assisted } from '../model/assisted'
 @EntityRepository(Assisted)
 export default class AssistedRepository extends Repository<Assisted> {
 
-    [x: string]: any;
-
     async findById(id: number, db?: EntityManager)
     : Promise<Assisted | undefined> {
         const repository = Db
@@ -15,7 +13,8 @@ export default class AssistedRepository extends Repository<Assisted> {
             : this
 
         return repository.findOne({
-            where: { id }
+            where: { id },
+            relations: ['organization']
         })
     }
 
@@ -27,7 +26,10 @@ export default class AssistedRepository extends Repository<Assisted> {
             ? db.getRepository(Assisted)
             : this
 
-        return repository.findOne({ where: { identification } })
+        return repository.findOne({
+            where: { identification },
+            relations: ['organization']
+        })
     }
 
     async findAll(context: Context): Promise<Assisted[]> {

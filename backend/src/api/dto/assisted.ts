@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
@@ -43,7 +44,7 @@ export function isAssistedCreate(obj: any): obj is AssistedCreate {
         && obj.state !== undefined
         && obj.nationality !== undefined
         && obj.nationalIdentity !== undefined
-        && obj.indentification !== undefined
+        && obj.identification !== undefined
 }
 
 export class AssistedUpdate {
@@ -78,5 +79,28 @@ export class AssistedUpdate {
 }
 
 export function isAssistedUpdate(obj: any): obj is AssistedUpdate {
-    return true
+    return obj.name !== undefined
+        || obj.birthday !== undefined
+        || obj.gender !== undefined
+        || obj.identification !== undefined
+        || obj.generalRegistration !== undefined
+        || obj.issue !== undefined
+        || obj.issuer !== undefined
+        || obj.zipCode !== undefined
+        || obj.address !== undefined
+        || obj.number !== undefined
+        || obj.neighborhood !== undefined
+        || obj.city !== undefined
+        || obj.state !== undefined
+        || obj.phone !== undefined
+        || obj.hasBenefits !== undefined
+        || obj.naturalness !== undefined
+        || obj.nationality !== undefined
+        || obj.occupation !== undefined
+        || obj.nationalIdentity !== undefined
+        || obj.active !== undefined
+        || obj.additionalInformation !== undefined
+        || obj.photo !== undefined
+        || obj.benefits !== undefined
+        || obj.socialIdentificationNumber !== undefined
 }

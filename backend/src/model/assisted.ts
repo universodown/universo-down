@@ -75,8 +75,8 @@ export class Assisted {
     @Column('text')
     nationality: string
 
-    @Column('text')
-    occupation: string
+    @Column('text', { nullable: true })
+    occupation?: string
 
     @Column('text', { name: 'national_identity' })
     nationalIdentity: string
@@ -84,14 +84,14 @@ export class Assisted {
     @Column('boolean')
     active: boolean
 
-    @Column('text', { name: 'additional_information' })
-    additionalInformation: string
+    @Column('text', { name: 'additional_information', nullable: true })
+    additionalInformation?: string
 
-    @Column('text')
-    photo: string
+    @Column('text', { nullable: true })
+    photo?: string
 
-    @Column('text')
-    benefits: string
+    @Column('text', { nullable: true })
+    benefits?: string
 
     @Column('text', { name: 'social_identification_number' })
     socialIdentificationNumber: string

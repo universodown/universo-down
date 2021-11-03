@@ -3,6 +3,7 @@ import * as core from 'express-serve-static-core'
 import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
+import { AdminRole } from '../model/enum/admin-role'
 import { UserRole } from '../model/enum/user-role'
 import AssistedService from '../services/assisted'
 
@@ -71,6 +72,31 @@ export class AssistedRoutes {
                     const assistedService = Container.get(AssistedService)
                     const assisted = await assistedService.findById(id)
 
+                    if (!assisted) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        assisted.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        context.user.adminRole === AdminRole.Member
+                        && context.user.id !== assisted.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    }
+
                     response.status(200).json(assisted)
                 } catch (e) {
                     response.status(500).json({
@@ -97,7 +123,10 @@ export class AssistedRoutes {
                         return
                     }
 
-                    if (!('params' in request) || !('id' in request.params)) {
+                    if (
+                        !('params' in request)
+                        || !('identification' in request.params)
+                    ) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Necessário informar o ID } '
@@ -111,6 +140,31 @@ export class AssistedRoutes {
                     const assisted = await assistedService.findByIdentification(
                         identification
                     )
+
+                    if (!assisted) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        assisted.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        context.user.adminRole === AdminRole.Member
+                        && context.user.id !== assisted.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Atendido não encontrado.'
+                        })
+
+                        return
+                    }
 
                     response.status(200).json(assisted)
                 } catch (e) {
