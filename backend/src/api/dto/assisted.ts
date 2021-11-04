@@ -3,6 +3,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Gender } from '../../model/enum/gender'
+import { EvolutionRecord } from '../../model/evolution-record'
+import { TransportRequest } from '../../model/transport-request'
 
 export class AssistedCreate {
 
@@ -30,21 +32,26 @@ export class AssistedCreate {
     photo: string
     benefits: string
     socialIdentificationNumber: string
+    evolutionRecord: EvolutionRecord[]
+    transportRequests: TransportRequest[]
     organizationId?: number
 
 }
 
 export function isAssistedCreate(obj: any): obj is AssistedCreate {
-    return obj.name !== undefined
-        && obj.birthday !== undefined
+    return obj.generalRegistration !== undefined
         && obj.identification !== undefined
+        && obj.name !== undefined
+        && obj.birthday !== undefined
+        && obj.active !== undefined
+        && obj.zipCode !== undefined
         && obj.address !== undefined
-        && obj.phone !== undefined
+        && obj.neighborhood !== undefined
         && obj.city !== undefined
         && obj.state !== undefined
-        && obj.nationality !== undefined
-        && obj.nationalIdentity !== undefined
-        && obj.identification !== undefined
+        && obj.gender !== undefined
+        && obj.photo !== undefined
+        && obj.transportRequests !== undefined
 }
 
 export class AssistedUpdate {

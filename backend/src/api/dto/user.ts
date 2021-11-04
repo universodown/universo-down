@@ -34,14 +34,21 @@ export class UserCreate {
 export function isUserCreate(obj: any): obj is UserCreate {
     return obj.firstName !== undefined
         && obj.lastName !== undefined
+        && obj.identification !== undefined
+        && obj.birthday !== undefined
+        && obj.zipCode !== undefined
         && obj.email !== undefined
         && obj.plainPassword !== undefined
-        && obj.birthday !== undefined
-        && obj.identification !== undefined
         && obj.address !== undefined
+        && obj.neighborhood !== undefined
         && obj.city !== undefined
         && obj.state !== undefined
         && obj.phone !== undefined
+        && obj.number !== undefined
+        && obj.adminRole !== undefined
+        && obj.userRole !== undefined
+        && obj.gender !== undefined
+        && obj.generalRegistration !== undefined
 }
 
 export class UserUpdate {
