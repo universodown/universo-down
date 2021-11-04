@@ -1,8 +1,10 @@
 import { Service } from 'typedi'
 import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
+
 import { Context } from '../api/dto/context'
-import { NeedSpecialityCreate, NeedSpecialityUpdate } from '../api/dto/need-speciality'
+import { NeedSpecialityCreate,
+    NeedSpecialityUpdate } from '../api/dto/need-speciality'
 import { NeedSpeciality } from '../model/need-speciality'
 import NeedSpecialtyRepository from '../repositories/need-specialty'
 
@@ -63,4 +65,5 @@ export default class NeedSpecialityService {
     ) {
         return this.repository.findAll(context)
     }
+
 }

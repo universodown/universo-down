@@ -1,12 +1,14 @@
 import * as core from 'express-serve-static-core'
-import { verifyJWT } from '../fns/verify-jwt'
-import { response, Response } from 'express'
-import { RequestWithUser } from './user'
-import { User } from '../model/user'
-import { UserRole } from '../model/enum/user-role'
 import Container from 'typedi'
+import { Response } from 'express'
+
+import { UserRole } from '../model/enum/user-role'
+import { verifyJWT } from '../fns/verify-jwt'
 import NeedSpecialityService from '../services/need-specialty'
-import { isNeedSpecialityCreate, isNeedSpecialityUpdate } from './dto/need-speciality'
+
+import { RequestWithUser } from './user'
+import { isNeedSpecialityCreate,
+    isNeedSpecialityUpdate } from './dto/need-speciality'
 
 export class NeedSpecialityRoutes {
 
@@ -16,20 +18,23 @@ export class NeedSpecialityRoutes {
         app.get(
             baseUrl,
             verifyJWT,
-            async (request: RequestWithUser, respose: Response) => {
+            async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
-                            error: 'Usuário não possui permissão para esta ação { {Função: Secretária} }'
+                            error: 'Usuário não possui permissão'
+                            + 'para esta ação { {Função: Secretária} }'
                         })
 
                         return
                     }
 
-                    const needSpecialityService = Container.get(NeedSpecialityService)
-                    const needSpeciality = await needSpecialityService.findAll
+                    const needSpecialityService
+                    = Container.get(NeedSpecialityService)
+                    const needSpeciality
+                    = await needSpecialityService.findAll(context)
 
                     response.status(200).json(needSpeciality)
                 } catch (e) {
@@ -44,13 +49,14 @@ export class NeedSpecialityRoutes {
         app.get(
             `${baseUrl}/:id`,
             verifyJWT,
-            async (request: RequestWithUser, respose: Response) => {
+            async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
-                            error: 'Usuário não possui permissão para esta ação { {Função: Secretária} }'
+                            error: 'Usuário não possui permissão'
+                            + 'para esta ação { {Função: Secretária} }'
                         })
 
                         return
@@ -65,9 +71,12 @@ export class NeedSpecialityRoutes {
                         return
                     }
 
-                    const id = Number(request.params.id)
-                    const needSpecialityService = Container.get(NeedSpecialityService)
-                    const needSpeciality = await needSpecialityService.findAll
+                    const id
+                    = Number(request.params.id)
+                    const needSpecialityService
+                    = Container.get(NeedSpecialityService)
+                    const needSpeciality
+                    = await needSpecialityService.findById(id)
 
                     response.status(200).json(needSpeciality)
                 } catch (e) {
@@ -82,13 +91,14 @@ export class NeedSpecialityRoutes {
         app.post(
             baseUrl,
             verifyJWT,
-            async (request: RequestWithUser, respose: Response) => {
+            async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
-                            error: 'Usuário não possui permissão para esta ação { {Função: Secretária} }'
+                            error: 'Usuário não possui permissão'
+                            + 'para esta ação { {Função: Secretária} }'
                         })
 
                         return
@@ -104,8 +114,10 @@ export class NeedSpecialityRoutes {
                         return
                     }
 
-                    const needSpecialityService = Container.get(NeedSpecialityService)
-                    const needSpeciality = await needSpecialityService.create(context, body)
+                    const needSpecialityService
+                    = Container.get(NeedSpecialityService)
+                    const needSpeciality
+                    = await needSpecialityService.create(context, body)
 
                     response.status(201).json(needSpeciality)
                 } catch (e) {
@@ -120,13 +132,14 @@ export class NeedSpecialityRoutes {
         app.put(
             `${baseUrl}/:id`,
             verifyJWT,
-            async (request: RequestWithUser, respose: Response) => {
+            async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
-                            error: 'Usuário não possui permissão para esta ação { {Função: Secretária} }'
+                            error: 'Usuário não possui permissão'
+                            + 'para esta ação { {Função: Secretária} }'
                         })
 
                         return
@@ -150,9 +163,12 @@ export class NeedSpecialityRoutes {
                         return
                     }
 
-                    const id = Number(request.params.id)
-                    const needSpecialityService = Container.get(NeedSpecialityService)
-                    const needSpeciality = await needSpecialityService.update(context, id, body)
+                    const id
+                    = Number(request.params.id)
+                    const needSpecialityService
+                    = Container.get(NeedSpecialityService)
+                    const needSpeciality
+                    = await needSpecialityService.update(context, id, body)
 
                     response.status(201).json(needSpeciality)
                 } catch (e) {
@@ -167,13 +183,14 @@ export class NeedSpecialityRoutes {
         app.delete(
             `${baseUrl}/:id`,
             verifyJWT,
-            async (request: RequestWithUser, respose: Response) => {
+            async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
                     if (context.user.userRole === UserRole.Secretary) {
                         response.status(401).json({
-                            error: 'Usuário não possui permissão para esta ação { {Função: Secretária} }'
+                            error: 'Usuário não possui permissão'
+                            + 'para esta ação { {Função: Secretária} }'
                         })
 
                         return
@@ -187,9 +204,12 @@ export class NeedSpecialityRoutes {
                         return
                     }
 
-                    const id = Number(request.params.id)
-                    const needSpecialityService = Container.get(NeedSpecialityService)
-                    const needSpeciality = await needSpecialityService.delete(id)
+                    const id
+                    = Number(request.params.id)
+                    const needSpecialityService
+                    = Container.get(NeedSpecialityService)
+                    const needSpeciality
+                    = await needSpecialityService.delete(id)
 
                     response.status(200).json(needSpeciality)
                 } catch (e) {
@@ -201,4 +221,5 @@ export class NeedSpecialityRoutes {
             }
         )
     }
+
 }

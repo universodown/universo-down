@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import * as core from 'express-serve-static-core'
-import { NeedSpecialityRoutes } from './need-speciality'
 
+import { NeedSpecialityRoutes } from './need-speciality'
 import { OrganizationRoutes } from './organization'
 import { UserRoutes } from './user'
 

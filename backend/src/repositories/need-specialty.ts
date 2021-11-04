@@ -1,9 +1,11 @@
 import { EntityManager, EntityRepository, Repository } from 'typeorm'
-import { Context } from '../api/dto/context';
+
+import { Context } from '../api/dto/context'
 import { NeedSpeciality } from '../model/need-speciality'
 
 @EntityRepository(NeedSpeciality)
-export default class NeedSpecialtyRepository extends Repository<NeedSpeciality>{
+export default class NeedSpecialtyRepository
+    extends Repository<NeedSpeciality> {
 
     async findById(
         id: number,
@@ -12,9 +14,10 @@ export default class NeedSpecialtyRepository extends Repository<NeedSpeciality>{
         const repository = db
             ? db.getRepository(NeedSpeciality)
             : this
+
         return repository.findOne({
-            where: { id }, 
-            relations:['evolutionRecord','speciality']
+            where: { id },
+            relations: ['evolutionRecord','speciality']
         })
     }
 
@@ -25,4 +28,5 @@ export default class NeedSpecialtyRepository extends Repository<NeedSpeciality>{
             where: { organizationId: context.organization.id }
         })
     }
+
 }
