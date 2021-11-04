@@ -11,6 +11,7 @@ export function isSpecialitiesCreate(obj: any): obj is SpecialitiesCreate {
 }
 
 export class SpecialitiesUpdate {
+
     id : number
     name?: string
 

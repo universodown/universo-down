@@ -7,7 +7,6 @@ import { SpecialitiesCreate, SpecialitiesUpdate } from '../api/dto/specialities'
 import { Specialities } from '../model/specialities'
 import SpecialitiesRepository from '../repositories/specialities'
 
-
 @Service()
 export default class SpecialitiesService {
 
@@ -17,7 +16,7 @@ export default class SpecialitiesService {
     async create(
         context: Context,
         specialitiesInfo: SpecialitiesCreate
-        ) {
+    ) {
         return getManager().transaction(async db => {
             const repository = db.getRepository(Specialities)
 
@@ -32,10 +31,10 @@ export default class SpecialitiesService {
         context : Context,
         id:number,
         specialitiesInfo: SpecialitiesUpdate
-        ) {
+    ) {
         return getManager().transaction(async db => {
             const repository = db.getRepository(Specialities)
-            
+
             return repository.save({
                 ...specialitiesInfo,
                 id,
@@ -46,7 +45,7 @@ export default class SpecialitiesService {
 
     async delete(
         id: number
-        ) {
+    ) {
         return getManager().transaction(async db => {
             const repository = db.getRepository(Specialities)
 
@@ -56,7 +55,7 @@ export default class SpecialitiesService {
 
     async findById(
         id: number
-        ) {
+    ) {
         return this.repository.findById(id)
     }
 
@@ -65,4 +64,5 @@ export default class SpecialitiesService {
     ) {
         return this.repository.findAll(context)
     }
+
 }

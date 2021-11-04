@@ -30,8 +30,10 @@ export class SpecialitiesRoutes {
                         return
                     }
 
-                    const specialitiesService = Container.get(SpecialitiesService)
-                    const specialities = await specialitiesService.findAll(context)
+                    const specialitiesService
+                    = Container.get(SpecialitiesService)
+                    const specialities
+                    = await specialitiesService.findAll(context)
 
                     response.status(200).json(specialities)
                 } catch (e) {
@@ -69,7 +71,8 @@ export class SpecialitiesRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const specialitiesService = Container.get(SpecialitiesService)
+                    const specialitiesService
+                    = Container.get(SpecialitiesService)
                     const specialities = await specialitiesService.findById(id)
 
                     response.status(200).json(specialities)
@@ -107,8 +110,8 @@ export class SpecialitiesRoutes {
 
                         return
                     }
-
-                    const specialitiesService = Container.get(SpecialitiesService)
+                    const specialitiesService
+                    = Container.get(SpecialitiesService)
                     const specialities = await specialitiesService
                         .create(context, body)
 
@@ -158,7 +161,8 @@ export class SpecialitiesRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const specialitiesService = Container.get(SpecialitiesService)
+                    const specialitiesService
+                    = Container.get(SpecialitiesService)
                     const specialities = await specialitiesService
                         .update(context, id, body)
 
@@ -198,7 +202,8 @@ export class SpecialitiesRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const specialitiesService = Container.get(SpecialitiesService)
+                    const specialitiesService
+                    = Container.get(SpecialitiesService)
                     const specialities = await specialitiesService
                         .delete(id)
 
