@@ -8,6 +8,7 @@ import UserService from '../services/user'
 import config from '../config'
 import { verifyJWT } from '../fns/verify-jwt'
 import { AdminRole } from '../model/enum/admin-role'
+import { UserRole } from '../model/enum/user-role'
 
 import { isUserCreate, isUserLogin, isUserUpdate } from './dto/user'
 import { Context } from './dto/context'
@@ -95,6 +96,47 @@ export class UserRoutes {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
                         + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
+
+        app.get(
+            `${baseUrl}/identification/:identification`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+
+                    if (context.user.userRole === UserRole.Secretary) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + ' está ação. { (Função: Secrétaria) }'
+                        })
+
+                        return
+                    }
+
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Necessário informar o ID } '
+                        })
+
+                        return
+                    }
+
+                    const identification = String(request.params.identification)
+                    const userService = Container.get(UserService)
+                    const user = await userService.findByIdentification(
+                        identification
+                    )
+
+                    response.status(200).json(user)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O Servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}} `
                     })
                 }
             }

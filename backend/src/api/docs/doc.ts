@@ -14,6 +14,14 @@ import {
     userCreateDefinition,
     userUpdateDefinition
 } from './users'
+import {
+    assistedCreateDefinition,
+    assistedDefinition,
+    assistedUpdateDefinition,
+    pathAssistedsBase,
+    pathAssistedsId,
+    pathAssistedsIdentification
+} from './assisted'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -60,6 +68,10 @@ export const apiDoc = {
         '/api/v1/user/{userId}': pathUsersId,
         '/api/v1/organization': pathOrganizationBase,
         '/api/v1/organization/{organizationId}': pathOrganizationId,
+        '/api/v1/assisted': pathAssistedsBase,
+        '/api/v1/assisted/{assistedId}': pathAssistedsId,
+        '/api/v1/assisted/identification/{identification}':
+            pathAssistedsIdentification,
         '/api/v1/login': pathLogin,
         '/api/v1/logout': pathLogout
     },
@@ -70,6 +82,9 @@ export const apiDoc = {
         Organization: organizationDefinition,
         OrganizationCreate: organizationCreateDefinition,
         OrganizationUpdate: organizationUpdateDefinition,
+        Assisted: assistedDefinition,
+        AssistedCreate: assistedCreateDefinition,
+        AssistedUpdate: assistedUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition
