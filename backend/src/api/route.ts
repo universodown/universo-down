@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import * as core from 'express-serve-static-core'
-
+import { SpecialityRoutes } from './speciality'
 import { OrganizationRoutes } from './organization'
 import { UserRoutes } from './user'
 
@@ -14,6 +14,7 @@ export class Route {
 
         UserRoutes.userRoutes(app)
         OrganizationRoutes.organizationRoutes(app)
+        SpecialityRoutes.specialityRoutes(app)
     }
 
 }
