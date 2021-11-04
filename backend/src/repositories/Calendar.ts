@@ -40,4 +40,5 @@ export default class CalendarRepository extends Repository<Calendar> {
             userId: context.user.id
         } })
     }
+
 }

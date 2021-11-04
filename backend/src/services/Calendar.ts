@@ -66,4 +66,5 @@ export default class CalendarService {
     async findAll(context: Context): Promise<Calendar[]> {
         return this.repository.findAll(context)
     }
+
 }
