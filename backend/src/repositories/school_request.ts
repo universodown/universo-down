@@ -8,14 +8,17 @@ import { SchoolRequest } from '../model/school-request'
 export default class SchoolRequestRepository 
                 extends Repository<SchoolRequest>{
 
-    async findById(id: number, db?: EntityManager): Promise<SchoolRequest | undefined> {
-        const repository = db
-            ? db.getRepository(SchoolRequest)
-            : this
+    async findById(
+        id: number, 
+        db?: EntityManager
+        ): Promise<SchoolRequest | undefined> {
+            const repository = db
+                ? db.getRepository(SchoolRequest)
+                : this
 
         return repository.findOne({
             where: { id },
-            relations: ['schoolrequests']
+            relations: ['assisted']
         })
     }
 

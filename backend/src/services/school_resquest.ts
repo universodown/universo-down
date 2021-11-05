@@ -14,36 +14,33 @@ export default class SchoolRequestService {
     private readonly repository: SchoolRequestRepository
 
 
-    async create(schoolrequestInfo: SchoolRequestCreate): Promise<SchoolRequest> {
+    async create(
+        context: Context, 
+        schoolrequestInfo: SchoolRequestCreate
+        ) {
                  
         return getManager().transaction(async db => {
-            const repository = db.getCustomRepository(SchoolRequest)
+            const repository = db.getRepository(SchoolRequestRepository)
 
-            const schoolrequest = await repository.save({
+            return repository.save({
                 ...schoolrequestInfo,
-               schoolRequest: [{
-                    id: `${schoolrequestInfo.domain}`,
-                    assistedId: `${schoolrequestInfo.domain}`,
-                    date: '',
-                    responseDate: '',
-                    status: 'status',
-                    organizationId: `${schoolrequestInfo.domain}`
-                }]
+                organizationId: context.organization.id
             })
-
-            return schoolrequest
         })
     }
 
-    async update(schoolrequestInfo: SchoolRequestUpdate): Promise<SchoolRequest> {
+    async update(
+        context: Context, 
+        id: number,
+        schoolrequestInfo: SchoolRequestUpdate
+        ) {
         return getManager().transaction(async db => {
-            const repository = db.getCustomRepository(SchoolRequestRepository)
-            const organization = await repository
-                .findById(schoolrequestInfo.id, db)
-
-            return repository.save({
-                ...schoolrequest,
-                ...schoolrequestInfo
+            const repository = db.getRepository(SchoolRequestRepository)
+        
+                return repository.save({
+                ...schoolrequestInfo,
+                id,
+                organizationId: context.organization.id
             })
         })
     }
@@ -57,14 +54,15 @@ export default class SchoolRequestService {
         })
     }
 
-    async find(id: number): Promise<SchoolRequest | undefined> {
+    async findById(
+        id: number
+        ) {
         return this.repository.findById(id)
     }
 
-    async findByOrganizationId(organizationId: number): Promise<SchoolRequest | undefined> {
-        return this.repository.findByOrganizationId(organizationId)
+    async findAll(
+        context: Context
+        ) {
+            return this.repository.findAll(context)
     }
-
-    async findAll(context: Context): Promise<SchoolRequest[]> {
-        return this.repository.findAll(context)
-    }
+}

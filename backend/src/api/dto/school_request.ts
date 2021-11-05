@@ -6,9 +6,6 @@ export class SchoolRequestCreate {
     assistedId: number
     date: Date
     responseDate: Date
-    status: string
-    organizationId?: number
-
 }
 
 export function isSchoolRequestCreate(obj: any): obj is SchoolRequestCreate {
@@ -16,8 +13,6 @@ export function isSchoolRequestCreate(obj: any): obj is SchoolRequestCreate {
         && obj.assistedId !== undefined
         && obj.date !== undefined
         && obj.responseDate !== undefined
-        && obj.status !== undefined
-        && obj.organizationId !== undefined
 }
 
 export class SchoolRequestUpdate {
@@ -26,10 +21,8 @@ export class SchoolRequestUpdate {
     assistedId?: number
     date?: Date
     responseDate?: Date
-    status?: string
-
 }
 
 export function isSchoolRequestUpdate(obj: any): obj is SchoolRequestUpdate {
-    return obj.id !== undefined
+    return true
 }
