@@ -27,7 +27,7 @@ export class EvolutionRecord {
     status: Status
 
     @Column('double')
-    wight: Double
+    weight: Double
 
     @Column('double')
     height: Double

@@ -61,7 +61,7 @@ CREATE TABLE `evolution_records` (
   `id` int(11) NOT NULL,
   `date` date NOT NULL,
   `status` enum('pending','done','refused') NOT NULL DEFAULT 'pending',
-  `wight` double NOT NULL,
+  `weight` double NOT NULL,
   `height` double NOT NULL,
   `report` text NOT NULL,
   `user_id` int(11) NOT NULL,
