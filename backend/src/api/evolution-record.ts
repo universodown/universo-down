@@ -10,7 +10,7 @@ import { isEvolutionRecordCreate, isEvolutionRecordUpdate } from './dto/evolutio
 import { RequestWithUser } from './user'
 
 export class EvolutionRecordRoutes {
-    
+
     public static evolutionRecordRoutes(app: core.Express) {
         const baseUrl = '/api/v1/evolution-record'
 
@@ -27,12 +27,12 @@ export class EvolutionRecordRoutes {
                             + ' esta ação. { (Função: Assistente Social) }'
                         })
 
-                        return 
+                        return
                     }
 
                     const evolutionRecordService = Container.get(EvolutionRecordService)
                     const evolutionRecords = await evolutionRecordService.findAll(context)
-                    
+
                     response.status(200).json(evolutionRecords)
                 } catch (e) {
                     response.status(500).json({
@@ -56,7 +56,7 @@ export class EvolutionRecordRoutes {
                             + ' esta ação. { (Função: Assistente Social) }'
                         })
 
-                        return 
+                        return
                     }
 
                     if (!('params' in request) || !('id' in request.params)) {
@@ -72,10 +72,11 @@ export class EvolutionRecordRoutes {
                     const evolutionRecordService = Container.get(EvolutionRecordService)
                     const evolutionRecord = await evolutionRecordService.findById(id)
                     if (
-                        !evolutionRecord 
+                        !evolutionRecord
                         || evolutionRecord.organizationId !== context.organization.id
                     ) {
                         response.status(404).json({ error: 'Evolução não encontrada' })
+
                         return
                     }
                     response.status(200).json(evolutionRecord)
@@ -117,14 +118,13 @@ export class EvolutionRecordRoutes {
                     const evolutionRecordService = Container.get(EvolutionRecordService)
                     const evolutionRecords = await evolutionRecordService
                         .create(context, body)
-                    
-                        response.status(201).json(evolutionRecords)
+
+                    response.status(201).json(evolutionRecords)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
                         + ` não sabe lidar. {${e}}`
                     })
-                    
                 }
             }
         )
@@ -169,10 +169,11 @@ export class EvolutionRecordRoutes {
                     const evolutionRecord = await evolutionRecordService
                         .update(context, id, body)
                     if (
-                        !evolutionRecord 
+                        !evolutionRecord
                         || evolutionRecord.organizationId !== context.organization.id
                     ) {
                         response.status(404).json({ error: 'Evolução não encontrada' })
+
                         return
                     }
                     response.status(201).json(evolutionRecord)
@@ -209,16 +210,17 @@ export class EvolutionRecordRoutes {
 
                         return
                     }
-                    
+
                     const id = Number(request.params.id)
                     const evolutionRecordService = Container.get(EvolutionRecordService)
                     const evolutionRecord = await evolutionRecordService
                         .delete(id)
                     if (
-                        !evolutionRecord 
+                        !evolutionRecord
                         || evolutionRecord.organizationId !== context.organization.id
                     ) {
                         response.status(404).json({ error: 'Evolução não encontrada' })
+
                         return
                     }
                     response.status(200).json(evolutionRecord)
