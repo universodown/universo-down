@@ -2,27 +2,24 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class SchoolRequestCreate {
 
-    id: number
+    status: Status
     assistedId: number
-    date: Date
-    responseDate: Date
 }
 
 export function isSchoolRequestCreate(obj: any): obj is SchoolRequestCreate {
-    return obj.id !== undefined
+    return obj.status !== undefined
         && obj.assistedId !== undefined
-        && obj.date !== undefined
-        && obj.responseDate !== undefined
+       
 }
 
 export class SchoolRequestUpdate {
-
-    id: number
-    assistedId?: number
-    date?: Date
+    
+    status?: Status
     responseDate?: Date
+    
 }
 
 export function isSchoolRequestUpdate(obj: any): obj is SchoolRequestUpdate {
-    return true
+    return obj.status !== undefined
+        || obj.responseDate !== undefined
 }
