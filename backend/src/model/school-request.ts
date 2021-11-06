@@ -10,7 +10,7 @@ import { Status } from './enum/status'
 import { Organization } from './organization'
 import { Assisted } from './assisted'
 
-@Entity({ name: 'school_request' })
+@Entity({ name: 'school-request' })
 export class SchoolRequest {
 
     @PrimaryGeneratedColumn()
