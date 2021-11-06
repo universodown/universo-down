@@ -18,11 +18,12 @@ export default class EvolutionRecordService {
         evolutionRecordInfo: EvolutionRecordCreate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(EvolutionRecord)
+            const repository = db.getCustomRepository(EvolutionRecordRepository)
 
             return repository.save({
                 ...evolutionRecordInfo,
-                organizationId: context.organization.id
+                organizationId: context.organization.id,
+                userId: context.user.id
             })
         })
     }
@@ -33,12 +34,11 @@ export default class EvolutionRecordService {
         evolutionRecordInfo: EvolutionRecordUpdate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(EvolutionRecord)
+            const repository = db.getCustomRepository(EvolutionRecordRepository)
 
             return repository.save({
                 ...evolutionRecordInfo,
-                id,
-                organizationId: context.organization.id
+                id
             })
         })
     }
@@ -47,9 +47,9 @@ export default class EvolutionRecordService {
         id: number
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(EvolutionRecord)
-
-            return repository.delete(id)
+            const repository = db.getCustomRepository(EvolutionRecordRepository)
+            const evolutionRecord = await repository.findById(id)
+            return repository.remove(evolutionRecord)
         })
     }
 

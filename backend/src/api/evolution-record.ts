@@ -21,10 +21,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Membro) }'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return 
@@ -50,10 +50,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Membro) }'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return 
@@ -70,9 +70,15 @@ export class EvolutionRecordRoutes {
 
                     const id = Number(request.params.id)
                     const evolutionRecordService = Container.get(EvolutionRecordService)
-                    const evolutionRecords = await evolutionRecordService.findById(id)
-
-                    response.status(200).json(evolutionRecords)
+                    const evolutionRecord = await evolutionRecordService.findById(id)
+                    if (
+                        !evolutionRecord 
+                        || evolutionRecord.organizationId !== context.organization.id
+                    ) {
+                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        return
+                    }
+                    response.status(200).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -89,10 +95,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. {( Função: Secretária )}'
+                            + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
@@ -130,10 +136,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. {( Função: Secretária )}'
+                            + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
@@ -160,10 +166,16 @@ export class EvolutionRecordRoutes {
 
                     const id = Number(request.params.id)
                     const evolutionRecordService = Container.get(EvolutionRecordService)
-                    const evolutionRecords = await evolutionRecordService
+                    const evolutionRecord = await evolutionRecordService
                         .update(context, id, body)
-                    
-                    response.status(201).json(evolutionRecords)
+                    if (
+                        !evolutionRecord 
+                        || evolutionRecord.organizationId !== context.organization.id
+                    ) {
+                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        return
+                    }
+                    response.status(201).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -180,10 +192,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. {( Função: Secretária )}'
+                                + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
@@ -200,10 +212,16 @@ export class EvolutionRecordRoutes {
                     
                     const id = Number(request.params.id)
                     const evolutionRecordService = Container.get(EvolutionRecordService)
-                    const evolutionRecords = await evolutionRecordService
+                    const evolutionRecord = await evolutionRecordService
                         .delete(id)
-                    
-                    response.status(200).json(evolutionRecords)
+                    if (
+                        !evolutionRecord 
+                        || evolutionRecord.organizationId !== context.organization.id
+                    ) {
+                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        return
+                    }
+                    response.status(200).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'

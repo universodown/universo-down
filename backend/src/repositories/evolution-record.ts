@@ -20,7 +20,10 @@ export default class EvolutionRecordRepository
 
     async findAll(context: Context): Promise<EvolutionRecord[]> {
         return this.find({
-            where: { organizationId: context.organization.id }
+            where: { 
+                organizationId: context.organization.id,
+                userId: context.user.id
+            }
         })
     }
 

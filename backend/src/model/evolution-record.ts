@@ -27,10 +27,10 @@ export class EvolutionRecord {
     status: Status
 
     @Column('double')
-    wight: Double
+    weight: number
 
     @Column('double')
-    height: Double
+    height: number
 
     @Column('text')
     report: string
