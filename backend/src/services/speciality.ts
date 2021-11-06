@@ -1,10 +1,11 @@
-import { Service } from "typedi";
-import { getManager } from "typeorm";
-import { InjectRepository } from "typeorm-typedi-extensions";
-import { Context } from "../api/dto/context";
-import { SpecialityCreate, SpecialityUpdate } from "../api/dto/speciality";
-import { Speciality } from "../model/speciality";
-import SpecialityRepository from "../repositories/speciality";
+import { Service } from 'typedi'
+import { getManager } from 'typeorm'
+import { InjectRepository } from 'typeorm-typedi-extensions'
+
+import { Context } from '../api/dto/context'
+import { SpecialityCreate, SpecialityUpdate } from '../api/dto/speciality'
+import { Speciality } from '../model/speciality'
+import SpecialityRepository from '../repositories/speciality'
 
 @Service()
 export default class SpecialityService {
@@ -50,7 +51,6 @@ export default class SpecialityService {
 
             return repository.delete(id)
         })
-    
     }
 
     async findById(
@@ -64,4 +64,5 @@ export default class SpecialityService {
     ) {
         return this.repository.findAll(context)
     }
+
 }

@@ -1,9 +1,7 @@
-import { EntityManager, EntityRepository, Repository } from "typeorm";
-import { Context } from "../api/dto/context";
-import { Relationship } from "../model/enum/relationship";
-import { Specialities } from "../model/specialities";
+import { EntityManager, EntityRepository, Repository } from 'typeorm'
 
-import { Speciality } from "../model/speciality";
+import { Context } from '../api/dto/context'
+import { Speciality } from '../model/speciality'
 
 @EntityRepository(Speciality)
 export default class SpecialityRepository extends Repository<Speciality> {
@@ -15,14 +13,15 @@ export default class SpecialityRepository extends Repository<Speciality> {
         const repository = db
             ? db.getRepository(Speciality)
             : this
-        
-        return repository.findOne({ 
+
+        return repository.findOne({
             where: { id },
             relations: ['specialities']
         })
     }
 
     async findAll(context: Context): Promise<Speciality[]> {
-        return this.find({ where: {organizationId: context.organization.id}})
+        return this.find({ where: { organizationId: context.organization.id } })
     }
+
 }

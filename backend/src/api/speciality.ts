@@ -1,9 +1,11 @@
-import { application, request, response, Response } from 'express'
+import { Response } from 'express'
 import * as core from 'express-serve-static-core'
 import Container from 'typedi'
+
 import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
 import  SpecialityService  from '../services/Speciality'
+
 import { isSpecialityCreate, isSpecialityUpdate } from './dto/speciality'
 import { RequestWithUser } from './user'
 
@@ -32,10 +34,10 @@ export class SpecialityRoutes {
                     const speciality = await specialityService.findAll(context)
 
                     response.status(200).json(speciality)
-                } catch(e) {
+                } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                        + 'não sabe lidar. {${e}}'
+                        + ` não sabe lidar. {${e}} `
                     })
                 }
             }
@@ -48,7 +50,7 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
                     if (context.user.userRole === UserRole.Secretary) {
-                        response.status(401).json ({
+                        response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'
                         })
@@ -59,7 +61,7 @@ export class SpecialityRoutes {
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida'
-                            + ' {Necessátio informar o ID }'
+                                + ' { Necessátio informar o ID }'
                         })
 
                         return
@@ -72,8 +74,8 @@ export class SpecialityRoutes {
                     response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'o servidor encontrou uma situação com a qual'
-                        + 'não sabe lidar. {${e}}'
+                        error: 'O servidor encontrou uma situação com a qual'
+                            + `não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -136,7 +138,7 @@ export class SpecialityRoutes {
                     }
 
                     const body = request.body
-                    if (! isSpecialityUpdate(body)) {
+                    if (!isSpecialityUpdate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
