@@ -20,12 +20,51 @@ export class ProfessionalAttendaceRoutes {
         const baseUrl = '/api/v1/professionalAttendance'
 
         app.get(
+            `${baseUrl}/:id`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+                    if (context.user.userRole !== UserRole.Secretary) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + ' esta ação. { (Função: Secretária) }'
+                        })
+
+                        return
+                    }
+
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+                    const id = Number(request.params.id)
+                    const professionalAttendaceService = Container
+                        .get(ProfessionalAttendaceService)
+                    const professionalAttendace
+                        = await professionalAttendaceService.findById(id)
+
+                    response.status(200).json(professionalAttendace)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
+
+        app.get(
             `${baseUrl}/evolutionRecord/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + ' esta ação. { (Função: Profissional ou'
@@ -44,12 +83,12 @@ export class ProfessionalAttendaceRoutes {
                         return
                     }
                     const evolutionRecordId = Number(request.params.id)
-                    const professionalAttendaceService = Container.get(
-                        ProfessionalAttendaceService
-                    )
-                    const users = await professionalAttendaceService
+                    const professionalAttendaceService = Container
+                        .get(ProfessionalAttendaceService)
+                    const professionalAttendaces
+                    = await professionalAttendaceService
                         .findAll(context, evolutionRecordId)
-                    response.status(200).json(users)
+                    response.status(200).json(professionalAttendaces)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -60,17 +99,15 @@ export class ProfessionalAttendaceRoutes {
         )
 
         app.get(
-            `${baseUrl}/:id`,
+            `${baseUrl}/allInAttendance/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ou'
-                            + ' Assistente Social) }'
+                            + ' esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -84,13 +121,55 @@ export class ProfessionalAttendaceRoutes {
 
                         return
                     }
-                    const id = Number(request.params.id)
-                    const professionalAttendaceService = Container
-                        .get(ProfessionalAttendaceService)
-                    const professionalAttendace
-                        = await professionalAttendaceService.find(id)
+                    const attendanceId = Number(request.params.id)
+                    const professionalAttendaceService = Container.get(
+                        ProfessionalAttendaceService
+                    )
+                    const professionalAttendaces
+                    = await professionalAttendaceService
+                        .findAllByAttendance(attendanceId)
+                    response.status(200).json(professionalAttendaces)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
+        app.get(
+            `${baseUrl}/findAllProfessionalAttendance/:id`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
 
-                    response.status(200).json(professionalAttendace)
+                    if (context.user.userRole !== UserRole.Profissional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Função: Profissional )}'
+                        })
+
+                        return
+                    }
+
+                    const id = Number(request.params.id)
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+
+                    const  professionalAttendaceService = Container.get(
+                        ProfessionalAttendaceService
+                    )
+                    const professionalAttendace = await
+                    professionalAttendaceService.findAllAttendance(context, id)
+
+                    response.status(201).json(professionalAttendace)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -181,7 +260,7 @@ export class ProfessionalAttendaceRoutes {
                     const professionalAttendaceService = Container
                         .get(ProfessionalAttendaceService)
                     const professionalAttendace
-                        = await professionalAttendaceService.find(id)
+                        = await professionalAttendaceService.findById(id)
 
                     if (!professionalAttendace) {
                         response.status(404).json({
@@ -248,7 +327,7 @@ export class ProfessionalAttendaceRoutes {
                     const professionalAttendaceService = Container
                         .get(ProfessionalAttendaceService)
                     const professionalAttendace
-                        = await professionalAttendaceService.find(id)
+                        = await professionalAttendaceService.findById(id)
 
                     if (!professionalAttendace) {
                         response.status(404).json({

@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments */
 import { Service } from 'typedi'
 import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
@@ -66,18 +67,25 @@ export default class ProfessionalAttendanceService {
         })
     }
 
-    async find(id: number): Promise<ProfessionalAttendance | undefined> {
+    async findById(id: number): Promise<ProfessionalAttendance | undefined> {
         return this.repository.findById(id)
     }
-    async findSpecialities(id: number)
-    : Promise<ProfessionalAttendance | undefined> {
-        return this.repository.findSpecialities(id)
-    }
+
     async findAll(
         context: Context,
         evolutionRecordId: number
     ): Promise<ProfessionalAttendance[]> {
         return this.repository.findAll(context, evolutionRecordId)
+    }
+    async findAllAttendance(
+        context: Context,
+        userId: number
+    ): Promise<ProfessionalAttendance[]> {
+        return this.repository.findAllAttendanceByProfessional(context, userId)
+    }
+    async findAllByAttendance(attendanceId: number)
+    : Promise<ProfessionalAttendance[]> {
+        return this.repository.findAllByAttendance(attendanceId)
     }
 
 }
