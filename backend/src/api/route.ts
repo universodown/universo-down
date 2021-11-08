@@ -4,6 +4,7 @@ import { Request, Response } from 'express'
 import { NeedSpecialityRoutes } from './need-speciality'
 import { SpecialityRoutes } from './speciality'
 import { OrganizationRoutes } from './organization'
+import { SpecialitiesRoutes } from './specialities'
 import { RelatedRoutes } from './related'
 import { UserRoutes } from './user'
 import { AssistedRoutes } from './assisted'
@@ -19,6 +20,7 @@ export class Route {
 
         UserRoutes.userRoutes(app)
         OrganizationRoutes.organizationRoutes(app)
+        SpecialitiesRoutes.specialitiesRoutes(app)
         RelatedRoutes.relatedRoutes(app)
         SpecialityRoutes.specialityRoutes(app)
         AssistedRoutes.assistedRoutes(app)
