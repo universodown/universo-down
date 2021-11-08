@@ -15,6 +15,14 @@ import {
     userUpdateDefinition
 } from './users'
 import {
+    pathProfessionalAttendanceBase,
+    pathProfessionalAttendanceId,
+    professionalAttendanceCreateDefinition,
+    professionalAttendanceUpdateDefinition,
+    professionalAttendanceDefinition,
+    pathProfessionalAttendanceEvolution
+} from './professional-attendance'
+import {
     assistedCreateDefinition,
     assistedDefinition,
     assistedUpdateDefinition,
@@ -114,6 +122,10 @@ export const apiDoc = {
         {
             name: 'auth',
             description: 'Autenticação'
+        },
+        {
+            name: 'professionalsAttendances',
+            description: 'Controle do Atendimento Profissional'
         }
     ],
 
@@ -131,6 +143,11 @@ export const apiDoc = {
         '/api/v1/user/{userId}': pathUsersId,
         '/api/v1/organization': pathOrganizationBase,
         '/api/v1/organization/{organizationId}': pathOrganizationId,
+        '/api/v1/professionalAttendance': pathProfessionalAttendanceBase,
+        '/api/v1/professionalAttendance/evolutionRecord/{evolutionRecordId}':
+            pathProfessionalAttendanceEvolution,
+        '/api/v1/professionalAttendance/{professionalAttendanceId}':
+            pathProfessionalAttendanceId,
         '/api/v1/assisted': pathAssistedsBase,
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
         '/api/v1/assisted/identification/{identification}':
@@ -178,6 +195,9 @@ export const apiDoc = {
         Organization: organizationDefinition,
         OrganizationCreate: organizationCreateDefinition,
         OrganizationUpdate: organizationUpdateDefinition,
+        ProfessionalAttendance: professionalAttendanceDefinition,
+        ProfessionalAttendanceCreate: professionalAttendanceCreateDefinition,
+        ProfessionalAttendanceUpdate: professionalAttendanceUpdateDefinition,
         Assisted: assistedDefinition,
         AssistedCreate: assistedCreateDefinition,
         AssistedUpdate: assistedUpdateDefinition,

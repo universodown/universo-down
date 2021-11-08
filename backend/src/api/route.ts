@@ -7,6 +7,7 @@ import { OrganizationRoutes } from './organization'
 import { SpecialitiesRoutes } from './specialities'
 import { RelatedRoutes } from './related'
 import { UserRoutes } from './user'
+import { ProfessionalAttendaceRoutes } from './professional-attendance'
 import { AssistedRoutes } from './assisted'
 import { EvolutionRecordRoutes } from './evolution-record'
 import { CalendarRoutes } from './calendar'
@@ -23,6 +24,7 @@ export class Route {
 
         UserRoutes.userRoutes(app)
         OrganizationRoutes.organizationRoutes(app)
+        ProfessionalAttendaceRoutes.professionalAttendaceRoutes(app)
         SpecialitiesRoutes.specialitiesRoutes(app)
         RelatedRoutes.relatedRoutes(app)
         SpecialityRoutes.specialityRoutes(app)
