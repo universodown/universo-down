@@ -31,6 +31,7 @@ export class UserCreate {
 
 }
 
+// eslint-disable-next-line complexity
 export function isUserCreate(obj: any): obj is UserCreate {
     return obj.firstName !== undefined
         && obj.lastName !== undefined

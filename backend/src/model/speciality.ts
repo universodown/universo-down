@@ -21,8 +21,8 @@ export class Speciality {
     @Column('int', { name: 'organization_id' })
     organizationId: number
 
-    @Column('text', { name: 'name_speciality' })
-    nameSpeciality: string
+    @Column('text')
+    name: string
 
     @OneToMany(_ => Specialities, s => s.speciality, { onDelete: 'RESTRICT' })
     specialities: Specialities[]
