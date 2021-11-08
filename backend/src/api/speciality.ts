@@ -97,6 +97,48 @@ export class SpecialityRoutes {
             }
         )
 
+        app.get(
+            `${baseUrl}/name/:name`, // BaseUrl + '/:id'
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+                    if (context.user.userRole !== UserRole.Secretary) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + 'esta ação. { (Função: Secretária)}'
+                        })
+
+                        return
+                    }
+
+                    if (
+                        !('params' in request)
+                        || !('name' in request.params)
+                    ) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida'
+                                + ' { Necessátio informar o name }'
+                        })
+
+                        return
+                    }
+
+                    const name = request.params.name
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService
+                        .findByName(context, name)
+
+                    response.status(200).json(speciality)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                            + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
+
         app.post(
             baseUrl,
             verifyJWT,

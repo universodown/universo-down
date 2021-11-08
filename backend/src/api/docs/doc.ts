@@ -25,6 +25,7 @@ import {
 import {
     pathSpecialityBase,
     pathSpecialityId,
+    pathSpecialityName,
     specialityCreateDefinition,
     specialityDefinition,
     specialityUpdateDefinition
@@ -79,6 +80,7 @@ export const apiDoc = {
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
         '/api/v1/speciality': pathSpecialityBase,
         '/api/v1/speciality/{specialityId}': pathSpecialityId,
+        '/api/v1/speciality/name/{name}': pathSpecialityName,
         '/api/v1/assisted/identification/{identification}':
             pathAssistedsIdentification,
         '/api/v1/login': pathLogin,

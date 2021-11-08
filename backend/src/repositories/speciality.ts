@@ -1,4 +1,4 @@
-import { EntityManager, EntityRepository, Repository } from 'typeorm'
+import { EntityManager, EntityRepository, Like, Repository } from 'typeorm'
 
 import { Context } from '../api/dto/context'
 import { Speciality } from '../model/speciality'
@@ -16,6 +16,19 @@ export default class SpecialityRepository extends Repository<Speciality> {
 
         return repository.findOne({
             where: { id },
+            relations: ['specialities', 'organization']
+        })
+    }
+
+    async findByName(
+        context: Context,
+        name: string
+    ): Promise<Speciality[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id,
+                name: Like(`%${name}%`)
+            },
             relations: ['specialities', 'organization']
         })
     }

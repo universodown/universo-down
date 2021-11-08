@@ -79,6 +79,46 @@ export const pathSpecialityBase = {
     }
 }
 
+export const pathSpecialityName = {
+    parameters: [],
+    get: {
+        security: [{ BearerJWT: [] }],
+        tags: ['speciality'],
+        summary: 'Retorna todas as especialidades por nome',
+        operationId: 'getSpecialitiesByName',
+        parameters: [
+            {
+                name: 'name',
+                in: 'path',
+                description: 'Nome da especialidade',
+                required: true,
+                type: 'string'
+            }
+        ],
+        responses: {
+            200: {
+                description: 'Lista de especialidades cadastradas',
+                schema: {
+                    type: 'array',
+                    items: {
+                        $ref: '#/definitions/Speciality'
+                    }
+                }
+            },
+            401: {
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
+                schema: sampleErros[401]
+            },
+            500: {
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
+                schema: propertiesError
+            }
+        }
+    }
+}
+
 export const pathSpecialityId = {
     parameters: [],
     get: {

@@ -61,6 +61,13 @@ export default class SpecialityService {
         return this.repository.findById(id)
     }
 
+    async findByName(
+        context: Context,
+        name: string
+    ) {
+        return this.repository.findByName(context, name)
+    }
+
     async findAll(
         context: Context
     ) {
