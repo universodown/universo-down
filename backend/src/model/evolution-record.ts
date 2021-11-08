@@ -2,7 +2,6 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    Double,
     JoinColumn,
     ManyToOne,
     OneToMany
@@ -27,21 +26,21 @@ export class EvolutionRecord {
     status: Status
 
     @Column('double')
-    wight: Double
+    weight: number
 
     @Column('double')
-    height: Double
+    height: number
 
     @Column('text')
     report: string
 
-    @Column('int', { name: 'user_id', nullable: false })
+    @Column('int', { name: 'user_id' })
     userId: number
 
-    @Column('int', { name: 'assisted_id', nullable: false })
+    @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('int', { name: 'organization_id', nullable: false })
+    @Column('int', { name: 'organization_id' })
     organizationId: number
 
     @OneToMany(_ => ProfessionalAttendance, p => p.evolutionRecord)
