@@ -293,8 +293,25 @@ export class AssistedRoutes {
 
                     const id = Number(request.params.id)
                     const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService
-                        .delete(id)
+                    const assisted = await assistedService.findById(id)
+
+                    if (!assisted) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        assisted.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    await assistedService.delete(id)
 
                     response.status(200).json(assisted)
                 } catch (e) {

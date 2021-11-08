@@ -10,27 +10,27 @@ const sampleErros = {
     404: getError('Especialidade não encontrado.')
 }
 
-export const pathSpecialityBase = {
+export const pathNeeSpecialityBase = {
     parameters: [],
     post: {
         security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
-        summary: 'Criação de umaa nova especialidade',
-        operationId: 'createSpeciality',
+        tags: ['need-speciality'],
+        summary: 'Criação de uma nova necessidade de especialidade',
+        operationId: 'createNeeSpeciality',
         parameters: [
             {
                 in: 'body',
-                name: 'speciality',
+                name: 'needSpeciality',
                 schema: {
-                    $ref: '#/definitions/SpecialityCreate'
+                    $ref: '#/definitions/NeeSpecialityCreate'
                 }
             }
         ],
         responses: {
             201: {
-                description: 'Especialidade cadastrada com sucesso',
+                description: 'Necessidade cadastrada com sucesso',
                 schema: {
-                    $ref: '#/definitions/Speciality'
+                    $ref: '#/definitions/NeeSpeciality'
                 }
             },
             400: {
@@ -48,60 +48,31 @@ export const pathSpecialityBase = {
                 schema: propertiesError
             }
         }
-    },
-    get: {
-        security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
-        summary: 'Retorna todas as especialidades conforme login',
-        operationId: 'getSpecialities',
-        parameters: [],
-        responses: {
-            200: {
-                description: 'Lista de especialidades cadastradas',
-                schema: {
-                    type: 'array',
-                    items: {
-                        $ref: '#/definitions/Speciality'
-                    }
-                }
-            },
-            401: {
-                description: 'Usuário não possui permissão para esta ação.'
-                    + ' { (details) }',
-                schema: sampleErros[401]
-            },
-            500: {
-                description: 'O servidor encontrou uma situação com a qual'
-                    + ' não sabe lidar. { (details) }',
-                schema: propertiesError
-            }
-        }
     }
 }
 
-export const pathSpecialityName = {
-    parameters: [],
+export const pathNeedSpecialityByEvolution = {
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
-        summary: 'Retorna todas as especialidades por nome',
-        operationId: 'getSpecialitiesByName',
+        tags: ['need-speciality'],
+        summary: 'Retorna todas as necessidades conforme evolução',
+        operationId: 'getSpecialities',
         parameters: [
             {
-                name: 'name',
+                name: 'evolutionRecordId',
                 in: 'path',
-                description: 'Nome da especialidade',
+                description: 'ID da Evolução',
                 required: true,
                 type: 'string'
             }
         ],
         responses: {
             200: {
-                description: 'Lista de especialidades cadastradas',
+                description: 'Lista de necessidades cadastradas',
                 schema: {
                     type: 'array',
                     items: {
-                        $ref: '#/definitions/Speciality'
+                        $ref: '#/definitions/NeeSpeciality'
                     }
                 }
             },
@@ -119,16 +90,16 @@ export const pathSpecialityName = {
     }
 }
 
-export const pathSpecialityId = {
+export const pathNeeSpecialityId = {
     parameters: [],
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
-        summary: 'Retorna a especialidade conforme ID',
-        operationId: 'getSpeciality',
+        tags: ['need-speciality'],
+        summary: 'Retorna a necessidade de especialidade conforme ID',
+        operationId: 'getNeeSpeciality',
         parameters: [
             {
-                name: 'specialityId',
+                name: 'needSpecialityId',
                 in: 'path',
                 description: 'ID da especialidade',
                 required: true,
@@ -140,7 +111,7 @@ export const pathSpecialityId = {
             200: {
                 description: 'Especialidade selecionado',
                 schema: {
-                    $ref: '#/definitions/Speciality'
+                    $ref: '#/definitions/NeeSpeciality'
                 }
             },
             400: {
@@ -165,12 +136,12 @@ export const pathSpecialityId = {
     },
     put: {
         security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
+        tags: ['need-speciality'],
         summary: 'Alteração de uma especialidade conforme ID',
-        operationId: 'updateSpeciality',
+        operationId: 'updateNeeSpeciality',
         parameters: [
             {
-                name: 'specialityId',
+                name: 'needSpecialityId',
                 in: 'path',
                 description: 'ID da especialidade',
                 required: true,
@@ -179,17 +150,17 @@ export const pathSpecialityId = {
             },
             {
                 in: 'body',
-                name: 'speciality',
+                name: 'needSpeciality',
                 schema: {
-                    $ref: '#/definitions/SpecialityUpdate'
+                    $ref: '#/definitions/NeeSpecialityUpdate'
                 }
             }
         ],
         responses: {
             200: {
-                description: 'Especialidade alterada com sucesso',
+                description: 'Necessidade alterada com sucesso',
                 schema: {
-                    $ref: '#/definitions/Speciality'
+                    $ref: '#/definitions/NeeSpeciality'
                 }
             },
             400: {
@@ -202,7 +173,7 @@ export const pathSpecialityId = {
                 schema: sampleErros[401]
             },
             404: {
-                description: 'Especialidade não encontrado.',
+                description: 'Necessidade não encontrado.',
                 schema: sampleErros[404]
             },
             500: {
@@ -214,14 +185,14 @@ export const pathSpecialityId = {
     },
     delete: {
         security: [{ BearerJWT: [] }],
-        tags: ['speciality'],
-        summary: 'Deleta a especialidade conforme ID',
-        operationId: 'deleteSpeciality',
+        tags: ['need-speciality'],
+        summary: 'Deleta a necessidade conforme ID',
+        operationId: 'deleteNeeSpeciality',
         parameters: [
             {
-                name: 'specialityId',
+                name: 'needSpecialityId',
                 in: 'path',
-                description: 'ID da especialidade',
+                description: 'ID da necessidade',
                 required: true,
                 type: 'integer',
                 format: 'int64'
@@ -229,9 +200,9 @@ export const pathSpecialityId = {
         ],
         responses: {
             200: {
-                description: 'Especialidade excluída.',
+                description: 'Necessidade excluída.',
                 schema: {
-                    $ref: '#/definitions/Speciality'
+                    $ref: '#/definitions/NeeSpeciality'
                 }
             },
             400: {
@@ -244,7 +215,7 @@ export const pathSpecialityId = {
                 schema: sampleErros[401]
             },
             404: {
-                description: 'Especialidade não encontrada.',
+                description: 'Necessidade não encontrada.',
                 schema: sampleErros[404]
             },
             500: {

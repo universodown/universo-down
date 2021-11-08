@@ -17,15 +17,23 @@ export default class NeedSpecialtyRepository
 
         return repository.findOne({
             where: { id },
-            relations: ['evolutionRecord','speciality']
+            relations: [
+                'evolutionRecord',
+                'speciality',
+                'organization'
+            ]
         })
     }
 
     async findAll(
-        context: Context
+        context: Context,
+        evolutionRecordId: number
     ): Promise<NeedSpeciality[]> {
         return this.find({
-            where: { organizationId: context.organization.id }
+            where: {
+                organizationId: context.organization.id,
+                evolutionRecordId
+            }
         })
     }
 

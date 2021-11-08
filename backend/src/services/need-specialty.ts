@@ -3,9 +3,7 @@ import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 
 import { Context } from '../api/dto/context'
-import { NeedSpecialityCreate,
-    NeedSpecialityUpdate } from '../api/dto/need-speciality'
-import { NeedSpeciality } from '../model/need-speciality'
+import { NeedSpecialityCreate } from '../api/dto/need-speciality'
 import NeedSpecialtyRepository from '../repositories/need-specialty'
 
 @Service()
@@ -19,26 +17,10 @@ export default class NeedSpecialityService {
         needSpecialityInfo: NeedSpecialityCreate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(NeedSpeciality)
+            const repository = db.getCustomRepository(NeedSpecialtyRepository)
 
             return repository.save({
                 ...needSpecialityInfo,
-                organizationId: context.organization.id
-            })
-        })
-    }
-
-    async update(
-        context: Context,
-        id: number,
-        needSpecialityInfo: NeedSpecialityUpdate
-    ) {
-        return getManager().transaction(async db => {
-            const repository = db.getRepository(NeedSpeciality)
-
-            return repository.save({
-                ...needSpecialityInfo,
-                id,
                 organizationId: context.organization.id
             })
         })
@@ -48,9 +30,10 @@ export default class NeedSpecialityService {
         id: number,
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(NeedSpeciality)
+            const repository = db.getCustomRepository(NeedSpecialtyRepository)
+            const needSpeciality = await repository.findById(id)
 
-            return repository.delete(id)
+            return repository.delete(needSpeciality)
         })
     }
 
@@ -61,9 +44,10 @@ export default class NeedSpecialityService {
     }
 
     async findAll(
-        context: Context
+        context: Context,
+        evolutionRecordId: number
     ) {
-        return this.repository.findAll(context)
+        return this.repository.findAll(context, evolutionRecordId)
     }
 
 }

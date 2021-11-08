@@ -2,21 +2,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class NeedSpecialityCreate {
 
-    name: string
+    attendanceId: number
+    specialityId: number
 
 }
 
 export function isNeedSpecialityCreate(obj: any): obj is NeedSpecialityCreate {
-    return obj.name !== undefined
-}
-
-export class NeedSpecialityUpdate {
-
-    id: number
-    name?: string
-
-}
-
-export function isNeedSpecialityUpdate(obj: any): obj is NeedSpecialityUpdate {
-    return true
+    return obj.attendanceId !== undefined && obj.specialityId !== undefined
 }

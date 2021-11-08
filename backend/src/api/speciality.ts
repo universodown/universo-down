@@ -292,10 +292,9 @@ export class SpecialityRoutes {
                         return
                     }
 
-                    const deletedSpeciality = await specialityService
-                        .delete(id)
+                    await specialityService.delete(id)
 
-                    response.status(200).json(deletedSpeciality)
+                    response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
