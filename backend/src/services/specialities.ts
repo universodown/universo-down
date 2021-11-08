@@ -3,8 +3,7 @@ import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 
 import { Context } from '../api/dto/context'
-import { SpecialitiesCreate, SpecialitiesUpdate } from '../api/dto/specialities'
-import { Specialities } from '../model/specialities'
+import { SpecialitiesCreate } from '../api/dto/specialities'
 import SpecialitiesRepository from '../repositories/specialities'
 
 @Service()
@@ -18,26 +17,10 @@ export default class SpecialitiesService {
         specialitiesInfo: SpecialitiesCreate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Specialities)
+            const repository = db.getCustomRepository(SpecialitiesRepository)
 
             return repository.save({
                 ...specialitiesInfo,
-                organizationId: context.organization.id
-            })
-        })
-    }
-
-    async update(
-        context : Context,
-        id:number,
-        specialitiesInfo: SpecialitiesUpdate
-    ) {
-        return getManager().transaction(async db => {
-            const repository = db.getRepository(Specialities)
-
-            return repository.save({
-                ...specialitiesInfo,
-                id,
                 organizationId: context.organization.id
             })
         })
@@ -47,9 +30,10 @@ export default class SpecialitiesService {
         id: number
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Specialities)
+            const repository = db.getCustomRepository(SpecialitiesRepository)
+            const specialities = await repository.findById(id)
 
-            return repository.delete(id)
+            return repository.delete(specialities)
         })
     }
 
@@ -60,9 +44,13 @@ export default class SpecialitiesService {
     }
 
     async findAll(
-        context : Context
+        context : Context,
+        userId: number
     ) {
-        return this.repository.findAll(context)
+        return this.repository.findAll(
+            context,
+            userId
+        )
     }
 
 }

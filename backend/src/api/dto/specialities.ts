@@ -2,21 +2,11 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class SpecialitiesCreate {
 
-    name: string
+    userId: number
+    specialityId: number
 
 }
 
 export function isSpecialitiesCreate(obj: any): obj is SpecialitiesCreate {
-    return obj.name !== undefined
-}
-
-export class SpecialitiesUpdate {
-
-    id : number
-    name?: string
-
-}
-
-export function isSpecialitiesUpdate(obj: any): obj is SpecialitiesUpdate {
-    return obj.id !== undefined
+    return obj.userId !== undefined && obj.specialityId !== undefined
 }

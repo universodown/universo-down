@@ -16,13 +16,19 @@ export default class SpecialitiesRepository extends Repository<Specialities> {
 
         return repository.findOne({
             where: { id },
-            relations: ['user','speciality']
+            relations: ['user','speciality','organization']
         })
     }
 
-    async findAll(context: Context): Promise<Specialities[]> {
+    async findAll(
+        context: Context,
+        userId: number
+    ): Promise<Specialities[]> {
         return this.find({
-            where: { organizationId: context.organization.id }
+            where: {
+                organizationId: context.organization.id,
+                userId
+            }
         })
     }
 
