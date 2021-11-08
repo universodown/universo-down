@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Universo Down</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="nav-placeholder"></div>
+        </nav>
+
+        <!-- Conteúdo da Página  -->
+        <div id="content">
+            <div class="card col-9">
+                <h3 class="mt-4 ml-2 titulo"> Cadastro de Familiar</h3>
+                <hr>
+                <div class="card-body">
+                    <form class="form-group">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control" name="nome" id="nome"
+                                        placeholder="Nome Completo">
+                                </div>
+                                <div class="col-4">
+                                    <label for="dtNasc">Data de Nascimento</label>
+                                    <input type="date" class="form-control" name="dtNasc" id="dtNasc"
+                                        placeholder="Nascimento">
+                                </div>
+                                <div class="col-4">
+                                    <label for="documentoCpf">CPF</label>
+                                    <input type="number" class="form-control" name="documentoCpf" id="documentoCpf"
+                                        placeholder="CPF">
+                                </div>
+                                <div class="col-4">
+                                    <label for="sexo">Gênero</label>
+                                    <input type="text" class="form-control" name="sexo" id="sexo" placeholder="Gênero">
+                                </div>
+                                <div class="col-6">
+                                    <label for="estadoCivil">Estado Civil</label>
+                                    <input type="text" class="form-control" name="estadoCivil" id="estadoCivil"
+                                        placeholder="Estado Civil">
+                                </div>
+                                <div class="col-6">
+                                    <label for="relacao">Relação</label>
+                                    <input type="text" class="form-control" name="relacao" id="relacao"
+                                        placeholder="Relação">
+                                </div>
+                                <div class="col-4">
+                                    <label for="rg">RG</label>
+                                    <input type="text" class="form-control" name="rg" id="rg" placeholder="RG">
+                                </div>
+                                <div class="col-4">
+                                    <label for="dtEdicaoRg">Data de Expedição</label>
+                                    <input type="date" class="form-control" name="dtEdicaoRg" id="dtEdicaoRg"
+                                        placeholder="Data de Expedição">
+                                </div>
+                                <div class="col-4">
+                                    <label for="orgaoExpedidorRg">Orgão Expedidor</label>
+                                    <input type="text" class="form-control" name="orgaoExpedidorRg"
+                                        id="orgaoExpedidorRg" placeholder="Orgão Expedidor">
+                                </div>
+                                <div class="col-3">
+                                    <label for="cep">CEP</label>
+                                    <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
+                                </div>
+                                <div class="col-3">
+                                    <label for="cidade">Cidade</label>
+                                    <input type="text" class="form-control" name="cidade" id="cidade"
+                                        placeholder="Cidade">
+                                </div>
+                                <div class="col-3">
+                                    <label for="uf">UF</label>
+                                    <input type="text" class="form-control" name="uf" id="uf" placeholder="UF">
+                                </div>
+                                <div class="col-3">
+                                    <label for="numeroCasa">Número</label>
+                                    <input type="number" class="form-control" name="numeroCasa" id="numeroCasa"
+                                        placeholder="Número">
+                                </div>
+                                <div class="col-4">
+                                    <label for="telefone">Rua</label>
+                                    <input type="text" class="form-control" name="telefone" id="telefone"
+                                        placeholder="Rua">
+                                </div>
+                                <div class="col-4">
+                                    <label for="rua">Telefone</label>
+                                    <input type="text" class="form-control" name="rua" id="rua" placeholder="Telefone">
+                                </div>
+                                <div class="col-4">
+                                    <label for="rua">Telefone</label>
+                                    <input type="text" class="form-control" name="rua" id="rua" placeholder="Telefone">
+                                </div>
+                                <div class="col-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Email">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="container-familiar">
+                        <div class="linha">
+                          <button class="add_form_field">
+                          <p><i class="bi-plus-square-fill"></i></p></button><hr style="height:4px;">
+                        </div>
+                      </div>
+                    <div class="row mt-4">
+                        <button type="button" class="btn btn-success col-3 offset-2">Salvar</button>
+                        <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/script.js"></script>
+</body>
+
+</html>

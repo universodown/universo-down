@@ -1,5 +1,5 @@
 BEGIN;
-    
+
     CREATE TABLE organization (
         id int NOT NULL AUTO_INCREMENT,
         name text NOT NULL,
