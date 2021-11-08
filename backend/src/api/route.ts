@@ -9,6 +9,7 @@ import { RelatedRoutes } from './related'
 import { UserRoutes } from './user'
 import { AssistedRoutes } from './assisted'
 import { EvolutionRecordRoutes } from './evolution-record'
+import { CalendarRoutes } from './calendar'
 
 export class Route {
 
@@ -26,6 +27,7 @@ export class Route {
         AssistedRoutes.assistedRoutes(app)
         NeedSpecialityRoutes.needSpecialityRoutes(app)
         EvolutionRecordRoutes.evolutionRecordRoutes(app)
+        CalendarRoutes.calendarRoutes(app)
     }
 
 }

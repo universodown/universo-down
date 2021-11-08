@@ -61,6 +61,14 @@ import {
     specialitiesCreateDefinition,
     specialitiesDefinition
 } from './specialities'
+import {
+    calendarCreateDefinition,
+    calendarDefinition,
+    calendarUpdateDefinition,
+    pathCalendarBase,
+    pathCalendarByUser,
+    pathCalendarId
+} from './calendar'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -126,6 +134,10 @@ export const apiDoc = {
         '/api/v1/specialities/{specialitiesId}': pathSpecialitiesId,
         '/api/v1/specialities/user/{userId}':
             pathSpecialitiesByUser,
+        '/api/v1/calendar': pathCalendarBase,
+        '/api/v1/calendar/{calendarId}': pathCalendarId,
+        '/api/v1/calendar/user/{userId}':
+            pathCalendarByUser,
         '/api/v1/related': pathRelatedBase,
         '/api/v1/related/{relatedId}': pathRelatedsId,
         '/api/v1/related/assisted/{assistedId}': pathRelatedByAssisted,
@@ -149,11 +161,14 @@ export const apiDoc = {
         RelatedUpdate: relatedUpdateDefinition,
         Speciality: specialityDefinition,
         SpecialityCreate: specialityCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
         NeedSpeciality: needSpecialityDefinition,
         NeedSpecialityCreate: needSpecialityCreateDefinition,
         Specialities: specialitiesDefinition,
         SpecialitiesCreate: specialitiesCreateDefinition,
-        SpecialityUpdate: specialityUpdateDefinition,
+        Calendar: calendarDefinition,
+        CalendarCreate: calendarCreateDefinition,
+        CalendarUpdate: calendarUpdateDefinition,
         EvolutionRecord: evolutionRecordDefinition,
         EvolutionRecordCreate: evolutionRecordCreateDefinition,
         EvolutionRecordUpdate: evolutionRecordUpdateDefinition,

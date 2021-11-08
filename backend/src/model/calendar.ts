@@ -25,8 +25,11 @@ export class Calendar {
     @Column('text', { name: 'end_hour' })
     endHour: string
 
-    @Column('int', { name: 'user_id', nullable: false })
+    @Column('int', { name: 'user_id' })
     userId: number
+
+    @Column('int', { name: 'organization_id' })
+    organizationId: number
 
     @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
     @ManyToOne(_ => User, u => u.calendars, { onDelete: 'CASCADE' })
