@@ -4,7 +4,6 @@ import { InjectRepository } from 'typeorm-typedi-extensions'
 
 import { Context } from '../api/dto/context'
 import { SpecialityCreate, SpecialityUpdate } from '../api/dto/speciality'
-import { Speciality } from '../model/speciality'
 import SpecialityRepository from '../repositories/speciality'
 
 @Service()
@@ -18,7 +17,7 @@ export default class SpecialityService {
         specialityInfo: SpecialityCreate
     ) {
         return getManager().transaction(async db=> {
-            const repository = db.getRepository(Speciality)
+            const repository = db.getCustomRepository(SpecialityRepository)
 
             return repository.save({
                 ...specialityInfo,
@@ -33,9 +32,11 @@ export default class SpecialityService {
         specialityInfo: SpecialityUpdate
     ) {
         return getManager().transaction(async db=> {
-            const repository = db.getRepository(Speciality)
+            const repository = db.getCustomRepository(SpecialityRepository)
+            const speciality = repository.findById(id, db)
 
             return repository.save({
+                ...speciality,
                 ...specialityInfo,
                 id,
                 organizatioId: context.organization.id
@@ -47,9 +48,10 @@ export default class SpecialityService {
         id: number,
     ) {
         return getManager().transaction(async db=> {
-            const repository = db.getRepository(Speciality)
+            const repository = db.getCustomRepository(SpecialityRepository)
+            const speciality = await repository.findById(id, db)
 
-            return repository.delete(id)
+            return repository.save(speciality)
         })
     }
 

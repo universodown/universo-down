@@ -12,12 +12,10 @@ export function isSpecialityCreate(obj: any): obj is SpecialityCreate {
 
 export class SpecialityUpdate {
 
-    id: number
     name?: string
 
 }
 
 export function isSpecialityUpdate(obj: any): obj is SpecialityUpdate {
-    return obj.id !== undefined
-    || obj.name !== undefined
+    return obj.name !== undefined
 }

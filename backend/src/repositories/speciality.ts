@@ -16,7 +16,7 @@ export default class SpecialityRepository extends Repository<Speciality> {
 
         return repository.findOne({
             where: { id },
-            relations: ['specialities']
+            relations: ['specialities', 'organization']
         })
     }
 

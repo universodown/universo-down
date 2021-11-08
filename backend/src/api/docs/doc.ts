@@ -22,6 +22,13 @@ import {
     pathAssistedsId,
     pathAssistedsIdentification
 } from './assisted'
+import {
+    pathSpecialityBase,
+    pathSpecialityId,
+    specialityCreateDefinition,
+    specialityDefinition,
+    specialityUpdateDefinition
+} from './speciality'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -70,6 +77,8 @@ export const apiDoc = {
         '/api/v1/organization/{organizationId}': pathOrganizationId,
         '/api/v1/assisted': pathAssistedsBase,
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
+        '/api/v1/speciality': pathSpecialityBase,
+        '/api/v1/speciality/{specialityId}': pathSpecialityId,
         '/api/v1/assisted/identification/{identification}':
             pathAssistedsIdentification,
         '/api/v1/login': pathLogin,
@@ -85,6 +94,9 @@ export const apiDoc = {
         Assisted: assistedDefinition,
         AssistedCreate: assistedCreateDefinition,
         AssistedUpdate: assistedUpdateDefinition,
+        Speciality: specialityDefinition,
+        SpecialityCreate: specialityCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition

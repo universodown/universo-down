@@ -4,7 +4,7 @@ import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
-import  SpecialityService  from '../services/Speciality'
+import  SpecialityService  from '../services/speciality'
 
 import { isSpecialityCreate, isSpecialityUpdate } from './dto/speciality'
 import { RequestWithUser } from './user'
@@ -21,7 +21,7 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'
@@ -49,7 +49,7 @@ export class SpecialityRoutes {
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'
@@ -71,11 +71,27 @@ export class SpecialityRoutes {
                     const specialityService = Container.get(SpecialityService)
                     const speciality = await specialityService.findById(id)
 
+                    if (!speciality) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        speciality.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    }
+
                     response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                            + `não sabe lidar. {${e}}`
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -88,7 +104,7 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
@@ -128,7 +144,7 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
@@ -158,10 +174,28 @@ export class SpecialityRoutes {
 
                     const id = Number(request.params.id)
                     const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService
+                    const speciality = await specialityService.findById(id)
+
+                    if (!speciality) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        speciality.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    const savedSpeciality = await specialityService
                         .update(context, id, body)
 
-                    response.status(200).json(speciality)
+                    response.status(200).json(savedSpeciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -178,7 +212,7 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
@@ -198,10 +232,28 @@ export class SpecialityRoutes {
 
                     const id = Number(request.params.id)
                     const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService
+                    const speciality = await specialityService.findById(id)
+
+                    if (!speciality) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        speciality.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    const deletedSpeciality = await specialityService
                         .delete(id)
 
-                    response.status(200).json(speciality)
+                    response.status(200).json(deletedSpeciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
