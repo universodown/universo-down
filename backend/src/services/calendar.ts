@@ -28,7 +28,7 @@ export default class CalendarService {
     }
 
     async update(
-        _: Context,
+        context: Context,
         id: number,
         calendarInfo: CalendarUpdate
     ): Promise<Calendar> {
@@ -38,7 +38,8 @@ export default class CalendarService {
 
             return repository.save({
                 ...calendar,
-                ...calendarInfo
+                ...calendarInfo,
+                organizationId: context.organization.id
             })
         })
     }
@@ -59,7 +60,7 @@ export default class CalendarService {
     async findByUser(
         context: Context,
         userId: number
-    ): Promise<Calendar | undefined> {
+    ): Promise<Calendar[]> {
         return this.repository.findByUser(context, userId)
     }
 

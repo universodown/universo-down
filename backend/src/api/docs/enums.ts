@@ -35,5 +35,21 @@ export const evolutionStatus = {
         'pending',
         'done',
         'refused'
-    ]
+    ],
+    example: 'pending'
+}
+
+export const daysOfWeek = {
+    type: 'string',
+    description: 'Dia da Semana',
+    enum: [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday'
+    ],
+    example: 'monday'
 }

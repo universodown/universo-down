@@ -8,7 +8,6 @@ export class CalendarCreate {
     dayOfWeek: Weekday
     startHour: string
     endHour: string
-    organizationId: number
 
 }
 
@@ -17,7 +16,6 @@ export function isCalendarCreate(obj: any): obj is CalendarCreate {
         && obj.dayOfWeek !== undefined
         && obj.startHour !== undefined
         && obj.endHour !== undefined
-        && obj.organizationId !== undefined
 }
 
 export class CalendarUpdate {

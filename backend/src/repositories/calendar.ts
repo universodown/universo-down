@@ -24,12 +24,12 @@ export default class CalendarRepository extends Repository<Calendar> {
         context: Context,
         userId: number,
         db?: EntityManager
-    ): Promise<Calendar | undefined> {
+    ): Promise<Calendar[]> {
         const repository = db
             ? db.getRepository(Calendar)
             : this
 
-        return repository.findOne({ where: {
+        return repository.find({ where: {
             organizationId: context.organization.id,
             userId
         } })
