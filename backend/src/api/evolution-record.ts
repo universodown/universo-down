@@ -4,15 +4,18 @@ import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
-import AssistedService from '../services/assisted'
+import EvolutionRecordService from '../services/evolution-record'
 
-import { isAssistedCreate, isAssistedUpdate } from './dto/assisted'
+import {
+    isEvolutionRecordCreate,
+    isEvolutionRecordUpdate
+} from './dto/evolution-record'
 import { RequestWithUser } from './user'
 
-export class AssistedRoutes {
+export class EvolutionRecordRoutes {
 
-    public static assistedRoutes(app: core.Express) {
-        const baseUrl = '/api/v1/assisted'
+    public static evolutionRecordRoutes(app: core.Express) {
+        const baseUrl = '/api/v1/evolution-record'
 
         app.get(
             baseUrl,
@@ -21,22 +24,25 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Profissional) }'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
                     }
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findAll(context)
 
-                    response.status(200).json(assisted)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecords = await evolutionRecordService
+                        .findAll(context)
+
+                    response.status(200).json(evolutionRecords)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + `não sabe lidar. {${e}}`
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -49,10 +55,10 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
@@ -60,98 +66,82 @@ export class AssistedRoutes {
 
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID } '
+                            error: 'Estrutura de requisição inválida.'
+                            + ' { Necessário informar o ID }'
                         })
 
                         return
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findById(id)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecord = await evolutionRecordService
+                        .findById(id)
 
-                    if (!assisted) {
+                    if (!evolutionRecord) {
                         response.status(404).json({
-                            error: 'Atendido não encontrado.'
+                            error: 'Evolução não encontrada.'
                         })
 
                         return
                     } else if (
-                        assisted.organization.id !== context.organization.id
+                        evolutionRecord.organization
+                            .id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Atendido não encontrado.'
+                            error: 'Evolução não encontrada.'
                         })
 
                         return
                     }
 
-                    response.status(200).json(assisted)
+                    response.status(200).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}} `
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
                     })
                 }
             }
         )
 
         app.get(
-            `${baseUrl}/identification/:identification`,
+            `${baseUrl}/assisted/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
                     }
 
-                    if (
-                        !('params' in request)
-                        || !('identification' in request.params)
-                    ) {
+                    if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID } '
+                            error: 'Estrutura de requisição inválida.'
+                            + ' { Necessário informar o ID }'
                         })
 
                         return
                     }
 
-                    const identification = String(request.params.identification)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findByIdentification(
-                        identification
-                    )
+                    const id = Number(request.params.id)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecord = await evolutionRecordService
+                        .findByAssistedId(context, id)
 
-                    if (!assisted) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
-                    } else if (
-                        assisted.organization.id !== context.organization.id
-                    ) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
-                    }
-
-                    response.status(200).json(assisted)
+                    response.status(200).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}} `
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -164,17 +154,17 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional) }'
+                            + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isAssistedCreate(body)) {
+                    if (!isEvolutionRecordCreate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
@@ -183,11 +173,12 @@ export class AssistedRoutes {
                         return
                     }
 
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecords = await evolutionRecordService
                         .create(context, body)
 
-                    response.status(201).json(assisted)
+                    response.status(201).json(evolutionRecords)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -204,17 +195,17 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional ) }'
+                            + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isAssistedUpdate(body)) {
+                    if (!isEvolutionRecordUpdate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
@@ -233,11 +224,30 @@ export class AssistedRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecord = await evolutionRecordService
+                        .findById(id)
+                    if (!evolutionRecord) {
+                        response.status(404).json({
+                            error: 'Evolução não encontrada.'
+                        })
+
+                        return
+                    } else if (
+                        evolutionRecord.organization
+                            .id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Evolução não encontrada.'
+                        })
+
+                        return
+                    }
+                    const savedEvolutionRecord = await evolutionRecordService
                         .update(context, id, body)
 
-                    response.status(200).json(assisted)
+                    response.status(201).json(savedEvolutionRecord)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -254,10 +264,10 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. {( Função: Assistente Social )}'
                         })
 
                         return
@@ -273,28 +283,29 @@ export class AssistedRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findById(id)
-
-                    if (!assisted) {
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecord = await evolutionRecordService
+                        .findById(id)
+                    if (!evolutionRecord) {
                         response.status(404).json({
-                            error: 'Familiar não encontrado.'
+                            error: 'Evolução não encontrada.'
                         })
 
                         return
                     } else if (
-                        assisted.organization.id !== context.organization.id
+                        evolutionRecord.organization
+                            .id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Familiar não encontrado.'
+                            error: 'Evolução não encontrada.'
                         })
 
                         return
                     }
+                    await evolutionRecordService.delete(id)
 
-                    await assistedService.delete(id)
-
-                    response.status(200).json(assisted)
+                    response.status(200).json(evolutionRecord)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'

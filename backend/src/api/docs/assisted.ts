@@ -39,7 +39,7 @@ export const pathAssistedsBase = {
                 schema: sampleErros[400]
             },
             401: {
-                description: 'Atendido não possui permissão para esta ação.'
+                description: 'Usuário não possui permissão para esta ação.'
                     + ' { (details) }',
                 schema: sampleErros[401]
             },
