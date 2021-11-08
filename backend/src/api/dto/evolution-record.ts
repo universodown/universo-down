@@ -14,7 +14,9 @@ export class EvolutionRecordCreate {
 
 }
 
-export function isEvolutionRecordCreate(obj: any): obj is EvolutionRecordCreate {
+export function isEvolutionRecordCreate(
+    obj: any
+): obj is EvolutionRecordCreate {
     return obj.date !== undefined
         && obj.status !== undefined
         && obj.weight !== undefined
@@ -33,7 +35,9 @@ export class EvolutionRecordUpdate {
 
 }
 
-export function isEvolutionRecordUpdate(obj: any): obj is EvolutionRecordUpdate {
+export function isEvolutionRecordUpdate(
+    obj: any
+): obj is EvolutionRecordUpdate {
     return obj.date !== undefined
         || obj.status !== undefined
         || obj.weight !== undefined

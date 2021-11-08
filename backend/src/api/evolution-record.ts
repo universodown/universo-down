@@ -6,7 +6,10 @@ import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
 import EvolutionRecordService from '../services/evolution-record'
 
-import { isEvolutionRecordCreate, isEvolutionRecordUpdate } from './dto/evolution-record'
+import {
+    isEvolutionRecordCreate,
+    isEvolutionRecordUpdate
+} from './dto/evolution-record'
 import { RequestWithUser } from './user'
 
 export class EvolutionRecordRoutes {
@@ -30,8 +33,10 @@ export class EvolutionRecordRoutes {
                         return
                     }
 
-                    const evolutionRecordService = Container.get(EvolutionRecordService)
-                    const evolutionRecords = await evolutionRecordService.findAll(context)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecords = await evolutionRecordService
+                        .findAll(context)
 
                     response.status(200).json(evolutionRecords)
                 } catch (e) {
@@ -69,13 +74,18 @@ export class EvolutionRecordRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const evolutionRecordService = Container.get(EvolutionRecordService)
-                    const evolutionRecord = await evolutionRecordService.findById(id)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecord = await evolutionRecordService
+                        .findById(id)
                     if (
                         !evolutionRecord
-                        || evolutionRecord.organizationId !== context.organization.id
+                        || evolutionRecord
+                            .organizationId !== context.organization.id
                     ) {
-                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        response.status(404).json({
+                            error: 'Evolução não encontrada'
+                        })
 
                         return
                     }
@@ -115,7 +125,8 @@ export class EvolutionRecordRoutes {
                         return
                     }
 
-                    const evolutionRecordService = Container.get(EvolutionRecordService)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
                     const evolutionRecords = await evolutionRecordService
                         .create(context, body)
 
@@ -165,14 +176,18 @@ export class EvolutionRecordRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const evolutionRecordService = Container.get(EvolutionRecordService)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
                     const evolutionRecord = await evolutionRecordService
                         .update(context, id, body)
                     if (
                         !evolutionRecord
-                        || evolutionRecord.organizationId !== context.organization.id
+                        || evolutionRecord
+                            .organizationId !== context.organization.id
                     ) {
-                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        response.status(404).json({
+                            error: 'Evolução não encontrada'
+                        })
 
                         return
                     }
@@ -212,14 +227,18 @@ export class EvolutionRecordRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const evolutionRecordService = Container.get(EvolutionRecordService)
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
                     const evolutionRecord = await evolutionRecordService
                         .delete(id)
                     if (
                         !evolutionRecord
-                        || evolutionRecord.organizationId !== context.organization.id
+                        || evolutionRecord
+                            .organizationId !== context.organization.id
                     ) {
-                        response.status(404).json({ error: 'Evolução não encontrada' })
+                        response.status(404).json({
+                            error: 'Evolução não encontrada'
+                        })
 
                         return
                     }

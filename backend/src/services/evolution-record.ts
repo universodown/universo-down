@@ -3,8 +3,10 @@ import { getManager } from 'typeorm'
 import { InjectRepository } from 'typeorm-typedi-extensions'
 
 import { Context } from '../api/dto/context'
-import { EvolutionRecordCreate, EvolutionRecordUpdate } from '../api/dto/evolution-record'
-import { EvolutionRecord } from '../model/evolution-record'
+import {
+    EvolutionRecordCreate,
+    EvolutionRecordUpdate
+} from '../api/dto/evolution-record'
 import EvolutionRecordRepository from '../repositories/evolution-record'
 
 @Service()
