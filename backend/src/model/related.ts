@@ -89,6 +89,9 @@ export class Related {
     responsible: boolean
 
     @Column('int', { name: 'assisted_id', nullable: false })
+    assistedId: number
+
+    @Column('int', { name: 'organization_id', nullable: false })
     organizationId: number
 
     @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })
