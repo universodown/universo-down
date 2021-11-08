@@ -70,4 +70,12 @@ export default class UserService {
         return this.repository.findAll(context)
     }
 
+    async findByIdentification(
+        identification: string
+    ): Promise<User | undefined> {
+        return this.repository.findByIdentification(
+            identification
+        )
+    }
+
 }
