@@ -1,58 +1,30 @@
-import { Response } from 'express'
-import * as core from 'express-serve-static-core'
+import { response, Response } from 'express'
 import Container from 'typedi'
+import * as core from 'express-serve-static-core'
 
 import { verifyJWT } from '../fns/verify-jwt'
+import RelatedService from '../services/related'
 import { UserRole } from '../model/enum/user-role'
-import  SpecialityService  from '../services/speciality'
 
-import { isSpecialityCreate, isSpecialityUpdate } from './dto/speciality'
 import { RequestWithUser } from './user'
+import { isRelatedCreate, isRelatedUpdate } from './dto/related'
 
-export class SpecialityRoutes {
+export class RelatedRoutes {
 
-    public static specialityRoutes(app: core.Express) {
-        const baseUrl = '/api/v1/speciality'
+    public static relatedRoutes(app: core.Express) {
+        const baseUrl = '/api/v1/related'
 
         app.get(
-            baseUrl,
+            `${baseUrl}/assisted/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole === UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
-                        })
-
-                        return
-                    }
-
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService.findAll(context)
-
-                    response.status(200).json(speciality)
-                } catch (e) {
-                    response.status(500).json({
-                        error: 'O servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}} `
-                    })
-                }
-            }
-        )
-
-        app.get(
-            `${baseUrl}/:id`, // BaseUrl + '/:id'
-            verifyJWT,
-            async (request: RequestWithUser, response: Response) => {
-                try {
-                    const context = request.context
-                    if (context.user.userRole !== UserRole.Secretary) {
-                        response.status(401).json({
-                            error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                                + ' esta ação { (Função: Profissional) }'
                         })
 
                         return
@@ -60,53 +32,94 @@ export class SpecialityRoutes {
 
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida'
-                                + ' { Necessátio informar o ID }'
+                            error: 'Estrutura da requisição inválida.'
+                                + ' { Necessário informar o ID }'
                         })
 
                         return
                     }
 
                     const id = Number(request.params.id)
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService.findById(id)
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService.findAll(context, id)
 
-                    if (!speciality) {
-                        response.status(404).json({
-                            error: 'Especialidade não encontrada.'
-                        })
-
-                        return
-                    } else if (
-                        speciality.organization.id !== context.organization.id
-                    ) {
-                        response.status(404).json({
-                            error: 'Especialidade não encontrada.'
-                        })
-
-                        return
-                    }
-
-                    response.status(200).json(speciality)
+                    response.status(200).json(related)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                            + ` não sabe lidar. {${e}}`
+                        + ` não sabe lidar. {${e}}`
                     })
                 }
             }
         )
 
         app.get(
-            `${baseUrl}/name/:name`, // BaseUrl + '/:id'
+            `${baseUrl}/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole !== UserRole.Secretary) {
+
+                    if (context.user.userRole === UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                                + ' esta ação. { (Função: Profissional) }'
+                        })
+
+                        return
+                    }
+
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                                + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+
+                    const id = Number(request.params.id)
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService.findById(id)
+
+                    if (!related) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        related.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    response.status(200).json(related)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O serviço encontrou uma situação com a qual'
+                            + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+
+        )
+
+        app.get(
+            `${baseUrl}/identification/:identification`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+
+                    if (context.user.userRole === UserRole.Profissional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -114,66 +127,83 @@ export class SpecialityRoutes {
 
                     if (
                         !('params' in request)
-                        || !('name' in request.params)
+                        || !('identification' in request.params)
                     ) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida'
-                                + ' { Necessátio informar o name }'
+                            error: 'Estrutura da requisição inválida.'
+                                + ' { Necessário informar o identification }'
                         })
 
                         return
                     }
 
-                    const name = request.params.name
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService
-                        .findByName(context, name)
+                    const identification = request.params.identification
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService
+                        .findByIdentification(context, identification)
 
-                    response.status(200).json(speciality)
+                    if (!related) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        related.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Familiar não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    response.status(200).json(related)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O servidor encontrou uma situação com a qual'
+                        error: 'O serviço encontrou uma situação com a qual'
                             + ` não sabe lidar. {${e}}`
                     })
                 }
             }
+
         )
 
         app.post(
             baseUrl,
             verifyJWT,
-            async (request: RequestWithUser, response: Response) => {
+            async (request: RequestWithUser, reponse: Response) => {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole === UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isSpecialityCreate(body)) {
+                    if (!isRelatedCreate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
-                            + ' { Corpo da Mensagem incorreto }'
+                                + ' { Corpo da manesagem incorreto }'
                         })
 
                         return
                     }
 
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService
                         .create(context, body)
 
-                    response.status(201).json(speciality)
+                    reponse.status(201).json(related)
                 } catch (e) {
-                    response.status(500).json({
+                    reponse.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}}`
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -182,24 +212,24 @@ export class SpecialityRoutes {
         app.put(
             `${baseUrl}/:id`,
             verifyJWT,
-            async (request: RequestWithUser, response: Response) => {
+            async (request: RequestWithUser, reponse: Response) => {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole === UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isSpecialityUpdate(body)) {
-                        response.status(400).json({
+                    if (!isRelatedUpdate(body)) {
+                        reponse.status(400).json({
                             error: 'Estrutura da requisição inválida.'
-                            + ' { Corpo da Mensagem incorreto }'
+                                + ' { Corpo da mensagem incorreto }'
                         })
 
                         return
@@ -208,40 +238,40 @@ export class SpecialityRoutes {
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID }'
+                                + '{ Necessário informar o ID }'
                         })
 
                         return
                     }
 
                     const id = Number(request.params.id)
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService.findById(id)
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService.findById(id)
 
-                    if (!speciality) {
+                    if (!related) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrada.'
+                            error: 'Familiar não encontrado.'
                         })
 
                         return
                     } else if (
-                        speciality.organization.id !== context.organization.id
+                        related.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrada.'
+                            error: 'Familiar não encontrado.'
                         })
 
                         return
                     }
 
-                    const savedSpeciality = await specialityService
+                    const savedRelated = await relatedService
                         .update(context, id, body)
 
-                    response.status(200).json(savedSpeciality)
+                    reponse.status(200).json(savedRelated)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}}`
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -254,10 +284,10 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole === UserRole.Profissional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função Profissional) }'
                         })
 
                         return
@@ -266,40 +296,40 @@ export class SpecialityRoutes {
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID }'
+                                + ' { Necessário informar o ID }'
                         })
 
                         return
                     }
 
                     const id = Number(request.params.id)
-                    const specialityService = Container.get(SpecialityService)
-                    const speciality = await specialityService.findById(id)
+                    const relatedService = Container.get(RelatedService)
+                    const related = await relatedService.findById(id)
 
-                    if (!speciality) {
+                    if (!related) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrada.'
+                            error: 'Familiar não encontrado.'
                         })
 
                         return
                     } else if (
-                        speciality.organization.id !== context.organization.id
+                        related.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrada.'
+                            error: 'Familiar não encontrado.'
                         })
 
                         return
                     }
 
-                    const deletedSpeciality = await specialityService
+                    const deletedRelated = await relatedService
                         .delete(id)
 
-                    response.status(200).json(deletedSpeciality)
+                    response.status(200).json(deletedRelated)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}}`
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
