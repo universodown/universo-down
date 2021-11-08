@@ -39,6 +39,14 @@ import {
     relatedDefinition,
     relatedUpdateDefinition
 } from './related'
+import {
+    evolutionRecordCreateDefinition,
+    evolutionRecordDefinition,
+    evolutionRecordUpdateDefinition,
+    pathEvolutionRecordsAssistedId,
+    pathEvolutionRecordsBase,
+    pathEvolutionRecordsId
+} from './evolution-record'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -89,6 +97,10 @@ export const apiDoc = {
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
         '/api/v1/assisted/identification/{identification}':
             pathAssistedsIdentification,
+        '/api/v1/evolution-record': pathEvolutionRecordsBase,
+        '/api/v1/evolution-record/{evolutionRecordId}': pathEvolutionRecordsId,
+        '/api/v1/evolution-record/assisted/{assistedId}':
+            pathEvolutionRecordsAssistedId,
         '/api/v1/speciality': pathSpecialityBase,
         '/api/v1/speciality/{specialityId}': pathSpecialityId,
         '/api/v1/speciality/name/{name}': pathSpecialityName,
@@ -116,6 +128,9 @@ export const apiDoc = {
         Speciality: specialityDefinition,
         SpecialityCreate: specialityCreateDefinition,
         SpecialityUpdate: specialityUpdateDefinition,
+        EvolutionRecord: evolutionRecordDefinition,
+        EvolutionRecordCreate: evolutionRecordCreateDefinition,
+        EvolutionRecordUpdate: evolutionRecordUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition

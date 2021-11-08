@@ -3,7 +3,6 @@ import * as core from 'express-serve-static-core'
 import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
-import { AdminRole } from '../model/enum/admin-role'
 import { UserRole } from '../model/enum/user-role'
 import AssistedService from '../services/assisted'
 
@@ -86,15 +85,6 @@ export class AssistedRoutes {
                         })
 
                         return
-                    } else if (
-                        context.user.adminRole === AdminRole.Member
-                        && context.user.id !== assisted.id
-                    ) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
                     }
 
                     response.status(200).json(assisted)
@@ -149,15 +139,6 @@ export class AssistedRoutes {
                         return
                     } else if (
                         assisted.organization.id !== context.organization.id
-                    ) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
-                    } else if (
-                        context.user.adminRole === AdminRole.Member
-                        && context.user.id !== assisted.id
                     ) {
                         response.status(404).json({
                             error: 'Atendido não encontrado.'

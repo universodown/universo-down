@@ -15,7 +15,20 @@ export default class EvolutionRecordRepository
             ? db.getRepository(EvolutionRecord)
             : this
 
-        return repository.findOne({ where: { id } })
+        return repository.findOne({
+            where: { id },
+            relations: ['organization']
+        })
+    }
+
+    async findByAssistedId(
+        context: Context,
+        assistedId: number
+    ): Promise<EvolutionRecord[]> {
+        return this.find({ where: {
+            organizationId: context.organization.id,
+            assistedId
+        } })
     }
 
     async findAll(context: Context): Promise<EvolutionRecord[]> {

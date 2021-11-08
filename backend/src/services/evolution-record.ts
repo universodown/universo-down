@@ -37,10 +37,13 @@ export default class EvolutionRecordService {
     ) {
         return getManager().transaction(async db => {
             const repository = db.getCustomRepository(EvolutionRecordRepository)
+            const evolutionRecord = await repository.findById(id)
 
             return repository.save({
+                ...evolutionRecord,
                 ...evolutionRecordInfo,
-                id
+                id,
+                organizationId: context.organization.id
             })
         })
     }
@@ -60,6 +63,13 @@ export default class EvolutionRecordService {
         id: number
     ) {
         return this.repository.findById(id)
+    }
+
+    async findByAssistedId(
+        context: Context,
+        id: number
+    ) {
+        return this.repository.findByAssistedId(context, id)
     }
 
     async findAll(

@@ -1,3 +1,4 @@
+import { civilStatus, gender, scholarity } from './enums'
 import { getError, propertiesError } from './objects'
 
 const sampleErros = {
@@ -292,19 +293,10 @@ export const relatedDefinition = {
             description: 'Data de nascimento do Familiar'
         },
         gender: {
-            type: 'string',
-            description: 'Sexo do familiar',
-            enum: ['male', 'female', 'not-informed'],
-            example: 'not-informed'
+            ...gender
         },
         civilStatus: {
-            type: 'string',
-            description: 'Status cívil de Familiar',
-            enum: [
-                'single', 'married', 'divorced',
-                'widower', 'judicially-separated'
-            ],
-            example: 'single'
+            ...civilStatus
         },
         identification: {
             type: 'string',
@@ -381,16 +373,7 @@ export const relatedDefinition = {
             example: 'Argentina'
         },
         scholarity: {
-            type: 'string',
-            description: 'Escolaridade do familiar',
-            enum: [
-                'elementary-school',
-                'high_school',
-                'university-school',
-                'masters-degree',
-                'doctorate-degree'
-            ],
-            example: 'university-school'
+            ...scholarity
         },
         revenue: {
             type: 'float',
