@@ -7,6 +7,8 @@ import { cryptPassword } from '../fns/crypt-password'
 import { OrganizationCreate, OrganizationUpdate } from '../api/dto/organization'
 import { Organization } from '../model/organization'
 import { AdminRole } from '../model/enum/admin-role'
+import { Gender } from '../model/enum/gender'
+import { UserRole } from '../model/enum/user-role'
 
 @Service()
 export default class OrganizationService {
@@ -22,11 +24,26 @@ export default class OrganizationService {
             const organization = await repository.save({
                 ...organizationInfo,
                 users: [{
-                    email: `admin@${organizationInfo.domain}`,
-                    firstName: 'Administrador',
-                    lastName: '',
+                    firstName: 'Admin',
+                    lastName: 'org',
+                    email: 'email@domain.com',
                     password,
-                    role: AdminRole.Owner
+                    adminRole: AdminRole.Owner,
+                    userRole: UserRole.SocialAssistence,
+                    birthday: new Date(19900101),
+                    gender: Gender.Female,
+                    identification: '12345678912',
+                    generalRegistration: '123456789',
+                    issue: new Date(20200101),
+                    issuer: 'Ajustavel',
+                    zipCode: '89225478',
+                    address: 'rua XV novembro',
+                    number: '89',
+                    neighborhood: 'centro',
+                    city: 'Joinville',
+                    state: 'SC',
+                    phone: '47999999999',
+                    nationalIdentity: '123456789'
                 }]
             })
 

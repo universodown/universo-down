@@ -14,6 +14,7 @@ import { ProfessionalAttendance } from './professional-attendance'
 import { AdminRole } from './enum/admin-role'
 import { Gender } from './enum/gender'
 import { UserRole } from './enum/user-role'
+import { Specialities } from './specialities'
 
 @Entity({ name: 'users' })
 export class User {
@@ -100,6 +101,9 @@ export class User {
 
     @OneToMany(_ => Calendar, c => c.user)
     calendars: Calendar[]
+
+    @OneToMany(_ => Specialities, c => c.user)
+    specialities: Specialities[]
 
     @OneToMany(_ => EvolutionRecord, e => e.user, { onDelete: 'CASCADE' })
     evolutionRecord: EvolutionRecord

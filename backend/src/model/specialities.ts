@@ -9,6 +9,7 @@ import {
 
 import { Organization } from './organization'
 import { Speciality } from './speciality'
+import { User } from './user'
 
 @Entity({ name: 'specialties' })
 export class Specialities {
@@ -32,5 +33,9 @@ export class Specialities {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, s => s.specialities)
     organization: Organization
+
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+    @ManyToOne(_ => User, u => u.specialities)
+    user: User
 
 }
