@@ -2,7 +2,6 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    Double,
     JoinColumn,
     ManyToOne,
     OneToMany
@@ -11,8 +10,9 @@ import {
 import { User } from './user'
 import { Assisted } from './assisted'
 import { Organization } from './organization'
-import { ProfessionalAttendance } from './professional-attendance'
 import { Status } from './enum/status'
+import { NeedSpeciality } from './need-speciality'
+import { ProfessionalAttendance } from './professional-attendance'
 
 @Entity({ name: 'evolution_records' })
 export class EvolutionRecord {
@@ -27,21 +27,21 @@ export class EvolutionRecord {
     status: Status
 
     @Column('double')
-    wight: Double
+    weight: number
 
     @Column('double')
-    height: Double
+    height: number
 
     @Column('text')
     report: string
 
-    @Column('int', { name: 'user_id', nullable: false })
+    @Column('int', { name: 'user_id' })
     userId: number
 
-    @Column('int', { name: 'assisted_id', nullable: false })
+    @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('int', { name: 'organization_id', nullable: false })
+    @Column('int', { name: 'organization_id' })
     organizationId: number
 
     @OneToMany(_ => ProfessionalAttendance, p => p.evolutionRecord)
@@ -62,5 +62,12 @@ export class EvolutionRecord {
         { onDelete: 'RESTRICT' }
     )
     organization: Organization
+
+    @OneToMany(
+        _ => NeedSpeciality,
+        n => n.evolutionRecord,
+        { onDelete: 'RESTRICT' }
+    )
+    needSpecialities: NeedSpeciality[]
 
 }

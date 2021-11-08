@@ -3,14 +3,12 @@ import {
     Column,
     PrimaryGeneratedColumn,
     ManyToOne,
-    JoinColumn,
-    OneToMany
+    JoinColumn
 } from 'typeorm'
 
 import { User } from './user'
 import { EvolutionRecord } from './evolution-record'
 import { Organization } from './organization'
-import { NeedSpeciality } from './need-speciality'
 
 @Entity({ name: 'professional_attendances' })
 export class ProfessionalAttendance {
@@ -47,12 +45,5 @@ export class ProfessionalAttendance {
     @JoinColumn({ name: 'organization_id', referencedColumnName: 'id' })
     @ManyToOne(_ => Organization, o => o.professionalAttendances)
     organization: Organization
-
-    @OneToMany(
-        _ => NeedSpeciality,
-        n => n.attendance,
-        { onDelete: 'RESTRICT' }
-    )
-    needSpecialities: NeedSpeciality[]
 
 }
