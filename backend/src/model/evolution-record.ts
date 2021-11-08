@@ -10,8 +10,9 @@ import {
 import { User } from './user'
 import { Assisted } from './assisted'
 import { Organization } from './organization'
-import { ProfessionalAttendance } from './professional-attendance'
 import { Status } from './enum/status'
+import { NeedSpeciality } from './need-speciality'
+import { ProfessionalAttendance } from './professional-attendance'
 
 @Entity({ name: 'evolution_records' })
 export class EvolutionRecord {
@@ -61,5 +62,12 @@ export class EvolutionRecord {
         { onDelete: 'RESTRICT' }
     )
     organization: Organization
+
+    @OneToMany(
+        _ => NeedSpeciality,
+        n => n.evolutionRecord,
+        { onDelete: 'RESTRICT' }
+    )
+    needSpecialities: NeedSpeciality[]
 
 }

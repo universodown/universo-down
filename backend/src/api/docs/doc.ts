@@ -47,6 +47,13 @@ import {
     pathEvolutionRecordsBase,
     pathEvolutionRecordsId
 } from './evolution-record'
+import {
+    pathNeedSpecialityByEvolution,
+    pathNeedSpecialityBase,
+    pathNeedSpecialityId,
+    needSpecialityDefinition,
+    needSpecialityCreateDefinition
+} from './need-speciality'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -101,6 +108,10 @@ export const apiDoc = {
         '/api/v1/evolution-record/{evolutionRecordId}': pathEvolutionRecordsId,
         '/api/v1/evolution-record/assisted/{assistedId}':
             pathEvolutionRecordsAssistedId,
+        '/api/v1/need-speciality': pathNeedSpecialityBase,
+        '/api/v1/need-speciality/{needSpecialityId}': pathNeedSpecialityId,
+        '/api/v1/need-speciality/evolution-record/{evolutionRecordId}':
+            pathNeedSpecialityByEvolution,
         '/api/v1/speciality': pathSpecialityBase,
         '/api/v1/speciality/{specialityId}': pathSpecialityId,
         '/api/v1/speciality/name/{name}': pathSpecialityName,
@@ -127,6 +138,8 @@ export const apiDoc = {
         RelatedUpdate: relatedUpdateDefinition,
         Speciality: specialityDefinition,
         SpecialityCreate: specialityCreateDefinition,
+        NeedSpeciality: needSpecialityDefinition,
+        NeedSpecialityCreate: needSpecialityCreateDefinition,
         SpecialityUpdate: specialityUpdateDefinition,
         EvolutionRecord: evolutionRecordDefinition,
         EvolutionRecordCreate: evolutionRecordCreateDefinition,

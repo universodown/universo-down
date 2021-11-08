@@ -322,10 +322,9 @@ export class RelatedRoutes {
                         return
                     }
 
-                    const deletedRelated = await relatedService
-                        .delete(id)
+                    await relatedService.delete(id)
 
-                    response.status(200).json(deletedRelated)
+                    response.status(200).json(related)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
