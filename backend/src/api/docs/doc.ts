@@ -22,6 +22,45 @@ import {
     pathAssistedsId,
     pathAssistedsIdentification
 } from './assisted'
+import {
+    pathSpecialityBase,
+    pathSpecialityId,
+    pathSpecialityName,
+    specialityCreateDefinition,
+    specialityDefinition,
+    specialityUpdateDefinition
+} from './speciality'
+import {
+    pathRelatedBase,
+    pathRelatedByAssisted,
+    pathRelatedIdentification,
+    pathRelatedsId,
+    relatedCreateDefinition,
+    relatedDefinition,
+    relatedUpdateDefinition
+} from './related'
+import {
+    evolutionRecordCreateDefinition,
+    evolutionRecordDefinition,
+    evolutionRecordUpdateDefinition,
+    pathEvolutionRecordsAssistedId,
+    pathEvolutionRecordsBase,
+    pathEvolutionRecordsId
+} from './evolution-record'
+import {
+    pathNeedSpecialityByEvolution,
+    pathNeedSpecialityBase,
+    pathNeedSpecialityId,
+    needSpecialityDefinition,
+    needSpecialityCreateDefinition
+} from './need-speciality'
+import {
+    pathSpecialitiesBase,
+    pathSpecialitiesByUser,
+    pathSpecialitiesId,
+    specialitiesCreateDefinition,
+    specialitiesDefinition
+} from './specialities'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -72,6 +111,26 @@ export const apiDoc = {
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
         '/api/v1/assisted/identification/{identification}':
             pathAssistedsIdentification,
+        '/api/v1/evolution-record': pathEvolutionRecordsBase,
+        '/api/v1/evolution-record/{evolutionRecordId}': pathEvolutionRecordsId,
+        '/api/v1/evolution-record/assisted/{assistedId}':
+            pathEvolutionRecordsAssistedId,
+        '/api/v1/need-speciality': pathNeedSpecialityBase,
+        '/api/v1/need-speciality/{needSpecialityId}': pathNeedSpecialityId,
+        '/api/v1/need-speciality/evolution-record/{evolutionRecordId}':
+            pathNeedSpecialityByEvolution,
+        '/api/v1/speciality': pathSpecialityBase,
+        '/api/v1/speciality/{specialityId}': pathSpecialityId,
+        '/api/v1/speciality/name/{name}': pathSpecialityName,
+        '/api/v1/specialities': pathSpecialitiesBase,
+        '/api/v1/specialities/{specialitiesId}': pathSpecialitiesId,
+        '/api/v1/specialities/user/{userId}':
+            pathSpecialitiesByUser,
+        '/api/v1/related': pathRelatedBase,
+        '/api/v1/related/{relatedId}': pathRelatedsId,
+        '/api/v1/related/assisted/{assistedId}': pathRelatedByAssisted,
+        '/api/v1/related/identification/{identification}':
+            pathRelatedIdentification,
         '/api/v1/login': pathLogin,
         '/api/v1/logout': pathLogout
     },
@@ -85,6 +144,19 @@ export const apiDoc = {
         Assisted: assistedDefinition,
         AssistedCreate: assistedCreateDefinition,
         AssistedUpdate: assistedUpdateDefinition,
+        Related: relatedDefinition,
+        RelatedCreate: relatedCreateDefinition,
+        RelatedUpdate: relatedUpdateDefinition,
+        Speciality: specialityDefinition,
+        SpecialityCreate: specialityCreateDefinition,
+        NeedSpeciality: needSpecialityDefinition,
+        NeedSpecialityCreate: needSpecialityCreateDefinition,
+        Specialities: specialitiesDefinition,
+        SpecialitiesCreate: specialitiesCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
+        EvolutionRecord: evolutionRecordDefinition,
+        EvolutionRecordCreate: evolutionRecordCreateDefinition,
+        EvolutionRecordUpdate: evolutionRecordUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition

@@ -17,3 +17,23 @@ export const scholarity = {
     ],
     example: 'elementary-school'
 }
+
+export const civilStatus = {
+    type: 'string',
+    description: 'Status cívil de Familiar',
+    enum: [
+        'single', 'married', 'divorced',
+        'widower', 'judicially-separated'
+    ],
+    example: 'single'
+}
+
+export const evolutionStatus = {
+    type: 'string',
+    description: 'Evolução',
+    enum: [
+        'pending',
+        'done',
+        'refused'
+    ]
+}

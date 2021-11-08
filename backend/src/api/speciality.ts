@@ -4,15 +4,15 @@ import Container from 'typedi'
 
 import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
-import AssistedService from '../services/assisted'
+import  SpecialityService  from '../services/speciality'
 
-import { isAssistedCreate, isAssistedUpdate } from './dto/assisted'
+import { isSpecialityCreate, isSpecialityUpdate } from './dto/speciality'
 import { RequestWithUser } from './user'
 
-export class AssistedRoutes {
+export class SpecialityRoutes {
 
-    public static assistedRoutes(app: core.Express) {
-        const baseUrl = '/api/v1/assisted'
+    public static specialityRoutes(app: core.Express) {
+        const baseUrl = '/api/v1/speciality'
 
         app.get(
             baseUrl,
@@ -21,38 +21,38 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Profissional) }'
+                            + 'esta ação. { (Função: Secretária)}'
                         })
 
                         return
                     }
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findAll(context)
 
-                    response.status(200).json(assisted)
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService.findAll(context)
+
+                    response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + `não sabe lidar. {${e}}`
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}} `
                     })
                 }
             }
         )
 
         app.get(
-            `${baseUrl}/:id`,
+            `${baseUrl}/:id`, // BaseUrl + '/:id'
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + 'esta ação. { (Função: Secretária)}'
                         })
 
                         return
@@ -60,54 +60,53 @@ export class AssistedRoutes {
 
                     if (!('params' in request) || !('id' in request.params)) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID } '
+                            error: 'Estrutura da requisição inválida'
+                                + ' { Necessátio informar o ID }'
                         })
 
                         return
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findById(id)
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService.findById(id)
 
-                    if (!assisted) {
+                    if (!speciality) {
                         response.status(404).json({
-                            error: 'Atendido não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
                     } else if (
-                        assisted.organization.id !== context.organization.id
+                        speciality.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Atendido não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
                     }
 
-                    response.status(200).json(assisted)
+                    response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}} `
+                        error: 'O servidor encontrou uma situação com a qual'
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
         )
 
         app.get(
-            `${baseUrl}/identification/:identification`,
+            `${baseUrl}/name/:name`, // BaseUrl + '/:id'
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + 'esta ação. { (Função: Secretária)}'
                         })
 
                         return
@@ -115,43 +114,26 @@ export class AssistedRoutes {
 
                     if (
                         !('params' in request)
-                        || !('identification' in request.params)
+                        || !('name' in request.params)
                     ) {
                         response.status(400).json({
-                            error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID } '
+                            error: 'Estrutura da requisição inválida'
+                                + ' { Necessátio informar o name }'
                         })
 
                         return
                     }
 
-                    const identification = String(request.params.identification)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findByIdentification(
-                        identification
-                    )
+                    const name = request.params.name
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService
+                        .findByName(context, name)
 
-                    if (!assisted) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
-                    } else if (
-                        assisted.organization.id !== context.organization.id
-                    ) {
-                        response.status(404).json({
-                            error: 'Atendido não encontrado.'
-                        })
-
-                        return
-                    }
-
-                    response.status(200).json(assisted)
+                    response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
-                        error: 'O Servidor encontrou uma situação com a qual'
-                        + ` não sabe lidar. {${e}} `
+                        error: 'O servidor encontrou uma situação com a qual'
+                            + ` não sabe lidar. {${e}}`
                     })
                 }
             }
@@ -164,17 +146,17 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional) }'
+                                + ' esta ação. { (Função: Secretária )}'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isAssistedCreate(body)) {
+                    if (!isSpecialityCreate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
@@ -183,11 +165,11 @@ export class AssistedRoutes {
                         return
                     }
 
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService
                         .create(context, body)
 
-                    response.status(201).json(assisted)
+                    response.status(201).json(speciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -204,17 +186,17 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional ) }'
+                                + ' esta ação. { (Função: Secretária )}'
                         })
 
                         return
                     }
 
                     const body = request.body
-                    if (!isAssistedUpdate(body)) {
+                    if (!isSpecialityUpdate(body)) {
                         response.status(400).json({
                             error: 'Estrutura da requisição inválida.'
                             + ' { Corpo da Mensagem incorreto }'
@@ -233,11 +215,29 @@ export class AssistedRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService.findById(id)
+
+                    if (!speciality) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrada.'
+                        })
+
+                        return
+                    } else if (
+                        speciality.organization.id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Especialidade não encontrada.'
+                        })
+
+                        return
+                    }
+
+                    const savedSpeciality = await specialityService
                         .update(context, id, body)
 
-                    response.status(200).json(assisted)
+                    response.status(200).json(savedSpeciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -254,10 +254,10 @@ export class AssistedRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Secretária )}'
                         })
 
                         return
@@ -273,28 +273,28 @@ export class AssistedRoutes {
                     }
 
                     const id = Number(request.params.id)
-                    const assistedService = Container.get(AssistedService)
-                    const assisted = await assistedService.findById(id)
+                    const specialityService = Container.get(SpecialityService)
+                    const speciality = await specialityService.findById(id)
 
-                    if (!assisted) {
+                    if (!speciality) {
                         response.status(404).json({
-                            error: 'Familiar não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
                     } else if (
-                        assisted.organization.id !== context.organization.id
+                        speciality.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Familiar não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
                     }
 
-                    await assistedService.delete(id)
+                    await specialityService.delete(id)
 
-                    response.status(200).json(assisted)
+                    response.status(200).json(speciality)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
