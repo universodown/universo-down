@@ -28,8 +28,8 @@ export class SchoolRequest {
     @Column('date', { name: 'response_date' })
     responseDate: Date
 
-    @Column('text')
-    observation: string
+    @Column('text', { nullable: true })
+    observation?: string
 
     @Column('enum', { enum: Status, default: 'pending' })
     status: Status

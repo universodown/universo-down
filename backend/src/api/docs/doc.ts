@@ -22,6 +22,23 @@ import {
     pathAssistedsId,
     pathAssistedsIdentification
 } from './assisted'
+import {
+    pathSpecialityBase,
+    pathSpecialityId,
+    pathSpecialityName,
+    specialityCreateDefinition,
+    specialityDefinition,
+    specialityUpdateDefinition
+} from './speciality'
+import {
+    pathRelatedBase,
+    pathRelatedByAssisted,
+    pathRelatedIdentification,
+    pathRelatedsId,
+    relatedCreateDefinition,
+    relatedDefinition,
+    relatedUpdateDefinition
+} from './related'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -72,6 +89,14 @@ export const apiDoc = {
         '/api/v1/assisted/{assistedId}': pathAssistedsId,
         '/api/v1/assisted/identification/{identification}':
             pathAssistedsIdentification,
+        '/api/v1/speciality': pathSpecialityBase,
+        '/api/v1/speciality/{specialityId}': pathSpecialityId,
+        '/api/v1/speciality/name/{name}': pathSpecialityName,
+        '/api/v1/related': pathRelatedBase,
+        '/api/v1/related/{relatedId}': pathRelatedsId,
+        '/api/v1/related/assisted/{assistedId}': pathRelatedByAssisted,
+        '/api/v1/related/identification/{identification}':
+            pathRelatedIdentification,
         '/api/v1/login': pathLogin,
         '/api/v1/logout': pathLogout
     },
@@ -85,6 +110,12 @@ export const apiDoc = {
         Assisted: assistedDefinition,
         AssistedCreate: assistedCreateDefinition,
         AssistedUpdate: assistedUpdateDefinition,
+        Related: relatedDefinition,
+        RelatedCreate: relatedCreateDefinition,
+        RelatedUpdate: relatedUpdateDefinition,
+        Speciality: specialityDefinition,
+        SpecialityCreate: specialityCreateDefinition,
+        SpecialityUpdate: specialityUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition
