@@ -22,7 +22,7 @@ export const pathRelatedBase = {
                 in: 'body',
                 name: 'related',
                 schema: {
-                    $ref: '$/definitions/RelatedCreate'
+                    $ref: '#/definitions/RelatedCreate'
                 }
             }
         ],
@@ -48,13 +48,25 @@ export const pathRelatedBase = {
                 schema: propertiesError
             }
         }
-    },
+    }
+}
+
+export const pathRelatedByAssisted = {
     get: {
         security: [{ BearerJWT: [] }],
         tags: ['relateds'],
-        summary: 'Retorna todos os familiares conforme login',
+        summary: 'Retorna todos os familiares conforme atendido',
         operationId: 'getRelateds',
-        parameters: [],
+        parameters: [
+            {
+                name: 'assistedId',
+                in: 'path',
+                description: 'ID do familiar',
+                required: true,
+                type: 'integer',
+                format: 'int64'
+            }
+        ],
         responses: {
             200: {
                 description: 'Lista de familiares cadastrados',
@@ -69,6 +81,51 @@ export const pathRelatedBase = {
                 description: 'Usuário não possui permissão para esta ação.'
                     + '{ (details) }',
                 schema: sampleErros[401]
+            },
+            500: {
+                description: 'O servidor encontrou uma situação com a qual'
+                    + ' não sabe lidar. { (details) }',
+                schema: propertiesError
+            }
+        }
+    }
+}
+
+export const pathRelatedIdentification = {
+    parameters: [],
+    get: {
+        security: [{ BearerJWT: [] }],
+        tags: ['relateds'],
+        summary: 'Retorna o familiar conforme C.P.F.',
+        operationId: 'getRelatedByIdentification',
+        parameters: [
+            {
+                name: 'identification',
+                in: 'path',
+                description: 'C.P.F. do familiar',
+                required: true,
+                type: 'string'
+            }
+        ],
+        responses: {
+            200: {
+                description: 'Familiar selecionado',
+                schema: {
+                    $ref: '#/definitions/Related'
+                }
+            },
+            400: {
+                description: 'Estrutura da requisição inválida. { (details) }',
+                schema: sampleErros[400]
+            },
+            401: {
+                description: 'Usuário não possui permissão para esta ação.'
+                    + ' { (details) }',
+                schema: sampleErros[401]
+            },
+            404: {
+                description: 'Familiar não encontrado.',
+                schema: sampleErros[404]
             },
             500: {
                 description: 'O servidor encontrou uma situação com a qual'
@@ -96,7 +153,7 @@ export const pathRelatedsId = {
                 format: 'int64'
             }
         ],
-        reponses: {
+        responses: {
             200: {
                 description: 'Familiar selecionado',
                 schema: {
@@ -231,14 +288,14 @@ export const relatedDefinition = {
         },
         birthday: {
             type: 'date',
-            example: '04/05/1996',
+            example: '1996-05-04',
             description: 'Data de nascimento do Familiar'
         },
         gender: {
             type: 'string',
             description: 'Sexo do familiar',
-            enum: ['male', 'female', 'na'],
-            example: 'na'
+            enum: ['male', 'female', 'not-informed'],
+            example: 'not-informed'
         },
         civilStatus: {
             type: 'string',
@@ -271,7 +328,7 @@ export const relatedDefinition = {
         issue: {
             type: 'date',
             description: 'Data de expedição do documento de familiar',
-            example: '04/05/2021'
+            example: '2021-05-04'
         },
         issuer: {
             type: 'string',
@@ -327,10 +384,13 @@ export const relatedDefinition = {
             type: 'string',
             description: 'Escolaridade do familiar',
             enum: [
-                'couple', 'father', 'mother', 'father-in-low', 'mother-in-low',
-                'sibling', 'grandparent', 'step-parent', 'patchwork-family'
+                'elementary-school',
+                'high_school',
+                'university-school',
+                'masters-degree',
+                'doctorate-degree'
             ],
-            example: 'mother'
+            example: 'university-school'
         },
         revenue: {
             type: 'float',
@@ -402,11 +462,6 @@ export const relatedDefinition = {
 export const relatedCreateDefinition = {
     type: 'object',
     properties: {
-        id: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Familiar'
-        },
         name: {
             type: 'string',
             example: 'José Carlos dos Anjos',
@@ -414,14 +469,14 @@ export const relatedCreateDefinition = {
         },
         birthday: {
             type: 'date',
-            example: '04/05/1996',
+            example: '1996-05-04',
             description: 'Data de nascimento do Familiar'
         },
         gender: {
             type: 'string',
             description: 'Sexo do familiar',
-            enum: ['male', 'female', 'na'],
-            example: 'na'
+            enum: ['male', 'female', 'not-informed'],
+            example: 'not-informed'
         },
         civilStatus: {
             type: 'string',
@@ -454,7 +509,7 @@ export const relatedCreateDefinition = {
         issue: {
             type: 'date',
             description: 'Data de expedição do documento de familiar',
-            example: '04/05/2021'
+            example: '2021-05-04'
         },
         issuer: {
             type: 'string',
@@ -510,10 +565,13 @@ export const relatedCreateDefinition = {
             type: 'string',
             description: 'Escolaridade do familiar',
             enum: [
-                'couple', 'father', 'mother', 'father-in-low', 'mother-in-low',
-                'sibling', 'grandparent', 'step-parent', 'patchwork-family'
+                'elementary-school',
+                'high_school',
+                'university-school',
+                'masters-degree',
+                'doctorate-degree'
             ],
-            example: 'mother'
+            example: 'university-school'
         },
         revenue: {
             type: 'float',
@@ -540,11 +598,6 @@ export const relatedCreateDefinition = {
             description: 'O familiar é o responsável?',
             example: true
         },
-        organizationId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Organização na qual compõe o familiar'
-        },
         assistedId: {
             type: 'integer',
             format: 'int64',
@@ -552,7 +605,6 @@ export const relatedCreateDefinition = {
         }
     },
     required: [
-        'id',
         'name',
         'birthday',
         'gender',
@@ -577,7 +629,6 @@ export const relatedCreateDefinition = {
         'occupation',
         'nationalIdentity',
         'reponsible',
-        'organizationId',
         'assistedId'
     ]
 }
@@ -585,11 +636,6 @@ export const relatedCreateDefinition = {
 export const relatedUpdateDefinition = {
     type: 'object',
     properties: {
-        id: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Id do Familiar'
-        },
         name: {
             type: 'string',
             example: 'José Carlos dos Anjos',
@@ -597,14 +643,14 @@ export const relatedUpdateDefinition = {
         },
         birthday: {
             type: 'date',
-            example: '04/05/1996',
+            example: '1996-05-04',
             description: 'Data de nascimento do Familiar'
         },
         gender: {
             type: 'string',
             description: 'Sexo do familiar',
-            enum: ['male', 'female', 'na'],
-            example: 'na'
+            enum: ['male', 'female', 'not-informed'],
+            example: 'not-informed'
         },
         civilStatus: {
             type: 'string',
@@ -637,7 +683,7 @@ export const relatedUpdateDefinition = {
         issue: {
             type: 'date',
             description: 'Data de expedição do documento de familiar',
-            example: '04/05/2021'
+            example: '2021-05-04'
         },
         issuer: {
             type: 'string',
@@ -693,10 +739,13 @@ export const relatedUpdateDefinition = {
             type: 'string',
             description: 'Escolaridade do familiar',
             enum: [
-                'couple', 'father', 'mother', 'father-in-low', 'mother-in-low',
-                'sibling', 'grandparent', 'step-parent', 'patchwork-family'
+                'elementary-school',
+                'high_school',
+                'university-school',
+                'masters-degree',
+                'doctorate-degree'
             ],
-            example: 'mother'
+            example: 'university-school'
         },
         revenue: {
             type: 'float',
@@ -722,18 +771,6 @@ export const relatedUpdateDefinition = {
             type: 'boolean',
             description: 'O familiar é o responsável?',
             example: true
-        },
-        organizationId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Organização na qual compõe o familiar'
-        },
-        assistedId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Atendido no qual compõe o familiar'
         }
-    },
-    required: ['id']
-
+    }
 }

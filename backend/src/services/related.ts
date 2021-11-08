@@ -18,7 +18,7 @@ export default class RelatedService {
         relatedInfo: RelatedCreate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Related)
+            const repository = db.getCustomRepository(RelatedRepository)
 
             return repository.save({
                 ...relatedInfo,
@@ -33,9 +33,11 @@ export default class RelatedService {
         relatedInfo: RelatedUpdate
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Related)
+            const repository = db.getCustomRepository(RelatedRepository)
+            const related = repository.findById(id)
 
             return repository.save({
+                ...related,
                 ...relatedInfo,
                 id,
                 organizationId: context.organization.id
@@ -47,9 +49,10 @@ export default class RelatedService {
         id: number
     ) {
         return getManager().transaction(async db => {
-            const repository = db.getRepository(Related)
+            const repository = db.getCustomRepository(RelatedRepository)
+            const related = await repository.findById(id)
 
-            return repository.delete(id)
+            return repository.remove(related)
         })
     }
 
@@ -60,15 +63,20 @@ export default class RelatedService {
     }
 
     async findAll(
-        context: Context
+        context: Context,
+        assistedId: number
     ) {
-        return this.repository.findAll(context)
+        return this.repository.findAll(context, assistedId)
     }
 
     async findByIdentification(
+        context: Context,
         identification: string
     ): Promise<Related | undefined> {
-        return this.repository.findByNationalIdentity(identification)
+        return this.repository.findByIdentification(
+            context,
+            identification
+        )
     }
 
 }

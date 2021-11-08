@@ -73,7 +73,7 @@ export class SpecialityRoutes {
 
                     if (!speciality) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
@@ -81,7 +81,7 @@ export class SpecialityRoutes {
                         speciality.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
@@ -220,7 +220,7 @@ export class SpecialityRoutes {
 
                     if (!speciality) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
@@ -228,7 +228,7 @@ export class SpecialityRoutes {
                         speciality.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
@@ -278,7 +278,7 @@ export class SpecialityRoutes {
 
                     if (!speciality) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return
@@ -286,7 +286,7 @@ export class SpecialityRoutes {
                         speciality.organization.id !== context.organization.id
                     ) {
                         response.status(404).json({
-                            error: 'Especialidade não encontrado.'
+                            error: 'Especialidade não encontrada.'
                         })
 
                         return

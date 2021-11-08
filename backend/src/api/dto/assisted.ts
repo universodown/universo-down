@@ -3,8 +3,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { Gender } from '../../model/enum/gender'
-import { EvolutionRecord } from '../../model/evolution-record'
-import { TransportRequest } from '../../model/transport-request'
 
 export class AssistedCreate {
 
@@ -32,8 +30,6 @@ export class AssistedCreate {
     photo: string
     benefits: string
     socialIdentificationNumber: string
-    evolutionRecord: EvolutionRecord[]
-    transportRequests: TransportRequest[]
     organizationId?: number
 
 }
@@ -51,7 +47,6 @@ export function isAssistedCreate(obj: any): obj is AssistedCreate {
         && obj.state !== undefined
         && obj.gender !== undefined
         && obj.photo !== undefined
-        && obj.transportRequests !== undefined
 }
 
 export class AssistedUpdate {

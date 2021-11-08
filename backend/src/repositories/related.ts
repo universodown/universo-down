@@ -16,12 +16,13 @@ export default class RelatedRepository extends Repository<Related> {
 
         return repository.findOne({
             where: { id },
-            relations: ['assisted']
+            relations: ['assisted', 'organization']
         })
     }
 
-    async findByNationalIdentity(
-        nationalIdentity: string,
+    async findByIdentification(
+        context: Context,
+        identification: string,
         db?: EntityManager
     ): Promise<Related | undefined> {
         const repository = db
@@ -29,13 +30,23 @@ export default class RelatedRepository extends Repository<Related> {
             : this
 
         return repository.findOne({
-            where: { nationalIdentity }
+            where: {
+                organizationId: context.organization.id,
+                identification
+            },
+            relations: ['organization']
         })
     }
 
-    async findAll(context: Context): Promise<Related[]> {
+    async findAll(
+        context: Context,
+        assistedId: number
+    ): Promise<Related[]> {
         return this.find({
-            where: { organizationId: context.organization.id }
+            where: {
+                organizationId: context.organization.id,
+                assistedId
+            }
         })
     }
 

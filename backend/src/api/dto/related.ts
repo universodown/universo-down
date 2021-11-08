@@ -33,8 +33,7 @@ export class RelatedCreate {
     occupation: string
     nationalIdentity: string
     responsible: boolean
-    organizationId?: number
-    assistedId?: number
+    assistedId: number
 
 }
 
@@ -63,11 +62,11 @@ export function isRelatedCreate(obj: any): obj is RelatedCreate {
         && obj.occupation !== undefined
         && obj.nationalIdentity !== undefined
         && obj.responsible !== undefined
+        && obj.assistedId !== undefined
 }
 
 export class  RelatedUpdate {
 
-    id: number
     name?: string
     birthday?: Date
     gender?: Gender
@@ -92,11 +91,34 @@ export class  RelatedUpdate {
     occupation?: string
     nationalIdentity?: string
     responsible?: boolean
-    organizationId?: number
     assistedId?: number
 
 }
 
 export function isRelatedUpdate(obj: any): obj is RelatedUpdate {
-    return obj.id !== undefined
+    return obj.name !== undefined
+        || obj.birthday !== undefined
+        || obj.gender !== undefined
+        || obj.civilStatus !== undefined
+        || obj.identification !== undefined
+        || obj.relationship !== undefined
+        || obj.generalRegistration !== undefined
+        || obj.issue !== undefined
+        || obj.issuer !== undefined
+        || obj.zipCode !== undefined
+        || obj.address !== undefined
+        || obj.number !== undefined
+        || obj.neighborhood !== undefined
+        || obj.city !== undefined
+        || obj.state !== undefined
+        || obj.phone !== undefined
+        || obj.naturalness !== undefined
+        || obj.nationality !== undefined
+        || obj.scholarity !== undefined
+        || obj.revenue !== undefined
+        || obj.professionalSituation !== undefined
+        || obj.occupation !== undefined
+        || obj.nationalIdentity !== undefined
+        || obj.responsible !== undefined
+        || obj.assistedId !== undefined
 }
