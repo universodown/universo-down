@@ -69,6 +69,22 @@ import {
     pathCalendarByUser,
     pathCalendarId
 } from './calendar'
+import {
+    pathSchoolRequestsAssistedId,
+    pathSchoolRequestsBase,
+    pathSchoolRequestsId,
+    schoolRequestCreateDefinition,
+    schoolRequestDefinition,
+    schoolRequestUpdateDefinition
+} from './school-request'
+import {
+    pathTransportRequestsAssistedId,
+    pathTransportRequestsBase,
+    pathTransportRequestsId,
+    transportRequestCreateDefinition,
+    transportRequestDefinition,
+    transportRequestUpdateDefinition
+} from './transport-request'
 
 export const apiDoc = {
     swagger: '2.0',
@@ -138,6 +154,15 @@ export const apiDoc = {
         '/api/v1/calendar/{calendarId}': pathCalendarId,
         '/api/v1/calendar/user/{userId}':
             pathCalendarByUser,
+        '/api/v1/school-request': pathSchoolRequestsBase,
+        '/api/v1/school-request/{schoolRequestId}': pathSchoolRequestsId,
+        '/api/v1/school-request/assisted/{assistedId}':
+            pathSchoolRequestsAssistedId,
+        '/api/v1/transport-request': pathTransportRequestsBase,
+        '/api/v1/transport-request/{transportRequestId}':
+            pathTransportRequestsId,
+        '/api/v1/transport-request/assisted/{assistedId}':
+            pathTransportRequestsAssistedId,
         '/api/v1/related': pathRelatedBase,
         '/api/v1/related/{relatedId}': pathRelatedsId,
         '/api/v1/related/assisted/{assistedId}': pathRelatedByAssisted,
@@ -172,6 +197,12 @@ export const apiDoc = {
         EvolutionRecord: evolutionRecordDefinition,
         EvolutionRecordCreate: evolutionRecordCreateDefinition,
         EvolutionRecordUpdate: evolutionRecordUpdateDefinition,
+        SchoolRequest: schoolRequestDefinition,
+        SchoolRequestCreate: schoolRequestCreateDefinition,
+        SchoolRequestUpdate: schoolRequestUpdateDefinition,
+        TransportRequest: transportRequestDefinition,
+        TransportRequestCreate: transportRequestCreateDefinition,
+        TransportRequestUpdate: transportRequestUpdateDefinition,
         LoginCreate: loginCreate,
         Login: loginDefinition,
         Logout: logoutDefinition

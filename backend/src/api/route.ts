@@ -10,6 +10,8 @@ import { UserRoutes } from './user'
 import { AssistedRoutes } from './assisted'
 import { EvolutionRecordRoutes } from './evolution-record'
 import { CalendarRoutes } from './calendar'
+import { SchoolRequestRoutes } from './school-request'
+import { TransportRequestRoutes } from './transport-request'
 
 export class Route {
 
@@ -28,6 +30,8 @@ export class Route {
         NeedSpecialityRoutes.needSpecialityRoutes(app)
         EvolutionRecordRoutes.evolutionRecordRoutes(app)
         CalendarRoutes.calendarRoutes(app)
+        SchoolRequestRoutes.schoolRequestRoutes(app)
+        TransportRequestRoutes.transportRequestRoutes(app)
     }
 
 }

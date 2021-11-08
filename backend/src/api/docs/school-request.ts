@@ -8,30 +8,30 @@ const sampleErros = {
     401: getError(
         'Usuário não possui permissão para esta ação. { (Função: Membro) }'
     ),
-    404: getError('Evolução não encontrada.')
+    404: getError('Solicitação não encontrada.')
 }
 
-export const pathEvolutionRecordsBase = {
+export const pathSchoolRequestsBase = {
     parameters: [],
     post: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Criação de uma nova evolução',
-        operationId: 'createEvolutionRecord',
+        tags: ['school-requests'],
+        summary: 'Criação de uma nova solicitação',
+        operationId: 'createSchoolRequest',
         parameters: [
             {
                 in: 'body',
-                name: 'evolutionRecord',
+                name: 'schoolRequest',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecordCreate'
+                    $ref: '#/definitions/SchoolRequestCreate'
                 }
             }
         ],
         responses: {
             201: {
-                description: 'Evolução cadastra com sucesso',
+                description: 'Solicitação cadastra com sucesso',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecord'
+                    $ref: '#/definitions/SchoolRequest'
                 }
             },
             400: {
@@ -52,12 +52,12 @@ export const pathEvolutionRecordsBase = {
     }
 }
 
-export const patEvolutionRecordByAssisted = {
+export const patSchoolRequestByAssisted = {
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Retorna todos os evoluções conforme assistido',
-        operationId: 'getEvolutionRecords',
+        tags: ['school-requests'],
+        summary: 'Retorna todos os solicitações conforme assistido',
+        operationId: 'getSchoolRequests',
         parameters: [
             {
                 name: 'assistedId',
@@ -70,11 +70,11 @@ export const patEvolutionRecordByAssisted = {
         ],
         responses: {
             200: {
-                description: 'Lista de evoluções cadastras',
+                description: 'Lista de solicitações cadastras',
                 schema: {
                     type: 'array',
                     items: {
-                        $ref: '#/definitions/EvolutionRecord'
+                        $ref: '#/definitions/SchoolRequest'
                     }
                 }
             },
@@ -92,18 +92,18 @@ export const patEvolutionRecordByAssisted = {
     }
 }
 
-export const pathEvolutionRecordsId = {
+export const pathSchoolRequestsId = {
     parameters: [],
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Retorna o evolução conforme ID',
-        operationId: 'getEvolutionRecord',
+        tags: ['school-requests'],
+        summary: 'Retorna o solicitação conforme ID',
+        operationId: 'getSchoolRequest',
         parameters: [
             {
-                name: 'evolutionRecordId',
+                name: 'schoolRequestId',
                 in: 'path',
-                description: 'ID da Evolução',
+                description: 'ID da Solicitação',
                 required: true,
                 type: 'integer',
                 format: 'int64'
@@ -111,9 +111,9 @@ export const pathEvolutionRecordsId = {
         ],
         responses: {
             200: {
-                description: 'Evolução selecionada',
+                description: 'Solicitação selecionada',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecord'
+                    $ref: '#/definitions/SchoolRequest'
                 }
             },
             400: {
@@ -126,7 +126,7 @@ export const pathEvolutionRecordsId = {
                 schema: sampleErros[401]
             },
             404: {
-                description: 'Evolução não encontrada.',
+                description: 'Solicitação não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
@@ -138,31 +138,31 @@ export const pathEvolutionRecordsId = {
     },
     put: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Alteração de uma evolução conforme ID',
-        operationId: 'updateEvolutionRecord',
+        tags: ['school-requests'],
+        summary: 'Alteração de uma solicitação conforme ID',
+        operationId: 'updateSchoolRequest',
         parameters: [
             {
-                name: 'evolutionRecordId',
+                name: 'schoolRequestId',
                 in: 'path',
-                description: 'ID da Evolução',
+                description: 'ID da Solicitação',
                 required: true,
                 type: 'integer',
                 format: 'int64'
             },
             {
                 in: 'body',
-                name: 'evolutionRecord',
+                name: 'schoolRequest',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecordUpdate'
+                    $ref: '#/definitions/SchoolRequestUpdate'
                 }
             }
         ],
         responses: {
             200: {
-                description: 'Evolução alterado com sucesso',
+                description: 'Solicitação alterado com sucesso',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecord'
+                    $ref: '#/definitions/SchoolRequest'
                 }
             },
             400: {
@@ -175,7 +175,7 @@ export const pathEvolutionRecordsId = {
                 schema: sampleErros[401]
             },
             404: {
-                description: 'Evolução não encontrada.',
+                description: 'Solicitação não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
@@ -187,14 +187,14 @@ export const pathEvolutionRecordsId = {
     },
     delete: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Deleta a evolução conforme ID',
-        operationId: 'deleteEvolutionRecord',
+        tags: ['school-requests'],
+        summary: 'Deleta a solicitação conforme ID',
+        operationId: 'deleteSchoolRequest',
         parameters: [
             {
-                name: 'evolutionRecordId',
+                name: 'schoolRequestId',
                 in: 'path',
-                description: 'ID da Evolução',
+                description: 'ID da Solicitação',
                 required: true,
                 type: 'integer',
                 format: 'int64'
@@ -202,9 +202,9 @@ export const pathEvolutionRecordsId = {
         ],
         responses: {
             200: {
-                description: 'Evolução excluído',
+                description: 'Solicitação excluído',
                 schema: {
-                    $ref: '#/definitions/EvolutionRecord'
+                    $ref: '#/definitions/SchoolRequest'
                 }
             },
             400: {
@@ -217,7 +217,7 @@ export const pathEvolutionRecordsId = {
                 schema: sampleErros[401]
             },
             404: {
-                description: 'Evolução não encontrada.',
+                description: 'Solicitação não encontrada.',
                 schema: sampleErros[404]
             },
             500: {
@@ -229,13 +229,13 @@ export const pathEvolutionRecordsId = {
     }
 }
 
-export const pathEvolutionRecordsAssistedId = {
+export const pathSchoolRequestsAssistedId = {
     parameters: [],
     get: {
         security: [{ BearerJWT: [] }],
-        tags: ['evolution-records'],
-        summary: 'Retorna o evolução conforme Assistido',
-        operationId: 'getEvolutionRecordAssisted',
+        tags: ['school-requests'],
+        summary: 'Retorna o solicitação conforme Assistido',
+        operationId: 'getSchoolRequestAssisted',
         parameters: [
             {
                 name: 'assistedId',
@@ -248,11 +248,11 @@ export const pathEvolutionRecordsAssistedId = {
         ],
         responses: {
             200: {
-                description: 'Lista de evoluções cadastras',
+                description: 'Lista de solicitações cadastras',
                 schema: {
                     type: 'array',
                     items: {
-                        $ref: '#/definitions/EvolutionRecord'
+                        $ref: '#/definitions/SchoolRequest'
                     }
                 }
             },
@@ -274,41 +274,31 @@ export const pathEvolutionRecordsAssistedId = {
     }
 }
 
-export const evolutionRecordDefinition = {
+export const schoolRequestDefinition = {
     type: 'object',
     properties: {
         id: {
             type: 'integer',
             format: 'int64',
-            description: 'Id da Evolução'
+            description: 'Id da Solicitação'
         },
         date: {
             type: 'date',
             example: '2021-09-08',
-            description: 'Data da Avaliação'
+            description: 'Data da Solicitação'
+        },
+        responseDate: {
+            type: 'date',
+            example: '2021-09-08',
+            description: 'Data do Retorno'
         },
         status: {
             ...evolutionStatus
         },
-        weight: {
-            type: 'double',
-            description: 'Peso do Evolução',
-            example: 80.0
-        },
-        height: {
-            type: 'double',
-            description: 'Altura do Evolução',
-            example: 1.90
-        },
-        report: {
+        observation: {
             type: 'string',
-            example: 'Encontra-se em perfeitas condições.',
-            description: 'Parecer do Atendimento'
-        },
-        userId: {
-            type: 'integer',
-            format: 'int64',
-            description: 'Usuário que realizou a evolução.'
+            description: 'Observação da Solicitação',
+            example: 'Pedido com urgência'
         },
         assistedId: {
             type: 'integer',
@@ -318,47 +308,39 @@ export const evolutionRecordDefinition = {
         organizationId: {
             type: 'integer',
             format: 'int64',
-            description: 'Organização na qual compõe a Evolução'
+            description: 'Organização na qual compõe a Solicitação'
         }
     },
     required: [
         'id',
         'date',
+        'responseDate',
         'status',
-        'weight',
-        'height',
-        'report',
-        'userId',
         'assistedId',
         'organizationId'
     ]
 }
 
-export const evolutionRecordCreateDefinition = {
+export const schoolRequestCreateDefinition = {
     type: 'object',
     properties: {
         date: {
             type: 'date',
             example: '2021-09-08',
-            description: 'Data da Avaliação'
+            description: 'Data da Solicitação'
+        },
+        responseDate: {
+            type: 'date',
+            example: '2021-09-08',
+            description: 'Data do Retorno'
         },
         status: {
             ...evolutionStatus
         },
-        weight: {
-            type: 'double',
-            description: 'Peso do Evolução',
-            example: 80.0
-        },
-        height: {
-            type: 'double',
-            description: 'Altura do Evolução',
-            example: 1.90
-        },
-        report: {
+        observation: {
             type: 'string',
-            example: 'Encontra-se em perfeitas condições.',
-            description: 'Parecer do Atendimento'
+            description: 'Observação da Solicitação',
+            example: 'Pedido com urgência'
         },
         assistedId: {
             type: 'integer',
@@ -368,39 +350,32 @@ export const evolutionRecordCreateDefinition = {
     },
     required: [
         'date',
+        'responseDate',
         'status',
-        'weight',
-        'height',
-        'report',
         'assistedId'
     ]
 }
 
-export const evolutionRecordUpdateDefinition = {
+export const schoolRequestUpdateDefinition = {
     type: 'object',
     properties: {
         date: {
             type: 'date',
             example: '2021-09-08',
-            description: 'Data da Avaliação'
+            description: 'Data da Solicitação'
+        },
+        responseDate: {
+            type: 'date',
+            example: '2021-09-08',
+            description: 'Data do Retorno'
         },
         status: {
             ...evolutionStatus
         },
-        weight: {
-            type: 'double',
-            description: 'Peso do Evolução',
-            example: 80.0
-        },
-        height: {
-            type: 'double',
-            description: 'Altura do Evolução',
-            example: 1.90
-        },
-        report: {
+        observation: {
             type: 'string',
-            example: 'Encontra-se em perfeitas condições.',
-            description: 'Parecer do Atendimento'
+            description: 'Observação da Solicitação',
+            example: 'Pedido com urgência'
         }
     }
 }
