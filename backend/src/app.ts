@@ -1,5 +1,6 @@
 import * as express from 'express'
 import * as swaggerUi from 'swagger-ui-express'
+import * as cors from 'cors'
 
 import { apiDoc } from './api/docs/doc'
 import { Route } from './api/route'
@@ -13,6 +14,7 @@ const api = JSON.stringify(apiDoc)
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 // Register routes
 Route.getRoutes(app)
 
