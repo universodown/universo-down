@@ -3,6 +3,12 @@ const path = ""
 $.get("/html/partials/navbar.html", function (data) {
   $("#nav-placeholder").replaceWith(data);
 });
+/* Carregar a search lateral */
+const pathSearchBar = ""
+$.get("/html/partials/searchbar.html", function (data) {
+  $("#searchbar-placeholder").replaceWith(data);
+});
+
 
 /* Função Sub Menu */
 $(document).on("click", ".side-menu > ul > li", function (e) {
