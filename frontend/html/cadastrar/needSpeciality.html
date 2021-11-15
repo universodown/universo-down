@@ -14,6 +14,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    
 
     <!-- CSS -->
     <link rel="stylesheet" href="/public/css/navbar.css" />
@@ -30,32 +31,32 @@
 
         <!-- Conteúdo da Página  -->
         <div id="content">
-            <div class="card col-9">
+            <div class="card col-12">
                 <h3 class="mt-4 ml-2 titulo">Atendimento Profissional</h3>
                 <hr>
                 <div class="card-body">
-                    <form class="form-group">
+                    <form class="form-group" id="form">
                         <div class="container">
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="idAtendente">id Atendente</label>
-                                    <input type="text" class="form-control" name="idAtendente" id="idAtendente"
-                                        placeholder="id Atendente">
+                                    <label for="evolutionRecordId">id Atendente</label>
+                                    <input type="number" class="form-control" name="resa" id="evolutionRecordId"
+                                        placeholder="id Atendente" required>
                                 </div>
                                 <div class="col-6">
-                                    <label for="idEspecialidade">id Especialidade</label>
-                                    <input type="text" class="form-control" name="idEspecialidade" id="idEspecialidade"
-                                        placeholder="id Especialidade">
+                                    <label for="specialityId">id Especialidade</label>
+                                    <input type="number" class="form-control" name="Especialista" id="specialityId"
+                                        placeholder="id Especialidade" required>
                                 </div>
                                 </div>
                             </div>
                         </div>
                     </form>
-                   
                     <div class="row mt-4 mb-4">
-                        <button type="button" class="btn btn-success col-3 offset-2">Salvar</button>
-                        <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
+                        <button type="submit" name="save-btn" id="save-btn" form="form" class="btn btn-success col-3 offset-2">Salvar</button>
+                        <button type="reset" form="form" class="btn btn-danger col-3 offset-2">Cancelar</button>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,6 +65,10 @@
     <script src="/public/js/jquery-3.6.0.min.js"></script>
     <script src="/public/js/main.js"></script>
     <script src="/public/js/script.js"></script>
+    <script src="/public/js/need-spectiality.js"></script>
+    <script>
+
+    
 </body>
 
 </html>

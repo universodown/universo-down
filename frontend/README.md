@@ -2,20 +2,7 @@
 
 Projeto Universo Down - Web Service
 
-## Pré-requisitos
-- **LiveServer** (v5.6.1)
-
-
-# Inicilizando o ambiente
-```
-1. Apertar: F1 ou ctrl+shift+p
-2. Digitar: "Live Server: Open with Live Server"
-3. A página inicial irá abrir no endereço: 
-    - http://127.0.0.1:5501/index.html ou http://127.0.0.1:5501/
-obs: a porta pode mudar em alguns casos
-
-```
-## Como contribuir
+##Como contribuir
 
 1. Cria uma branch com a sua feature: git checkout -b minha-feature;
 2. Faça commit das suas alterações: git commit -m 'feat: Minha nova feature';
@@ -69,6 +56,7 @@ feat: add hat wobble
 Example
 
 <scope> 
+
 
 frontend
     
