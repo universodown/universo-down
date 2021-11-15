@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Listagem de Especialistas</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+  
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div id="nav-placeholder"></div>
+      </nav>
+      <!-- Conteúdo da Página  -->
+      <div id="content">
+        <div class="card col-12"> 
+            <h3 class="mt-4 ml-2">Lista de Especialista</h3>
+            <div class="card-body">
+                <div class="container">
+                <hr size=4>
+                <div class="col-6">
+                    <!-- SelectBox  -->
+                    <h6 class="col-12">Nome da Especialidade </h6>
+                      <select class="col-12" id="selectSpeciality" name="speciality">
+                          <option value="0">- Selecione uma Especialidade -</option>
+                      </select>
+                </div>
+                    
+                    
+                <hr size=4>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/script.js"></script>
+    <script>
+    var baseUrlApi = "http://localhost:3000/api/v1";
+    $(document).ready(function(){
+        $.ajax({
+        url:  baseUrlApi + "/speciality/",
+        type: "GET",
+        dataType: "JSON",
+        headers: {
+            "x-access-token": localStorage.getItem("Authorization"),
+        },
+        success: function (data) {
+            $("#selectSpeciality").empty();
+            var myJSON = data;
+            $.each(myJSON, function (index, value) {
+            $("#selectSpeciality").append("<option value='"+value.id+"'>"+ value.id + " - " + value.name+"</option>");
+            })
+            
+            $("#selectSpeciality").on('change', function(){
+            var selectedCountry = $(this).children("option:selected").val();
+            console.log("selected item" + selectedCountry);
+            });
+        },
+        });
+    });
+    </script>
+  </body>
+</html>

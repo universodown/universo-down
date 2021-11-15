@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Listagem de Especialidades</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/navbar.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+  </head>
+  <body>
+  
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div id="nav-placeholder"></div>
+      </nav>
+      <!-- Conteúdo da Página  -->
+      <div id="content">
+        <div class="card col-12"> 
+            <h3 class="mt-4 ml-2">Lista de Especialidades</h3>
+            <div class="card-body">
+                <div class="container">
+                <hr size=4>
+                    <div class="row row-cols-12">
+                      <table id="specialityTable">
+                              <thead class="col-12">
+                                <tr>
+                                  <th class="col-2">Registro</th>
+                                  <th class="col-7">Especialidede</th>
+                                  <th class="col-3"></th>
+                                </tr>
+                              </thead>
+                              <tbody></tbody>
+                          </table>
+                        </div>
+                <hr size=4>
+                       
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/script.js"></script>
+    <script>
+    var baseUrlApi = "http://localhost:3000/api/v1";
+     $(document).ready(function(){
+        var data = {};
+        $.ajax({
+            type: 'GET',
+            url: baseUrlApi + "/speciality",
+            headers: {
+              'x-access-token': localStorage.getItem("Authorization")
+            },
+            dataType: "JSON",
+            success: function(data){
+                var myJSON = data;
+                $.each(myJSON, function (index, value) {
+                    var id = value.id;
+                    var name = value.name;
+                    
+                    var tr_str = "<tr>" +
+                        "<td align='center' class='col-2'>" + (id) + "</td>" +
+                        "<td align='center' class='col-7'>" + name + "</td>" +
+                        "<td class='col-3 '><button type='submit' class='btn btn-success col-3 offset-1'> <i class='bi bi-pencil-square'></i></button>" +
+                        "<button type='button' class='btn btn-danger col-3 offset-1'><i class='bi bi-trash'></i></button>" + "</td>" +
+                        "</tr>";
+
+                    $("#specialityTable tbody").append(tr_str);
+                });
+
+            },
+            error: function (err) {
+          alert("erro" + JSON.stringify(err));
+        },
+        });
+    });  
+    </script>
+  </body>
+</html>
