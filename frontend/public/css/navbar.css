@@ -87,7 +87,7 @@ aside {
 ----------------------------------------------------- */
 
 .show-sidebar aside {
-  width: 280px;
+  width: 260px;
   -webkit-transform: translateX(0%);
   -ms-transform: translateX(0%);
   transform: translateX(0%);

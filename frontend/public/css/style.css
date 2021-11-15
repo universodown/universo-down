@@ -1,7 +1,7 @@
 :root {
-  --verde-escuro: color: rgb(60, 152, 165);
-  --verde-claro: color: rgb(165, 214, 219);
-  --laranja: color: rgb(244, 176, 95);
+  --verde-escuro: color: #3c98a5;
+  --verde-claro: color: #a5d6db;
+  --laranja: color: #f4b05f;
 }
 
 /* ---------------------------------------------------
@@ -10,7 +10,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #efefef;
+  background-color: #EFEFEF;
 }
 
 p {
@@ -33,7 +33,15 @@ p {
   text-align: center;
 }
 
+table, th {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
+}
+
+table, td {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
 /* img {
     display: block;
     max-width: 100%;
@@ -67,7 +75,7 @@ p {
 
 #content {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   padding-top: 50px;
   min-height: 100vh;
   transition: all 0.3s;
@@ -78,7 +86,7 @@ p {
 ----------------------------------------------------- */
 
 #user {
-    background-color: rgb(165, 214, 219);
+    background-color: #a5d6db;
     color: #000;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -86,7 +94,7 @@ p {
 }
 
 #pass {
-    background-color: rgb(165, 214, 219);
+    background-color: #a5d6db;
     color: #000;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -108,7 +116,7 @@ p {
 }
 
 span.input-group-addon {
-    background-color: rgb(60, 152, 165);
+    background-color: #3c98a5;
     padding-left: 11px;
     width: 40px;
     height: 34px;
@@ -131,9 +139,82 @@ i.fa.fa-lock.fa-2x {
 ----------------------------------------------------- */
 
 select.form-control {
-  background-color: #f8f8f8;
-  border: 1px solid #efefef;
+  background-color: rgb(226, 226, 226);
+  border: 1px solid #EFEFEF;
+  height: 65%;
 }
+select, .dropdown-toggle {
+  background-color: rgb(226, 226, 226);
+  border: 1px solid #EFEFEF;
+  height: 65%;
+}
+
+div.card-body, div {
+  margin-bottom: 10px;
+}
+
+#admin_role {
+  height: 85%;
+  width: 100%;
+}
+
+#user_role {
+  height: 85%;
+  width: 100%;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE ESPECIALIDADE
+----------------------------------------------------- */
+
+select, #name {
+  background-color: #F1F1F1;
+  color: #767676;
+  border: 1px solid #EFEFEF;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
+/* ---------------------------------------------------
+    LISTA DE ESPECIALIDADE   
+----------------------------------------------------- */
+
+table, #specialityTable {
+  background-color: red;
+
+}
+table, th {
+  font-size: 1.75vw;
+  text-align: center;
+}
+
+table, td {
+  font-size: 2vw;
+  font-weight: 350;
+  text-align: center;
+}
+table, tr:nth-child(odd) {
+  background-color: #F1F1F1;
+}
+table, tr:nth-child(even) {
+  background-color: #F8F8F8;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE ESPECIALISTA   
+----------------------------------------------------- */
+
+select, #selectSpeciality {
+  background-color: #F1F1F1;
+  color: #767676;
+  border: 1px solid #EFEFEF;
+  font-size: 2.5vw;
+  height: 5vw;
+  width: 90%;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
 
 /* ---------------------------------------------------
     ATENDIMENTO   
@@ -152,7 +233,7 @@ select.form-control {
 
 .linha p i {
   font-size: 28px; 
-  color: rgb(60, 152, 165);
+  color: #3c98a5;
 }
 
 button.add_form_field {
@@ -171,8 +252,8 @@ button.add_form_field {
 ----------------------------------------------------- */
 
 input.form-control {
-  background-color: #f8f8f8;
-  border: 1px solid #efefef;
+  background-color: #F8F8F8;
+  border: 1px solid #EFEFEF;
 }
 
 .card-body {
@@ -187,7 +268,7 @@ input.form-control {
 }
 
 .btn-success {
-    background-color: rgb(60, 152, 165) !important;
+    background-color: #3c98a5 !important;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: .085rem;
@@ -195,9 +276,9 @@ input.form-control {
 }
 
 .btn-success:hover {
-    background-color: rgb(255, 255, 255) !important;
+    background-color: #FFF !important;
     color: black !important;
-    border: 0 solid #fff ;
+    border: 0 solid #FFF ;
 }
 
 .card > hr {
@@ -210,14 +291,24 @@ input.form-control {
 ----------------------------------------------------- */
 
 textarea.form-control {
-  background-color: #f8f8f8;
-  border: 1px solid #efefef;
+  background-color: #F8F8F8;
+  border: 1px solid #EFEFEF;
 }
 
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
+@media (min-width: 991px){
+  i.bi.bi-trash::before {
+    font-size: 20px !important;
+    margin-left: 5px;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 20px !important;
+    margin-left: 5px;
+  }
+}
 
 @media (min-width: 768px) {
     #sidebar {
@@ -229,8 +320,20 @@ textarea.form-control {
     #sidebarCollapse span {
       display: none;
     }
-    div.card.col-9 {
-        width: auto !important;
+    div.card.col-12 {
+        width: auto;
+    }
+    .btn-danger {
+      font-size:  3vh;
+    }
+    .btn-success {
+      font-size:  2vh;
+    }
+    i.bi.bi-trash::before {
+      font-size: 20px !important;
+    }
+    i.bi.bi-pencil-square::before {
+      font-size: 20px !important;
     }
   }
 
@@ -244,6 +347,12 @@ textarea.form-control {
   #sidebarCollapse span {
     display: none;
   }
+  .btn-danger {
+    font-size:  2vh;
+  }
+  .btn-success {
+    font-size:  2vh;
+  }
 }
 
 @media (min-width: 768px) {
@@ -255,6 +364,12 @@ textarea.form-control {
   }
   #sidebarCollapse span {
     display: none;
+  }
+  .btn-danger {
+    font-size:  3vh ;
+  }
+  .btn-success {
+    font-size:  3vh ;
   }
 }
 
@@ -269,11 +384,58 @@ textarea.form-control {
     display: none;
   }
   span.wrap-icon.fa.fa-home.p-4 {
-    padding: 0 !important;
+    padding: 0 ;
   }
   span.menu-text.p-4 {
-    padding: 0 !important;
-    height: 30px !important;
+    padding: 0 ;
+    height: 30px ;
+  }
+  .btn-danger {
+    font-size:  2.5vw ;
+  }
+  .btn-success {
+    font-size:  2vw ;
+  }
+  i.bi.bi-trash::before {
+    font-size: 12px ;
+    margin-right: 100px ;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 12px ;
+    margin-right: 10px ;
+  }
+}
+
+@media (max-width: 425px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 180px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  span.wrap-icon.fa.fa-home.p-4 {
+    padding: 0 ;
+  }
+  span.menu-text.p-4 {
+    padding: 0 ;
+    height: 30px ;
+  }
+  .btn-danger {
+    font-size:  2vw ;
+  }
+  .btn-success {
+    font-size:  2vw ;
+  }
+  i.bi.bi-trash::before {
+    font-size: 12px ;
+    margin-right: 100px ;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 12px ;
+    margin-right: 10px ;
   }
 }
 
@@ -288,7 +450,8 @@ textarea.form-control {
     display: none;
   }
   aside {
-    height: 100% !important;
+    height: 100% ;
   }
+ 
 }
 
