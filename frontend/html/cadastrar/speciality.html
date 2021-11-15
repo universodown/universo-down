@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="pt-br">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Universo Down</title>
+    <title>Cadastro de Especialidade</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -28,29 +24,25 @@
 
       <!-- Conteúdo da Página  -->
       <div id="content">
-        <div class="card col-9"> 
-            <h3 class="mt-4 ml-2 titulo"> Cadastro de Especialidade</h3>
-            <hr>
+        <div class="card col-12"> 
+            <h3 class="mt-4 ml-2 titulo">Cadastro de Especialidade</h3>
             <div class="card-body">
+            <hr size=4>
               <form class="form-group">
                 <div class="container"> 
                   <div class="row">
-                    <div class="col-2">
-                      <label for="idEspecialidade">ID da Especialidade</label>
-                        <input type="text" class="form-control" name="idEspecialidade" id="idEspecialidade" placeholder="0001">
-                    </div>
                     <div class="col-12">
-                      <label for="nomeEspecialidade">Especialidade</label>
-                        <input type="text" class="form-control" name="nomeEspecialidade" id="nomeEspecialidade" placeholder="Nome da Especialidade">
+                      <h6 class="col-12">Especialidade<h6>
+                        <input type="text" class="form-control mb-4" name="name" id="name" placeholder="Nome da Especialidade" required>
                     </div>
                   </div>
                 </div>
-              </form>
-              <hr>
+                <hr size=4>
                   <div class="row mt-4">
-                    <button type="button" class="btn btn-success col-3 offset-2">Salvar</button>
-                    <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
+                    <button type="submit" name="save-btn" id="save-btn" class="btn btn-success col-3 offset-2">Salvar</button>
+                    <button type="reset" name="cancel-btn" class="btn btn-danger col-3 offset-2">Cancelar</button>
                   </div>
+              </form>
             </div>
         </div>
       </div>
@@ -58,7 +50,8 @@
 
     <!-- JS -->
     <script src="/public/js/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/main.js"></script>
     <script src="/public/js/script.js"></script>
+    <script src="/public/js/specality.js"></script>
+    
   </body>
 </html>
