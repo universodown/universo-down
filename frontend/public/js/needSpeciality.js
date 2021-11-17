@@ -1,7 +1,7 @@
 var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
-  $("#save-btn").click(function (e) {
+  $("#save-btn").on("click", function (e) {
     e.preventDefault();
     var data = {
       evolutionRecordId: $("#evolutionRecordId").val(),

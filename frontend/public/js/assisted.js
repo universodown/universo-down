@@ -30,7 +30,7 @@ function encodeImgToBase64() {
 }
 
 $(document).ready(function () {
-  $("#save-btn").click(function () {
+  $("#save-btn").on("click", function (e) {
     e.preventDefault();
     var hasBenefits = document.querySelector("input[name=hasBenefits]").checked
       ? true

@@ -2,7 +2,7 @@ var baseurl = window.location.origin + window.location.pathname;
 var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
-  $("#save-btn").click(function () {
+  $("#save-btn").on("click", function (e) {
     e.preventDefault();
     var name = $("#name").val();
     if (name == "") {
