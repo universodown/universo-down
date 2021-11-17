@@ -1,11 +1,11 @@
 /* Carregar o menu lateral */
 const path = ""
-$.get("/frontend/html/partials/navbar.html", function (data) {
+$.get("/html/partials/navbar.html", function (data) {
   $("#nav-placeholder").replaceWith(data);
 });
 /* Carregar a search lateral */
 const pathSearchBar = ""
-$.get("/frontend/html/partials/searchbar.html", function (data) {
+$.get("/html/partials/searchbar.html", function (data) {
   $("#searchbar-placeholder").replaceWith(data);
 });
 
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     if (x < max_fields) {
       x++;
-      $.get("../../frontend/html/cadastrar/additionalRelated.html", function (data) {
+      $.get("../../html/cadastrar/additionalRelated.html", function (data) {
         $(wrapper).append(data);
       });
     } else {

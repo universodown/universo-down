@@ -39,7 +39,7 @@ $(document).ready(function () {
         data: JSON.stringify(data),
         success: function (data) {
           const token = data.token;
-          window.location.href = '/frontend/index.html';
+          window.location.href = '/index.html';
           window.localStorage.setItem('Authorization', token);
         },
         error: function (err) {
