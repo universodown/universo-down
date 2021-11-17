@@ -1,11 +1,11 @@
 /* Carregar o menu lateral */
 const path = ""
-$.get("/html/partials/navbar.html", function (data) {
+$.get("/frontend/html/partials/navbar.html", function (data) {
   $("#nav-placeholder").replaceWith(data);
 });
 /* Carregar a search lateral */
 const pathSearchBar = ""
-$.get("/html/partials/searchbar.html", function (data) {
+$.get("/frontend/html/partials/searchbar.html", function (data) {
   $("#searchbar-placeholder").replaceWith(data);
 });
 
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     if (x < max_fields) {
       x++;
-      $.get("familiar_adicional.html", function (data) {
+      $.get("../../frontend/html/cadastrar/additionalRelated.html", function (data) {
         $(wrapper).append(data);
       });
     } else {
@@ -43,7 +43,7 @@ $(document).ready(function () {
   /* Remover Form Familiar */
   $(wrapper).on("click", ".delete", function (e) {
     e.preventDefault();
-    $(this).parents("#form_familiar").remove();
+    $(this).parents("#form").remove();
     x--;
   });
 });

@@ -1,0 +1,22 @@
+
+  input[type="number"] {
+    width: 100px;
+  }
+  
+  input + span {
+    padding-right: 30px;
+  }
+  
+  input:invalid+span:after {
+    position: absolute;
+    color: #f4b05f;
+    font-size: 20px;
+    content: '✖';
+  }
+  
+  input:valid+span:after {
+    position: absolute;
+    font-size: 20px;
+    color: #3c98a5;
+    content: '✓';
+  }

@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
-
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+    
     <!-- CSS -->
-    <link rel="stylesheet" href="/public/css/navbar.css" />
-    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
   </head>
   <body>
   
@@ -27,27 +27,27 @@
         <div class="card col-12"> 
         <h3 class="mt-4 ml-2 titulo"> Cadastro de Especialista</h3>
         <div class="card-body">
-          <form class="form-group" id="submitForm">
+          <form class="form-group">
            <hr size=4 >
             <div class="container"> 
               <div class="row">
                 <div class="col-6">
                     <!-- SearchBar  -->
                       <h6 class="col-12">Nome do(a) Especialista </h6>
-                      <div id="searchbar-placeholder" name="specialities"></div>
+                      <div id="searchbar-placeholder" name="userId"></div>
                 </div>
                 <div class="col-6">
                     <!-- SelectBox  -->
                     <h6 class="col-12">Nome da Especialidade </h6>
-                      <select class="col-12" id="selectSpeciality" name="speciality">
-                          <option value="0">- Selecione uma Especialidade -</option>
+                      <select class="col-12" id="specialityId" name="specialityId">
+                          <option value="" selected disabled hidden>- Selecione uma Especialidade -</option>
                       </select>
                 </div>
               </div>
             </div>
           <hr size=4>
               <div class="row mt-4">
-                <button type="submit" form="submitForm" name="save-btn" id="save-btn" class="btn btn-success col-3 offset-2">Salvar</button>
+                <button type="button" id="save-btn" class="btn btn-success col-3 offset-2">Salvar</button>
                 <button type="reset" class="btn btn-danger col-3 offset-2">Cancelar</button>
               </div>
             </div>
@@ -57,35 +57,11 @@
     </div>
 
     <!-- JS -->
-    <script src="/public/js/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/script.js"></script>
-    <script type="module" src="/public/js/specialities.js"></script>
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
+    <script type="module" src="/frontend/public/js/specialities.js"></script>
+    
     <script>
-    var baseUrlApi = "http://localhost:3000/api/v1";
-      $("#submitForm").submit(function (e) {
-        e.preventDefault();
-        var data = {};
-        $.each(this, function (i, v) {
-          var input = $(v);
-          /* campos do formulario */
-          data[input.attr("specialities")] = input.val();
-          data[input.attr("speciality")] = input.val();
-          /*delete data["undefined"];*/
-        });
-        $.ajax({
-          contentType: "application/json; charset=utf-8",
-          type: POST,
-          url: baseUrlApi + "/specialities",
-          dataType: "json",
-          data: JSON.stringify(data),
-          success: function (data) {
-            alert(data.message);
-            alert("Cadastrado!")
-            document.location.reload(true);
-          },
-        });
-      });
-     
     </script>
   </body>
 </html>

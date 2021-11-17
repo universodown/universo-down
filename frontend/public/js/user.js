@@ -1,4 +1,3 @@
-var baseurl = window.location.origin + window.location.pathname;
 var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
@@ -18,6 +17,7 @@ $(document).ready(function () {
 
 $(document).ready(function (e) {
   $("#save-btn").click(function () {
+    e.preventDefault();
     var data = {
       firstName: $("#firstName").val(),
       lastName: $("#lastName").val(),
@@ -55,7 +55,7 @@ $(document).ready(function (e) {
       data: JSON.stringify(data),
       success: function (data) {
         alert("Cadastro Realizado!");
-        console.log(data);
+        location.reload(true);
       },
       error: function (err) {
         if (err.status == 304) {
@@ -70,7 +70,7 @@ $(document).ready(function (e) {
         if (err.status == 500) {
           alert("O servidor encontrou uma situação com a qual não sabe lidar");
         } else {
-          alert(err + "ERRO " + JSON.stringify(err));
+          alert("ERRO " + JSON.stringify(err));
         }
       },
     });

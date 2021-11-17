@@ -4,7 +4,7 @@ function autocomplete(inp, arr) {
   var currentFocus;
   /*Executa a funcção quando digita no campo texto*/
   inp.addEventListener("input", function (e) {
-    var a, b, i, val = this.value;
+    var a, b, val = this.value;
     /*Fecha qualquer outra lista aberta com valores de autocomplete*/
     closeAllLists();
     if (!val) {
@@ -17,21 +17,25 @@ function autocomplete(inp, arr) {
     a.setAttribute("class", "autocomplete-items");
     /*Anexa a DIV como uma filha do container autocomplete*/
     this.parentNode.appendChild(a);
-    for (i = 0; i < arr.length; i++) {
-      /*Verifica-se se começa com a letra digitada:*/
-      if (
-        arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-      ) {
+
+    for (const [key, value] of Object.entries(arr)) {
+      window.localStorage.removeItem("id");
+      /*Verifica se começa com a letra digitada:*/
+      if (value.name.substr(0, val.length).toLowerCase() == val.toLowerCase()) 
+      { 
         /*Cria uma DIV para cada resultado:*/
         b = document.createElement("DIV");
+        // console.log(value.id);
         /*Negrito na primeira letra*/
         b.innerHTML =
-          "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-        b.innerHTML += arr[i].substr(val.length);
-        b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+          "<strong>" + value.name.substr(0, val.length) + "</strong>";
+        b.innerHTML += value.name.substr(val.length);
+        b.innerHTML += "<input type='hidden' id='" + value.id + "' value='" + value.name + "'>";
         /*Executa a funçao quando há um clique em um resultado da lista*/
         b.addEventListener("click", function (e) {
           inp.value = this.getElementsByTagName("input")[0].value;
+          inp.id = this.getElementsByTagName("input")[0].id;
+          localStorage.setItem("id", inp.id);
           closeAllLists();
         });
         a.appendChild(b);
@@ -67,7 +71,7 @@ function autocomplete(inp, arr) {
     x[currentFocus].classList.add("autocomplete-active");
   }
   function removeActive(x) {
-    /*remove o "active"*/
+    /*remove o status "active"*/
     for (var i = 0; i < x.length; i++) {
       x[i].classList.remove("autocomplete-active");
     }
@@ -84,4 +88,5 @@ function autocomplete(inp, arr) {
     closeAllLists(e.target);
   });
 }
+
 export { autocomplete };

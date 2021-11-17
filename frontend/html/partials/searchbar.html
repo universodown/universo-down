@@ -11,19 +11,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <!-- Style -->
-    <link rel="stylesheet" href="/public/css/searchbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/searchbar.css" />
   </head>
 
   <body>
     <!--PRECISA setar autocomplete off:-->
     <form autocomplete="off" action="#">
       <div class="container">
-        <div class="row">
+        <div class="row ">
         <div class="autocomplete">
-          <input
+          <input  class="col"
             id="searchBar"
             type="text"
-            name="fullName"
+            name="name"
             placeholder="Nome Completo"
           />
         </div>
@@ -31,6 +31,6 @@
     </form>
 
     <!-- JS -->
-    <script type="module" src="/public/js/searchbar.js"></script>
+    <script type="module" src="/frontend/public/js/searchbar.js"></script>
   </body>
 </html>

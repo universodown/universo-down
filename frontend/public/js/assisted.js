@@ -1,4 +1,3 @@
-var baseurl = window.location.origin + window.location.pathname;
 var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
@@ -32,12 +31,15 @@ function encodeImgToBase64() {
 
 $(document).ready(function () {
   $("#save-btn").click(function () {
+    e.preventDefault();
     var hasBenefits = document.querySelector("input[name=hasBenefits]").checked
       ? true
       : false;
     var active = document.querySelector("input[name=active]").checked
       ? true
       : false;
+    var photo = $("#txt").val();
+    
     var data = {
       name: $("#name").val(),
       email: $("#email").val(),
@@ -60,7 +62,7 @@ $(document).ready(function () {
       occupation: $("#occupation").val(),
       nationalIdentity: $("#nationalIdentity").val(),
       additionalInformation: $("#additionalInformation").val(),
-      photo: $("#txt").val(),
+      photo: photo,
       hasBenefits: hasBenefits,
       active: active,
       socialIdentificationNumber: $("#socialIdentificationNumber").val(),
@@ -78,6 +80,7 @@ $(document).ready(function () {
       data: JSON.stringify(data),
       success: function (data) {
         alert("Cadastro Realizado!");
+        location.reload(true);
       },
       error: function (err) {
         if (err.status == 304) {
@@ -98,10 +101,3 @@ $(document).ready(function () {
     });
   });
 });
-
-/*
-var hasBenefits = document.getElementsByName("hasBenefits")[0].checked? 'Sim' : 'Não';
-var active = document.getElementsByName("active")[0].checked? 'Sim' : 'Não';
-console.log(hasBenefits);
-console.log(active);
-*/

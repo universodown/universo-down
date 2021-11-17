@@ -3,18 +3,13 @@ var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
   $("#save-btn").click(function () {
+    e.preventDefault();
     var name = $("#name").val();
     if (name == "") {
       alert("Campo em Branco!!!");
     } else {
-      $("input")
-        .keyup(function () {
-          var value = $(this).val();
-          $("#name").text(value);
-        })
-        .keyup();
       var data = {
-        name: $("#name").val(),
+        name: name,
       };
       $.ajax({
         url: baseUrlApi + "/speciality",
@@ -27,17 +22,13 @@ $(document).ready(function () {
         dataType: "JSON",
         data: JSON.stringify(data),
         success: function (data) {
-          if (data != "") {
-            document.location.reload(true);
-            alert("Cadastro Realizado!");
-          }
+          alert("Cadastro Realizado!");
+          location.reload(true);
         },
         error: function (err) {
-          alert("Speciality: Erro Desconhecido!" + err);
+          alert("Speciality: Erro Desconhecido!" + JSON.stringify(err));
         },
       });
     }
   });
 });
-
-

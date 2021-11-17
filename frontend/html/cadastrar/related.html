@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="pt-br">
 
 <head>
@@ -13,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/public/css/navbar.css" />
-    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
 </head>
 
 <body>
@@ -34,9 +30,15 @@
                 <h3 class="mt-4 ml-2 titulo"> Cadastro de Familiar</h3>
                 <hr>
                 <div class="card-body">
-                    <form class="form-group">
                         <div class="container">
+                    <form class="form-group">
+
                             <div class="row">
+                            <div class="col-6">
+                            <!-- SearchBar  -->
+                            <h6 class="col-12">Nome do(a) Especialista </h6>
+                            <div id="searchbar-placeholder" name="userId"></div>
+                        </div>
                                 <div class="col-12">
                                     <label for="nome">Nome</label>
                                     <input type="text" class="form-control" name="nome" id="nome"
@@ -135,9 +137,9 @@
     </div>
 
     <!-- JS -->
-    <script src="/public/js/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/main.js"></script>
-    <script src="/public/js/script.js"></script>
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/main.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
 </body>
 
 </html>

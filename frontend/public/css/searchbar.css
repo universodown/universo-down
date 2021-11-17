@@ -12,32 +12,31 @@ body {
   display: inline-block;
 }
 
-input {
+#searchBar {
   border: 1px solid transparent;
   background-color: #f1f1f1;
   padding-left: 10px;
-  font-size: 2.5vw;
-  height: 5vw;
+  height: 5.1vw;
+  font-size: 25px;
 }
 div.autocomplete {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
-div.container{
+div.container {
   padding-left: 12px !important;
   padding-right: 12px !important;
-
 }
 input[type="text"] {
   background-color: #f1f1f1;
   width: 100%;
 }
 
-input[type="submit"] {
+/* input[type="submit"] {
   background-color: DodgerBlue;
   color: #fff;
   cursor: pointer;
-}
+} */
 
 .autocomplete-items {
   position: absolute;
@@ -67,5 +66,4 @@ input[type="submit"] {
 .autocomplete-active {
   background-color: DodgerBlue !important;
   color: #ffffff;
-
 }

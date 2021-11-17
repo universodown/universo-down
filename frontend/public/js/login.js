@@ -1,4 +1,3 @@
-var baseurl = window.location.origin + window.location.pathname;
 var baseUrlApi = "http://localhost:3000/api/v1";
 
 $(document).ready(function () {
@@ -40,11 +39,11 @@ $(document).ready(function () {
         data: JSON.stringify(data),
         success: function (data) {
           const token = data.token;
-          window.location.href = '/index.html';
+          window.location.href = '/frontend/index.html';
           window.localStorage.setItem('Authorization', token);
         },
         error: function (err) {
-          alert(err);
+          alert(JSON.stringify(err));
         },
       });
     }

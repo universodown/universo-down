@@ -1,21 +1,25 @@
 import { autocomplete } from "./searchbar.js";
 
 var baseUrlApi = "http://localhost:3000/api/v1";
-
 $(document).ready(function () {
   window.localStorage.removeItem("id");
   $("#save-btn").on("click", function () {
     e.preventDefault();
-    var input = localStorage.getItem("id");
-    var specialityId = $("#specialityId :selected").val();
-    
+    var assistedId = localStorage.getItem("id");
+    var date = document.getElementById("date");
+    var responseDate = document.getElementById("responseDate");
+    var status = $("#status :selected").val();
+    var observation = document.getElementById("observation");
+
     var data = {
-      userId: input,
-      specialityId: specialityId,
+      date: date.value,
+      responseDate: responseDate.value,
+      status: status,
+      observation: observation.value,
+      assistedId: assistedId,
     };
-    console.log(data);
     $.ajax({
-      url: baseUrlApi + "/specialities",
+      url: baseUrlApi + "/transport-request",
       type: "POST",
       headers: {
         "x-access-token": localStorage.getItem("Authorization"),
@@ -27,21 +31,22 @@ $(document).ready(function () {
       success: function (data) {
         if (data != "") {
           alert("Cadastro Realizado!");
-          location.reload(true);
         }
+        location.reload(true);
       },
       error: function (err) {
-        alert("Erro Desconhecido!  " + JSON.stringify(err));
+        alert("Erro Desconhecido!" + JSON.stringify(err));
       },
     });
   });
 });
 
 $(document).ready(function () {
+  window.localStorage.removeItem("id");
   function arrayOfNAmes() {
     var arrayNames = [];
     $.ajax({
-      url: baseUrlApi + "/user",
+      url: baseUrlApi + "/assisted",
       type: "GET",
       dataType: "JSON",
       headers: {
@@ -49,36 +54,16 @@ $(document).ready(function () {
       },
       success: function (data) {
         $.each(data, function (index, value) {
-          value.userRole == "profissional"
-            ? arrayNames.push({
-                id: value.id,
-                name: value.firstName + " " + value.lastName
-              })
-            : null;
+          arrayNames.push({
+            id: value.id,
+            name: value.name,
+          });
         });
       },
     });
-
     // console.log(arrayNames)
     return arrayNames;
   }
-  
-  autocomplete(document.getElementById("searchBar"), arrayOfNAmes());
 
-  $.ajax({
-    url: baseUrlApi + "/speciality",
-    type: "GET",
-    dataType: "JSON",
-    headers: {
-      "x-access-token": localStorage.getItem("Authorization"),
-    },
-    success: function (data) {
-      // $("#specialityId").empty();
-      $.each(data, function (index, value) {
-        $("#specialityId").append(
-          "<option value='" + value.id + "'>" + value.id + " - " + value.name + "</option>"
-        );
-      });
-    },
-  });
+  autocomplete(document.getElementById("searchBar"), arrayOfNAmes());
 });
