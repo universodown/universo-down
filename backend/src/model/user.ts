@@ -39,7 +39,7 @@ export class User {
 
     @Column(
         'enum',
-        { name: 'user_role', enum: UserRole, default: 'profissional' }
+        { name: 'user_role', enum: UserRole, default: 'professional' }
     )
     userRole: UserRole
 

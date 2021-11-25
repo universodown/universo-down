@@ -140,6 +140,8 @@ CREATE TABLE `relateds` (
   `scholarity` enum('elementary-school','high_school','university-school','masters-degree','doctorate-degree') NOT NULL DEFAULT 'elementary-school',
   `revenue` float NOT NULL,
   `national_identity` text NOT NULL,
+  `professional_situation` text NOT NULL,
+  `occupation` text NOT NULL,
   `responsible` tinyint(4) NOT NULL,
   `assisted_id` int(11) NOT NULL,
   `organization_id` int(11) DEFAULT NULL
@@ -213,7 +215,7 @@ CREATE TABLE `users` (
   `email` text NOT NULL,
   `password` text NOT NULL,
   `admin_role` enum('admin','member','owner') NOT NULL DEFAULT 'member',
-  `user_role` enum('secretary','profissional','social-assistence') NOT NULL DEFAULT 'profissional',
+  `user_role` enum('secretary','professional','social-assistence') NOT NULL DEFAULT 'professional',
   `birthday` date NOT NULL,
   `gender` enum('male','female','not-informed') NOT NULL DEFAULT 'not-informed',
   `identification` text NOT NULL,

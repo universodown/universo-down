@@ -32,7 +32,7 @@ export class CalendarRoutes {
                     }
                     const id = Number(request.params.id)
                     if (
-                        context.user.userRole === UserRole.Profissional
+                        context.user.userRole === UserRole.Professional
                         && context.user.id !== id
                     ) {
                         response.status(401).json({
@@ -83,7 +83,7 @@ export class CalendarRoutes {
                     const calendar = await calendarService.find(id)
 
                     if (
-                        context.user.userRole === UserRole.Profissional
+                        context.user.userRole === UserRole.Professional
                         && context.user.id !== calendar.userId
                     ) {
                         response.status(401).json({
@@ -126,7 +126,7 @@ export class CalendarRoutes {
             async (request: RequestWithCalendar, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão'
                             + 'para esta ação { {Função: Profissional} }'
@@ -166,7 +166,7 @@ export class CalendarRoutes {
             async (request: RequestWithCalendar, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão'
                             + 'para esta ação { {Função: Profissional} }'
@@ -236,7 +236,7 @@ export class CalendarRoutes {
             async (request: RequestWithCalendar, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão'
                             + 'para esta ação { {Função: Profissional} }'

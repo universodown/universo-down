@@ -58,8 +58,6 @@ export function isRelatedCreate(obj: any): obj is RelatedCreate {
         && obj.nationality !== undefined
         && obj.scholarity !== undefined
         && obj.revenue !== undefined
-        && obj.professionalSituation !== undefined
-        && obj.occupation !== undefined
         && obj.nationalIdentity !== undefined
         && obj.responsible !== undefined
         && obj.assistedId !== undefined

@@ -21,7 +21,7 @@ export class SpecialitiesRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Profissional )}'
@@ -62,7 +62,7 @@ export class SpecialitiesRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Profissional )}'
@@ -118,7 +118,7 @@ export class SpecialitiesRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Profissional )}'
@@ -158,7 +158,7 @@ export class SpecialitiesRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Profissional )}'

@@ -24,7 +24,7 @@ export class SchoolRequestRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'
@@ -63,7 +63,7 @@ export class SchoolRequestRoutes {
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'
@@ -121,7 +121,7 @@ export class SchoolRequestRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
@@ -162,7 +162,7 @@ export class SchoolRequestRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
@@ -233,7 +233,7 @@ export class SchoolRequestRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole === UserRole.Profissional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                                 + ' esta ação. { (Função: Secretária )}'
