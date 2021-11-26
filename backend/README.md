@@ -43,3 +43,9 @@ npm start
 
 * Criar Nova Organiação
 `curl --request POST http://localhost:3000/organization -H "Content-Type: application/json" --data "{ \"name\": \"Organização\", \"description\": \"Teste\", \"domain\": \"domain.com\" }"`
+
+# Executando os comandos de Teste
+
+Para executar os testes basta o comando `npm run test`.
+
+O coverage é gerada na pasta `coverage` através do comando `npm run test-cov`, sendo que o `threshold` está configurado em 80%.

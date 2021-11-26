@@ -13,7 +13,10 @@ export default class OrganizationRepository extends Repository<Organization> {
             ? db.getRepository(Organization)
             : this
 
-        return repository.findOne({ where: { id } })
+        return repository.findOne({
+            where: { id },
+            relations: ['users']
+        })
     }
 
     async findAll(): Promise<Organization[]> {

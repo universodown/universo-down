@@ -61,7 +61,7 @@ export class UserUpdate {
     plainPassword?: string
     plainPasswordConfirmation?: string
     adminRole?: AdminRole
-    userRole?:UserRole
+    userRole?: UserRole
     birthday?: Date
     gender?: Gender
     identification?: string
@@ -76,7 +76,6 @@ export class UserUpdate {
     state?: string
     phone?: string
     nationalIdentity?: string
-    organizationId?: number
 
 }
 
