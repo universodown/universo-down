@@ -54,7 +54,7 @@ export default class SchoolRequestService {
             const repository = db.getCustomRepository(SchoolRequestRepository)
             const schoolRequest = await repository.findById(id)
 
-            return repository.delete(schoolRequest)
+            return repository.remove(schoolRequest)
         })
     }
 

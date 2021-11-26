@@ -88,10 +88,16 @@ export class Related {
     @Column({ type: 'boolean' })
     responsible: boolean
 
-    @Column('int', { name: 'assisted_id', nullable: false })
+    @Column('text', { name: 'professional_situation', nullable: true })
+    professionalSituation?: string
+
+    @Column('text', { nullable: true })
+    occupation?: string
+
+    @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('int', { name: 'organization_id', nullable: false })
+    @Column('int', { name: 'organization_id' })
     organizationId: number
 
     @JoinColumn({ name: 'assisted_id', referencedColumnName: 'id' })

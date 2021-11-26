@@ -51,7 +51,7 @@ export default class SpecialityService {
             const repository = db.getCustomRepository(SpecialityRepository)
             const speciality = await repository.findById(id, db)
 
-            return repository.save(speciality)
+            return repository.remove(speciality)
         })
     }
 
