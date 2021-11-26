@@ -1,5 +1,5 @@
 export enum UserRole {
   Secretary = 'secretary',
-  Profissional = 'profissional',
+  Professional = 'professional',
   SocialAssistence = 'social-assistence'
 }

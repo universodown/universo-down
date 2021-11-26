@@ -24,9 +24,9 @@ export default class OrganizationService {
             const organization = await repository.save({
                 ...organizationInfo,
                 users: [{
-                    email: `admin@${organizationInfo.domain}`,
-                    firstName: 'Administrador',
-                    lastName: '',
+                    firstName: 'Admin',
+                    lastName: 'org',
+                    email: 'email@domain.com',
                     password,
                     adminRole: AdminRole.Owner,
                     userRole: UserRole.Secretary,

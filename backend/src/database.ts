@@ -22,7 +22,7 @@ export default createConnection({
     password: database.password,
     database: database.name,
     logging: logs.db ? 'all' : false,
-    synchronize: true,
+    // Synchronize: true,
     extra: {
         max: database.pollSize,
         connectionTimeoutMillis: database.connectionTimeoutMillis

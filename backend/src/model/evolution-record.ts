@@ -2,16 +2,17 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    Double,
     JoinColumn,
     ManyToOne,
     OneToMany
 } from 'typeorm'
 
+import { User } from './user'
 import { Assisted } from './assisted'
 import { Organization } from './organization'
+import { Status } from './enum/status'
+import { NeedSpeciality } from './need-speciality'
 import { ProfessionalAttendance } from './professional-attendance'
-import { User } from './user'
 
 @Entity({ name: 'evolution_records' })
 export class EvolutionRecord {
@@ -19,28 +20,28 @@ export class EvolutionRecord {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column('date', { name: 'date' })
+    @Column('date')
     date: Date
 
-    @Column('text', { name: 'status' })
-    status: string
+    @Column('enum', { enum: Status, default: 'pending' })
+    status: Status
 
-    @Column('double', { name: 'wight' })
-    wight: Double
+    @Column('double')
+    weight: number
 
-    @Column('double', { name: 'height' })
-    height: Double
+    @Column('double')
+    height: number
 
-    @Column('text', { name: 'report' })
+    @Column('text')
     report: string
 
-    @Column('int', { name: 'user_id', nullable: false })
+    @Column('int', { name: 'user_id' })
     userId: number
 
-    @Column('int', { name: 'assisted_id', nullable: false })
+    @Column('int', { name: 'assisted_id' })
     assistedId: number
 
-    @Column('int', { name: 'organization_id', nullable: false })
+    @Column('int', { name: 'organization_id' })
     organizationId: number
 
     @OneToMany(_ => ProfessionalAttendance, p => p.evolutionRecord)
@@ -61,5 +62,12 @@ export class EvolutionRecord {
         { onDelete: 'RESTRICT' }
     )
     organization: Organization
+
+    @OneToMany(
+        _ => NeedSpeciality,
+        n => n.evolutionRecord,
+        { onDelete: 'RESTRICT' }
+    )
+    needSpecialities: NeedSpeciality[]
 
 }

@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 import { AdminRole } from '../../model/enum/admin-role'
 import { Gender } from '../../model/enum/gender'
 import { UserRole } from '../../model/enum/user-role'
-
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 export class UserCreate {
 
     firstName: string
@@ -12,9 +11,8 @@ export class UserCreate {
     email: string
     plainPassword: string
     plainPasswordConfirmation: string
-    organizationId?: number
     adminRole: AdminRole
-    userRole: UserRole
+    userRole:UserRole
     birthday: Date
     gender: Gender
     identification: string
@@ -29,14 +27,29 @@ export class UserCreate {
     state: string
     phone: string
     nationalIdentity: string
+    organizationId?: number
 
 }
 
+// eslint-disable-next-line complexity
 export function isUserCreate(obj: any): obj is UserCreate {
     return obj.firstName !== undefined
         && obj.lastName !== undefined
+        && obj.identification !== undefined
+        && obj.birthday !== undefined
+        && obj.zipCode !== undefined
         && obj.email !== undefined
         && obj.plainPassword !== undefined
+        && obj.address !== undefined
+        && obj.neighborhood !== undefined
+        && obj.city !== undefined
+        && obj.state !== undefined
+        && obj.phone !== undefined
+        && obj.number !== undefined
+        && obj.adminRole !== undefined
+        && obj.userRole !== undefined
+        && obj.gender !== undefined
+        && obj.generalRegistration !== undefined
 }
 
 export class UserUpdate {
