@@ -60,7 +60,7 @@ export default class TransportRequestService {
             )
             const transportRequest = await repository.findById(id)
 
-            return repository.delete(transportRequest)
+            return repository.remove(transportRequest)
         })
     }
 
