@@ -36,7 +36,7 @@ describe("Users tests", () => {
                 plainPasswordConfirmation: "123456",
                 organizationId: 21,
                 adminRole: AdminRole.Member,
-                userRole: UserRole.Profissional,
+                userRole: UserRole.Professional,
                 birthday,
                 gender: Gender.Male,
                 identification: "550.444.186-25",
@@ -57,7 +57,7 @@ describe("Users tests", () => {
             expect(user.lastName).toEqual("Peixoto")
             expect(user.email).toEqual("yagoianpeixoto_@a-qualitybrasil.com.br")
             expect(user.adminRole).toEqual(AdminRole.Member)
-            expect(user.userRole).toEqual(UserRole.Profissional)
+            expect(user.userRole).toEqual(UserRole.Professional)
             expect(user.birthday).toEqual(birthday)
             expect(user.gender).toEqual(Gender.Male)
             expect(user.identification).toEqual("550.444.186-25")
@@ -90,7 +90,7 @@ describe("Users tests", () => {
                     plainPasswordConfirmation: "abcdef",
                     organizationId: 21,
                     adminRole: AdminRole.Member,
-                    userRole: UserRole.Profissional,
+                    userRole: UserRole.Professional,
                     birthday,
                     gender: Gender.Male,
                     identification: "550.444.186-25",
@@ -125,7 +125,7 @@ describe("Users tests", () => {
                     plainPasswordConfirmation: "",
                     organizationId: 21,
                     adminRole: AdminRole.Member,
-                    userRole: UserRole.Profissional,
+                    userRole: UserRole.Professional,
                     birthday,
                     gender: Gender.Male,
                     identification: "550.444.186-25",
@@ -160,7 +160,7 @@ describe("Users tests", () => {
                     plainPasswordConfirmation: "",
                     organizationId: 21,
                     adminRole: AdminRole.Member,
-                    userRole: UserRole.Profissional,
+                    userRole: UserRole.Professional,
                     birthday,
                     gender: Gender.Male,
                     identification: "550.444.186-25",
@@ -228,8 +228,8 @@ describe("Users tests", () => {
             expect(user.lastName).toEqual('Conceição')
             expect(user.email).toEqual('teresinha.conceicao@acampe.com.br')
             expect(user.organizationId).toEqual(21)
-            expect(user.adminRole).toEqual('member')
-            expect(user.userRole).toEqual('profissional')
+            expect(user.adminRole).toEqual(AdminRole.Member)
+            expect(user.userRole).toEqual(UserRole.Professional)
             expect(new Date(user.birthday)).toEqual(new Date('1952-06-13'))
             expect(user.gender).toEqual(Gender.Female)
             expect(user.identification).toEqual('536.400.759-60')

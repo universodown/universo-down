@@ -11,9 +11,8 @@ VALUES(
         19,
         'Administrador',
         '',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'admin@lar.idoso.com',
-        18,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'owner',
         'secretary',
         '2021-10-27',
@@ -29,7 +28,8 @@ VALUES(
         '',
         '',
         '',
-        ''
+        '',
+        18
     );
 
 -- Delete an organization
@@ -45,9 +45,8 @@ VALUES(
         20,
         'Administrador',
         '',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'admin@lar.wrong.com',
-        19,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'owner',
         'secretary',
         '2021-10-27',
@@ -63,7 +62,8 @@ VALUES(
         '',
         '',
         '',
-        ''
+        '',
+        19
     );
 
 -- Find an organization
@@ -79,9 +79,8 @@ VALUES(
         21,
         'Administrador',
         '',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'admin@larabdonbatista.com.br',
-        20,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'owner',
         'secretary',
         '2021-10-27',
@@ -97,7 +96,8 @@ VALUES(
         '',
         '',
         '',
-        ''
+        '',
+        20
     );
 
 
@@ -114,9 +114,8 @@ VALUES(
         22,
         'Administrador',
         '',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'admin@acampe.com.br',
-        21,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'owner',
         'secretary',
         '2021-10-27',
@@ -132,7 +131,8 @@ VALUES(
         '',
         '',
         '',
-        ''
+        '',
+        21
     );
 
 INSERT INTO users
@@ -140,11 +140,10 @@ VALUES(
         23,
         'Luiza',
         'Dias',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'luiza.dias@acampe.com.br',
-        21,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'member',
-        'profissional',
+        'professional',
         '2021-10-27',
         'not-informed',
         '',
@@ -158,18 +157,18 @@ VALUES(
         '',
         '',
         '',
-        ''
+        '',
+        21
     );
 INSERT INTO users
 VALUES(
         24,
         'Teresinha',
         'Conceição',
-        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'teresinha.conceicao@acampe.com.br',
-        21,
+        '$2b$10$5f/X.eOWYXCgnnzK4D9/g.qyX7DQhaFi75h5EpZrxL1/PLR8I3tDq',
         'member',
-        'profissional',
+        'professional',
         '1952-06-13',
         'female',
         '536.400.759-60',
@@ -183,5 +182,6 @@ VALUES(
         'Jaraguá do Sul',
         'SC',
         '(47) 3556-8750',
-        '31.090.489-4'
+        '31.090.489-4',
+        21
     );
