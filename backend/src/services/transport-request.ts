@@ -69,7 +69,11 @@ export default class TransportRequestService {
     ) {
         return this.repository.findById(id)
     }
-
+    async findAllWithAssisted(
+        context: Context
+    ) {
+        return this.repository.findAllWithAssisted(context)
+    }
     async findAll(
         context : Context,
         userId: number

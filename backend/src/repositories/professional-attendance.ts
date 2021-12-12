@@ -16,7 +16,10 @@ export default class ProfessionalAttendanceRepository
             ? db.getRepository(ProfessionalAttendance)
             : this
 
-        return repository.findOne({ where: { id } })
+        return repository.findOne({
+            where: { id },
+            relations: ['organization']
+        })
     }
 
     async findAll(
@@ -41,7 +44,7 @@ export default class ProfessionalAttendanceRepository
 
         return repository.find({
             where: { id },
-            relations: ['evolutionRecord', 'needSpecialities', 'user']
+            relations: ['evolutionRecord', 'evolutionRecord.assisted', 'user']
         })
     }
 
@@ -54,6 +57,15 @@ export default class ProfessionalAttendanceRepository
                 organizationId: context.organization.id,
                 userId
             }
+        })
+    }
+    async findAllByUserId(context: Context): Promise<ProfessionalAttendance[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id,
+                userId: context.user.id
+            },
+            relations: ['evolutionRecord', 'evolutionRecord.assisted' ,'user']
         })
     }
 

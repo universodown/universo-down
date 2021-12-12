@@ -19,7 +19,14 @@ export default class SchoolRequestRepository extends Repository<SchoolRequest> {
             relations: ['organization']
         })
     }
-
+    async findAllWithAssisted(context: Context): Promise<SchoolRequest[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id
+            },
+            relations: ['assisted']
+        })
+    }
     async findAll(
         context: Context,
         assistedId: number

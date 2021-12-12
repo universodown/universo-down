@@ -67,7 +67,9 @@ export default class ProfessionalAttendanceService {
         })
     }
 
-    async findById(id: number): Promise<ProfessionalAttendance | undefined> {
+    async findById(
+        id: number
+    ) {
         return this.repository.findById(id)
     }
 
@@ -77,15 +79,23 @@ export default class ProfessionalAttendanceService {
     ): Promise<ProfessionalAttendance[]> {
         return this.repository.findAll(context, evolutionRecordId)
     }
+
     async findAllAttendance(
         context: Context,
         userId: number
     ): Promise<ProfessionalAttendance[]> {
         return this.repository.findAllAttendanceByProfessional(context, userId)
     }
+
     async findAllByAttendance(attendanceId: number)
     : Promise<ProfessionalAttendance[]> {
         return this.repository.findAllByAttendance(attendanceId)
+    }
+
+    async findAllByUserId(
+        context: Context
+    ) {
+        return this.repository.findAllByUserId(context)
     }
 
 }

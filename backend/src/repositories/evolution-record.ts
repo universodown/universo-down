@@ -28,15 +28,26 @@ export default class EvolutionRecordRepository
         return this.find({ where: {
             organizationId: context.organization.id,
             assistedId
-        } })
+        },
+        relations: ['organization']
+        })
     }
 
-    async findAll(context: Context): Promise<EvolutionRecord[]> {
+    async findAllByUserId(context: Context): Promise<EvolutionRecord[]> {
         return this.find({
             where: {
                 organizationId: context.organization.id,
                 userId: context.user.id
-            }
+            },
+            relations: ['assisted']
+        })
+    }
+    async findAll(context: Context): Promise<EvolutionRecord[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id
+            },
+            relations: ['assisted']
         })
     }
 

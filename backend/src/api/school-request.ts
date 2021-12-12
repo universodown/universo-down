@@ -16,7 +16,36 @@ export class SchoolRequestRoutes {
 
     public static schoolRequestRoutes(app: core.Express) {
         const baseUrl = '/api/v1/school-request'
+        app.get(
+            `${baseUrl}/assisted/`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
 
+                    if (context.user.userRole === UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + 'esta ação. { (Função: Secretária) }'
+                        })
+
+                        return
+                    }
+
+                    const schoolService = Container
+                        .get(SchoolRequestService)
+                    const speciality = await schoolService
+                        .findAllWithAssisted(context)
+
+                    response.status(200).json(speciality)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}} `
+                    })
+                }
+            }
+        )
         app.get(
             `${baseUrl}/assisted/:id`, // BaseUrl + '/:id'
             verifyJWT,
@@ -27,7 +56,7 @@ export class SchoolRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -66,7 +95,7 @@ export class SchoolRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -124,7 +153,7 @@ export class SchoolRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -165,7 +194,7 @@ export class SchoolRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -236,7 +265,7 @@ export class SchoolRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return

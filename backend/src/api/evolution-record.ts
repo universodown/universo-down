@@ -18,16 +18,16 @@ export class EvolutionRecordRoutes {
         const baseUrl = '/api/v1/evolution-record'
 
         app.get(
-            baseUrl,
+            `${baseUrl}`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.SocialAssistence) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Assistente Social) }'
+                            + ' esta ação. { (Função: Secretaria ) }'
                         })
 
                         return
@@ -37,6 +37,36 @@ export class EvolutionRecordRoutes {
                         .get(EvolutionRecordService)
                     const evolutionRecords = await evolutionRecordService
                         .findAll(context)
+
+                    response.status(200).json(evolutionRecords)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
+        app.get(
+            `${baseUrl}/assisted`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+
+                    if (context.user.userRole !== UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + ' esta ação. { (Função: Profissional ) }'
+                        })
+
+                        return
+                    }
+
+                    const evolutionRecordService = Container
+                        .get(EvolutionRecordService)
+                    const evolutionRecords = await evolutionRecordService
+                        .findAllByUserId(context)
 
                     response.status(200).json(evolutionRecords)
                 } catch (e) {
@@ -105,7 +135,6 @@ export class EvolutionRecordRoutes {
                 }
             }
         )
-
         app.get(
             `${baseUrl}/assisted/:id`,
             verifyJWT,

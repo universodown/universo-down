@@ -72,6 +72,11 @@ export default class EvolutionRecordService {
         return this.repository.findByAssistedId(context, id)
     }
 
+    async findAllByUserId(
+        context: Context
+    ) {
+        return this.repository.findAllByUserId(context)
+    }
     async findAll(
         context: Context
     ) {

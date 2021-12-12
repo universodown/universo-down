@@ -18,37 +18,28 @@ export class ProfessionalAttendaceRoutes {
 
     public static professionalAttendaceRoutes(app: core.Express): void {
         const baseUrl = '/api/v1/professionalAttendance'
-
         app.get(
-            `${baseUrl}/:id`,
+            `${baseUrl}/assisted`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole !== UserRole.Secretary) {
+
+                    if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Secretária) }'
+                            + ' esta ação. { (Função: Profissional ) }'
                         })
 
                         return
                     }
 
-                    if (!('params' in request) || !('id' in request.params)) {
-                        response.status(400).json({
-                            error: 'Estrutura da requisição inválida.'
-                            + ' { Necessário informar o ID }'
-                        })
-
-                        return
-                    }
-                    const id = Number(request.params.id)
-                    const professionalAttendaceService = Container
+                    const professionalAttendance = Container
                         .get(ProfessionalAttendaceService)
-                    const professionalAttendace
-                        = await professionalAttendaceService.findById(id)
+                    const evolutionRecords = await professionalAttendance
+                        .findAllByUserId(context)
 
-                    response.status(200).json(professionalAttendace)
+                    response.status(200).json(evolutionRecords)
                 } catch (e) {
                     response.status(500).json({
                         error: 'O servidor encontrou uma situação com a qual'
@@ -57,7 +48,63 @@ export class ProfessionalAttendaceRoutes {
                 }
             }
         )
+        app.get(
+            `${baseUrl}/:id`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
 
+                    if (context.user.userRole !== UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + ' esta ação. { (Função: Profissional ) }'
+                        })
+
+                        return
+                    }
+
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura de requisição inválida.'
+                            + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+
+                    const id = Number(request.params.id)
+                    const professionalAttendanceService = Container
+                        .get(ProfessionalAttendaceService)
+                    const professionalRecord
+                    = await professionalAttendanceService.findById(id)
+
+                    if (!professionalRecord) {
+                        response.status(404).json({
+                            error: 'Registro não encontrado.'
+                        })
+
+                        return
+                    } else if (
+                        professionalRecord.organization
+                            .id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Registro não encontrado.'
+                        })
+
+                        return
+                    }
+
+                    response.status(200).json(professionalRecord)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
         app.get(
             `${baseUrl}/evolutionRecord/:id`,
             verifyJWT,
@@ -67,8 +114,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ou'
-                            + ' Assistente Social) }'
+                            + ' esta ação. { (Função: Secretaria ) }'
                         })
 
                         return
@@ -104,10 +150,10 @@ export class ProfessionalAttendaceRoutes {
             async (request: RequestWithUser, response: Response) => {
                 try {
                     const context = request.context
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Secretária) }'
+                            + ' esta ação. { (Função: Profissional ) }'
                         })
 
                         return

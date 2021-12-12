@@ -16,9 +16,8 @@ export class TransportRequestRoutes {
 
     public static transportRequestRoutes(app: core.Express) {
         const baseUrl = '/api/v1/transport-request'
-
         app.get(
-            `${baseUrl}/assisted/:id`, // BaseUrl + '/:id'
+            `${baseUrl}/assisted/`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
@@ -27,7 +26,37 @@ export class TransportRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
+                        })
+
+                        return
+                    }
+
+                    const transportService = Container
+                        .get(TransportRequestService)
+                    const speciality = await transportService
+                        .findAllWithAssisted(context)
+
+                    response.status(200).json(speciality)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}} `
+                    })
+                }
+            }
+        )
+        app.get(
+            `${baseUrl}/assisted/:id`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+
+                    if (context.user.userRole === UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -58,7 +87,7 @@ export class TransportRequestRoutes {
         )
 
         app.get(
-            `${baseUrl}/:id`, // BaseUrl + '/:id'
+            `${baseUrl}/:id`,
             verifyJWT,
             async (request: RequestWithUser, response: Response) => {
                 try {
@@ -66,7 +95,7 @@ export class TransportRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -124,7 +153,7 @@ export class TransportRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -165,7 +194,7 @@ export class TransportRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -236,7 +265,7 @@ export class TransportRequestRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return

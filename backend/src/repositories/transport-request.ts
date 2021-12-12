@@ -32,5 +32,13 @@ export default class TransportRequestRepository
             }
         })
     }
+    async findAllWithAssisted(context: Context): Promise<TransportRequest[]> {
+        return this.find({
+            where: {
+                organizationId: context.organization.id
+            },
+            relations: ['assisted']
+        })
+    }
 
 }
