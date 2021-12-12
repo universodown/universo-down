@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lista de Registros de Evolução</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+  <link rel="stylesheet" href="/frontend/public/css/style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+      <div id="nav-placeholder"></div>
+    </nav>
+    <!-- Conteúdo da Página  -->
+    <div id="content">
+      <div class="card col-12">
+        <h3 class="mt-4 ml-2" style="text-align: center">
+            Registro de Evolução
+        </h3>
+        <div class="card-body">
+          <div class="container">
+            <hr size="4" />
+            <div class="row row-cols-12">
+              <table id="evolutionRecordTable" class="display">
+                <thead class="col-12">
+                  <tr>
+                    <th class="col-1">Registro</th>
+                    <th class="col-2">Nome</th>
+                    <th class="col-2">Data Avaliação</th>
+                    <th class="col-1">Situação</th>
+                    <th class="col-1">Peso</th>
+                    <th class="col-1">Altura</th>
+                    <th class="col-3">Parecer</th>
+                    <th class="col-1">Opções</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <hr size="4" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JS -->
+  <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+  <script src="/frontend/public/js/script.js"></script>
+  <script type="Module" src="/frontend/public/js/fns/erroHandler.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="Module" >
+    import { loadInfoDataTable } from '/frontend/public/js/evolutionRecord.js'
+    $(document).ready(function () {
+      loadInfoDataTable();
+    });
+  </script>
+</body>
+
+</html>

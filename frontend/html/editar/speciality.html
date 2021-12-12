@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cadastro de Especialidade</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="nav-placeholder"></div>
+        </nav>
+
+        <!-- Conteúdo da Página  -->
+        <div id="content">
+            <div class="card col-12">
+                <h3 class="mt-4 ml-2 titulo" 1>Edição de Especialidade</h3>
+                <div class="card-body">
+                    <hr size=4>
+                    <form class="form-group" id="formUpdate" name="formUpdate">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6 class="col-12">Especialidade<h6>
+                                            <input type="hidden" class="form-control mb-4" name="id" id="id"
+                                                placeholder="Id da Especialidade">
+                                            <input type="text" class="form-control mb-4" name="name" id="name"
+                                                placeholder="Nome da Especialidade">
+                                </div>
+                            </div>
+                        </div>
+                        <hr size=4>
+                        <div class="row mt-4">
+                            <button type="submit" form="formUpdate" id="save-btn"
+                                class="btn btn-success col-3 offset-2">Salvar</button>
+                            <button type="reset" name="cancel-btn"
+                                class="btn btn-danger col-3 offset-2">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
+    <script type="Module" src="/frontend/public/js/specality.js"></script>
+    <script type="Module" >
+        import { loadInfoById } from '/frontend/public/js/specality.js'
+        $(document).ready(function () {
+          loadInfoById();
+        });
+      </script>
+</body>
+
+</html>

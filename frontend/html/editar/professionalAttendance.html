@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Atendimento Profissional</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div id="nav-placeholder"></div>
+        </nav>
+
+        <!-- Conteúdo da Página  -->
+        <div id="content">
+            <div class="card col-12">
+                <h3 class="mt-4 ml-2 titulo">Atendimeto Proissional</h3>
+                <div class="card-body">
+                    <hr size=4>
+                    <form class="form-group" id="formUpdate" name="formUpdate">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="col-12">Nome do(a) Paciente<h6>
+                                        <div class="col-12">
+                                            <input type="hidden" class="form-control" name="id" id="id">
+                                            <input type="text" class="form-control" name="name" id="name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="data">Data Do Atendimento</label>
+                                        <div class="col-12">
+                                            <input type="date" value="" class="form-control" name="date" id="date">
+                                        </div>
+                                      </div>
+                                      <div class="col-6">
+                                        <label for="qtd">Quantidade de Atendimentos</label>
+                                        <input
+                                          type="number"
+                                          class="form-control"
+                                          name="quantify"
+                                          id="quantify"
+                                          placeholder="Nº Atendimentos"
+                                        />
+                                      </div>
+                                      <div class="col-12">
+                                        <label for="result">Resultado(s)</label>
+                                        <textarea rows="4" cols="50"
+                                          type="text"
+                                          style="resize: none"
+                                          class="form-control"
+                                          name="result"
+                                          id="result"
+                                          placeholder="Descrição detalhada do Atendimento Profissional"
+                                        ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <hr size=4>
+                        <div class="row mt-4">
+                            <button type="submit" form="formUpdate" id="save-btn"
+                                class="btn btn-success col-3 offset-2">Salvar</button>
+                                <button type="button" name="cancel-btn" onclick="(window.location='/frontend/html/listar/professionalAttendance.html')"
+                                class="btn btn-danger col-3 offset-2">Voltar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
+    <script type="Module" src="/frontend/public/js/fns/erroHandler.js"></script>
+    <script type="module" src="/frontend/public/js/professionalAttendance.js"></script>
+    <script type="Module" >
+        import { loadInfoById } from '/frontend/public/js/professionalAttendance.js'
+        $(document).ready(function () {
+          loadInfoById();
+        });
+      </script>
+</body>
+
+</html>

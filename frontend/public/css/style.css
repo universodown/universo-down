@@ -1,9 +1,8 @@
 :root {
-  --verde-escuro: color: rgb(60, 152, 165);
-  --verde-claro: color: rgb(165, 214, 219);
-  --laranja: color: rgb(244, 176, 95);
+  --verde-escuro: color: #3c98a5;
+  --verde-claro: color: #a5d6db;
+  --laranja: color: #f4b05f;
 }
-
 /* ---------------------------------------------------
     ESTILOS GERAIS
 ----------------------------------------------------- */
@@ -22,18 +21,27 @@ p {
 }
 
 .ml-1 {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .ml-2 {
-    margin-left: 15px;
+  margin-left: 15px;
 }
 
 .titulo {
   text-align: center;
 }
 
+table,
+th {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 
+table,
+td {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 /* img {
     display: block;
     max-width: 100%;
@@ -67,10 +75,32 @@ p {
 
 #content {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   padding-top: 50px;
   min-height: 100vh;
   transition: all 0.3s;
+}
+label {
+  margin-bottom: 3px;
+}
+
+/* ---------------------------------------------------
+    INDEX   
+----------------------------------------------------- */
+
+#imgIndex {
+  width: 100%;
+  height: 100%;
+  margin-top: 150px;
+  opacity: 0.7;
+}
+
+#estrelaIndex {
+  padding-bottom: 25px;
+  padding-left: 5px;
+  width: 7%;
+  height: 7%;
+  opacity: 0.7;
 }
 
 /* ---------------------------------------------------
@@ -78,52 +108,53 @@ p {
 ----------------------------------------------------- */
 
 #user {
-    background-color: rgb(165, 214, 219);
-    color: #000;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 18px;
+  background-color: #a5d6db;
+  color: #000;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 18px;
 }
 
 #pass {
-    background-color: rgb(165, 214, 219);
-    color: #000;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 18px;
+  background-color: #a5d6db;
+  color: #000;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 18px;
 }
 
 #login-card {
   height: 400px;
   width: 350px;
   margin-left: -100px;
-  margin-top: -100px; 
+  margin-top: -100px;
   position: absolute;
   top: 35%;
   left: 44%;
 }
 
 .card {
-    box-shadow: inset 0 0 1em rgba(158, 158, 158, 0.274), 0 0 1em rgba(0, 0, 0, 0.26);
+  box-shadow: inset 0 0 1em rgba(158, 158, 158, 0.274),
+    0 0 1em rgba(0, 0, 0, 0.26);
 }
 
 span.input-group-addon {
-    background-color: rgb(60, 152, 165);
-    padding-left: 11px;
-    width: 40px;
-    height: 34px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+  background-color: #3c98a5;
+  padding-left: 11px;
+  width: 40px;
+  height: 34px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 i.fa.fa-user.fa-2x {
-    color: #fff;
-    font-size: 2.2rem;
+  color: #fff;
+  font-size: 2.2rem;
 }
 
 i.fa.fa-lock.fa-2x {
-    color: #fff;
-    font-size: 2.2rem;
+  color: #fff;
+  font-size: 2.2rem;
 }
 
 /* ---------------------------------------------------
@@ -131,12 +162,152 @@ i.fa.fa-lock.fa-2x {
 ----------------------------------------------------- */
 
 select.form-control {
-  background-color: #f8f8f8;
+  background-color: rgb(226, 226, 226);
   border: 1px solid #efefef;
+  height: 65%;
+}
+select,
+.dropdown-toggle {
+  background-color: rgb(226, 226, 226);
+  border: 1px solid #efefef;
+}
+#scholarity {
+  height: 60%;
+}
+
+div.card-body,
+div {
+  margin-bottom: 10px;
+}
+
+#admin_role {
+  height: 85%;
+  width: 100%;
+}
+
+#user_role {
+  height: 85%;
+  width: 100%;
 }
 
 /* ---------------------------------------------------
-    ATENDIMENTO   
+    CADASTRO DE ESPECIALIDADE
+----------------------------------------------------- */
+
+select,
+#name {
+  background-color: #f1f1f1;
+  color: #767676;
+  border: 1px solid #efefef;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE AGENDAMENTO DE CONSULTAS
+----------------------------------------------------- */
+
+input + span {
+  margin-left: 5px;
+}
+
+input:invalid + span::after {
+  position: relative;
+  color: #f4b05f;
+  font-size: 30px;
+  content: "✖";
+}
+input:valid + span::after {
+  position: relative;
+  font-size: 30px;
+  color: #3c98a5;
+  content: "✓";
+}
+
+/* ---------------------------------------------------
+    SEARCHUSER  
+----------------------------------------------------- */
+
+div#searchUserautocomplete-list.autocomplete-items {
+  border: 0;
+  margin: 0;
+}
+div.divclass {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5vw;
+}
+
+/* ---------------------------------------------------
+    SEARCHUASSISTED
+----------------------------------------------------- */
+div#searchAssisteautocomplete-list.autocomplete-items {
+  border: 0;
+  margin: 0;
+}
+
+div#searchAssiste.col {
+  border: 0;
+  margin: 0;
+}
+
+/* ---------------------------------------------------
+    SELECT SPECIALITY
+----------------------------------------------------- */
+
+select#specialityId.col-12 {
+  height: 50%;
+}
+
+
+/* ---------------------------------------------------
+    LISTA DE ESPECIALIDADE   
+----------------------------------------------------- */
+
+table,
+#specialityTable {
+  background-color: red;
+}
+table,
+th {
+  font-size: 1.75vw;
+  text-align: center;
+}
+
+table,
+td {
+  font-size: 2vw;
+  font-weight: 350;
+  text-align: center;
+}
+table,
+tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table,
+tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE ESPECIALISTA   
+----------------------------------------------------- */
+
+select,
+#selectSpeciality {
+  background-color: #f1f1f1;
+  color: #767676;
+  border: 1px solid #efefef;
+  font-size: 2.5vw;
+  height: 5vw;
+  width: 90%;
+  padding-left: 10px;
+  font-weight: normal;
+}
+
+/* ---------------------------------------------------
+    CADASTRO DE ATENDIMENTO   
 ----------------------------------------------------- */
 
 .linha {
@@ -145,14 +316,14 @@ select.form-control {
 }
 
 .linha hr {
-  flex:1;
-  margin-bottom: 1.90em;
+  flex: 1;
+  margin-bottom: 1.9em;
   margin-right: 20px;
 }
 
 .linha p i {
-  font-size: 28px; 
-  color: rgb(60, 152, 165);
+  font-size: 28px;
+  color: #3c98a5;
 }
 
 button.add_form_field {
@@ -164,7 +335,6 @@ button.add_form_field {
 .delete {
   color: #000;
 }
-
 
 /* ---------------------------------------------------
     FORMULÁRIO
@@ -180,29 +350,28 @@ input.form-control {
 }
 
 .btn-danger {
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: .085rem;
-    font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.085rem;
+  font-size: 12px;
 }
 
 .btn-success {
-    background-color: rgb(60, 152, 165) !important;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: .085rem;
-    font-size: 12px;
+  background-color: #3c98a5 !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.085rem;
+  font-size: 12px;
 }
 
 .btn-success:hover {
-    background-color: rgb(255, 255, 255) !important;
-    color: black !important;
-    border: 0 solid #fff ;
+  color: black !important;
+  border: 0 solid #fff;
 }
 
 .card > hr {
-    margin-right: 35px !important;
-    margin-left: 35px !important;
+  margin-right: 35px !important;
+  margin-left: 35px !important;
 }
 
 /* ---------------------------------------------------
@@ -215,26 +384,156 @@ textarea.form-control {
 }
 
 /* ---------------------------------------------------
+    LISTAR EVOLUCAO  
+----------------------------------------------------- */
+table.dataTable.row-border tbody tr th, table.dataTable.row-border tbody tr td, table.dataTable.display tbody tr th, table.dataTable.display tbody tr td {
+  border-top: none;
+  font-size: 1.3vw !important;
+}
+table.dataTable thead th, table.dataTable thead td {
+  padding: 5px 18px !important;
+}
+select {
+  word-wrap: normal;
+  font-size: 2vw !important;
+}
+table {
+  height: 20px ;
+  width: 300px;
+}
+
+/* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
+@media (min-width: 1500px) {
+  #selectUser {
+    height: 50px !important;
+    font-size: 1vw !important;
+  }
+  #dayOfWeek {
+    height: 50px !important;
+    font-size: 1vw !important;
+  }
+  #status {
+    height: 50px !important;
+    font-size: 1vw !important;
+  }
+  #specialityId {
+    height: 50px !important;
+    font-size: 1vw !important;
+  }
+  table.dataTable.row-border tbody tr th, table.dataTable.row-border tbody tr td, table.dataTable.display tbody tr th, table.dataTable.display tbody tr td {
+    border-top: none;
+    font-size: 1vw !important;
+  }
+ 
+}
 
-
-@media (min-width: 768px) {
-    #sidebar {
-      margin-left: -250px;
-    }
-    #sidebar.active {
-      margin-left: 0;
-    }
-    #sidebarCollapse span {
-      display: none;
-    }
-    div.card.col-9 {
-        width: auto !important;
-    }
+@media (min-width: 991px) {
+  i.bi.bi-trash::before {
+    font-size: 20px !important;
+    margin-left: 5px;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 20px !important;
+    margin-left: 5px;
   }
 
-@media (max-width: 768px) {
+  #state {
+    height: 60%;
+  }
+
+  #gender {
+    height: 55%;
+  }
+
+  #state {
+    height: 55%;
+  }
+
+  #scholarity {
+    height: 55%;
+  }
+
+  #civilStatus {
+    height: 55%;
+  }
+
+  #relationship {
+    height: 55%;
+  }
+  #professionalSituation {
+    height: 55%;
+  }
+
+  label {
+    font-size: 1.5vw;
+  }
+  div.divclass {
+    font-size: 1.2vw;
+  }
+  h6.col-12 {
+    font-size: 1.5vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 990px) {
+  #sidebar {
+    margin-left: 10px;
+  }
+  #sidebar.active {
+    margin-left: 190px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  div.card.col-12 {
+    width: auto;
+  }
+  .btn-danger {
+    font-size: 3vh;
+  }
+  .btn-success {
+    font-size: 2vh;
+  }
+  i.bi.bi-trash::before {
+    font-size: 20px !important;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 20px !important;
+  }
+  #estrelaIndex {
+    width: 10%;
+    height: 10%;
+  }
+  #scholarity {
+    height: 60%;
+  }
+  #state {
+    height: 60%;
+  }
+  #gender {
+    height: 60%;
+  }
+  #civilStatus {
+    height: 60%;
+  }
+
+  #relationship {
+    height: 60%;
+  }
+  #professionalSituation {
+    height: 60%;
+  }
+  label {
+    font-size: 12px;
+  }
+  select#specialityId.col-12 {
+    height: 45%;
+  }
+}
+
+/* @media (max-width: 767px) {
   #sidebar {
     margin-left: -250px;
   }
@@ -244,9 +543,32 @@ textarea.form-control {
   #sidebarCollapse span {
     display: none;
   }
-}
+  .btn-danger {
+    font-size:  2vh;
+  }
+  .btn-success {
+    font-size:  2vh;
+  }
+  #estrelaIndex {
+    width: 10%;
+    height: 10%;
+  }
+  #scholarity {
+    height: 35%;
+  }
+  #state {
+    height: 60%;
+  }
+  #gender {
+    height: 60%;
+  }
+  label {
+    font-size: 12px;
+  }
+  
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   #sidebar {
     margin-left: 0px;
   }
@@ -256,9 +578,31 @@ textarea.form-control {
   #sidebarCollapse span {
     display: none;
   }
-}
+  .btn-danger {
+    font-size:  3vh ;
+  }
+  .btn-success {
+    font-size:  3vh ;
+  }
+  #estrelaIndex {
+    width: 10%;
+    height: 10%;
+  }
+  #scholarity {
+    height: 60%;
+  }
+  #state {
+    height: 60%;
+  }
+  #gender {
+    height: 60%;
+  }
+  label {
+    font-size: 12px;
+  }
+} */
 
-@media (min-width: 425px) {
+@media (min-width: 426px) and (max-width: 767px) {
   #sidebar {
     margin-left: 0px;
   }
@@ -269,15 +613,78 @@ textarea.form-control {
     display: none;
   }
   span.wrap-icon.fa.fa-home.p-4 {
-    padding: 0 !important;
+    padding: 0;
   }
   span.menu-text.p-4 {
-    padding: 0 !important;
-    height: 30px !important;
+    padding: 0;
+    height: 30px;
+  }
+  .btn-danger {
+    font-size: 2.5vw;
+  }
+  .btn-success {
+    font-size: 2vw;
+  }
+  i.bi.bi-trash::before {
+    font-size: 12px;
+    margin-right: 100px;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  label {
+    font-size: 10px;
+  }
+  #scholarity {
+    height: 60%;
+  }
+  #professionalSituation {
+    height: 60%;
+  }
+  select#specialityId.col-12 {
+    height: 40%;
   }
 }
 
-@media (min-width: 320px) {
+/* @media (max-width: 425px) {
+  #sidebar {
+    margin-left: 0px;
+  }
+  #sidebar.active {
+    margin-left: 180px;
+  }
+  #sidebarCollapse span {
+    display: none;
+  }
+  span.wrap-icon.fa.fa-home.p-4 {
+    padding: 0 ;
+  }
+  span.menu-text.p-4 {
+    padding: 0 ;
+    height: 30px ;
+  }
+  .btn-danger {
+    font-size:  2vw ;
+  }
+  .btn-success {
+    font-size:  2vw ;
+  }
+  i.bi.bi-trash::before {
+    font-size: 12px ;
+    margin-right: 100px ;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 12px ;
+    margin-right: 10px ;
+  }
+  #estrelaIndex {
+    width: 15%;
+    height: 15%;
+  }
+} */
+
+@media (min-width: 300) and (max-width: 425px) {
   #sidebar {
     margin-left: 0px;
   }
@@ -288,7 +695,32 @@ textarea.form-control {
     display: none;
   }
   aside {
-    height: 100% !important;
+    height: 100%;
   }
+  span.wrap-icon.fa.fa-home.p-4 {
+    padding: 0;
+  }
+  span.menu-text.p-4 {
+    padding: 0;
+    height: 30px;
+  }
+  .btn-danger {
+    font-size: 2vw;
+  }
+  .btn-success {
+    font-size: 2vw;
+  }
+  i.bi.bi-trash::before {
+    font-size: 12px;
+    margin-right: 100px;
+  }
+  i.bi.bi-pencil-square::before {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+  #estrelaIndex {
+    width: 15%;
+    height: 15%;
+  }
+  
 }
-

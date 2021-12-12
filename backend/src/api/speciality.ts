@@ -21,7 +21,8 @@ export class SpecialityRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Secretary) {
+                    if (context.user.userRole !== UserRole.Secretary
+                    && context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
                             + 'esta ação. { (Função: Secretária)}'

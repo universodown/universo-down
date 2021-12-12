@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cadastro de Consultas</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+
+  </head>
+  <body>
+  
+    <div class="wrapper ">
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div id="nav-placeholder"></div>
+      </nav>
+      <!-- Conteúdo da Página  -->
+      <div id="content" >
+            <div class="card col-12"> 
+            <h3 class="mt-4 ml-2 titulo"> Agendamento de Consultas</h3>
+            <div class="card-body">
+            <form class="form-group" id="formUpdate" name="formUpdate">
+            <hr size=4 >
+                <div class="container"> 
+                    <div class="col-12">
+                        <!-- SearchBar  -->
+                        <h6 class="col-12">Nome do(a) Especialista</h6>
+                        <input class="col-12" type="text" id="name" value="" name="name" readonly>
+                        <input type="hidden" class="form-control" name="id" id="id">
+                        
+                    </div>
+                        <div class="col-6">
+                            <label for="dayOfWeek" class="col-12  mb-1">Dia da Semana</label>
+                            <select name="dayOfWeek" id="dayOfWeek" >
+                            <option value="" selected>- Selecione um Dia -</option>
+                            <option value="monday">Segunda-Feira</option>
+                            <option value="tuesday">Teça-Feira</option>
+                            <option value="wednesday">Quarta-Feira</option>
+                            <option value="thursday">Quinta-Feira</option>
+                            <option value="friday">Sexta-Feira</option>
+                            <option value="saturday">Sábado</option>
+                            <option value="sunday">Domingo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            <hr size=4>
+            <div class="row " style="text-align: center;">
+                <div class="col-6">
+                        <label for="appt" >Início:</label>
+                        <input type="time" id="startHour" name="startHour"
+                            min="08:00" max="20:00" value="08:00">
+                            <span class="validity"></span>
+                        <div style="padding-left:40px"><small>8am até 20pm</small></div>
+                    </div>
+                    <div class="col-6">
+                    <label for="appt">Término:</label>
+                        <input type="time" id="endHour" name="endHour"
+                            min="08:00" max="20:00" value="">
+                            <span class="validity"></span>
+                        <div style="padding-left:45px"><small>8am até 20pm</small><span class="validity"></span></div>
+                    </div>
+            </div>
+            <hr size=4>
+                <div class="row mt-4">
+                    <button type="submit" name="save-btn" form="formUpdate" id="save-btn" class="btn btn-success col-3 offset-2">Salvar</button>
+                    <button type="button" name="cancel-btn" onclick="(window.location='/frontend/html/listar/calendar.html')"
+                    class="btn btn-danger col-3 offset-2">Voltar</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <!-- JS -->
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
+    <script type="Module" src="/frontend/public/js/calendar.js"></script>
+    <script type="Module" >
+        import { loadInfoById } from '/frontend/public/js/calendar.js'
+        $(document).ready(function () {
+          loadInfoById();
+        });
+      </script>
+  </body>
+</html>

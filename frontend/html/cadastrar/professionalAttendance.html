@@ -1,82 +1,95 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="pt-br">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Universo Down</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Atendimento Profissional</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/public/css/navbar.css" />
-    <link rel="stylesheet" href="/public/css/style.css" />
-</head>
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+  </head>
 
-<body>
-
+  <body>
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div id="nav-placeholder"></div>
-        </nav>
+      <!-- Sidebar  -->
+      <nav id="sidebar">
+        <div id="nav-placeholder"></div>
+      </nav>  
 
-        <!-- Conteúdo da Página  -->
-        <div id="content">
-            <div class="card col-9">
-                <h3 class="mt-4 ml-2 titulo">Atendimento Profissional</h3>
-                <hr>
-                <div class="card-body">
-                    <form class="form-group">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="idAtendente">id Atendente</label>
-                                    <input type="text" class="form-control" name="idAtendente" id="idAtendente"
-                                        placeholder="id Atendente">
-                                </div>
-                                <div class="col-4">
-                                    <label for="idUsuario">id Usuário</label>
-                                    <input type="text" class="form-control" name="idUsuario" id="idUsuario"
-                                        placeholder="id Usuário">
-                                </div>
-                                <div class="col-4">
-                                    <label for="data">Data</label>
-                                    <input type="date" class="form-control" name="data" id="data"
-                                        placeholder="Data">
-                                </div>
-                                <div class="col-4">
-                                    <label for="result">Resultado</label>
-                                    <input type="text" class="form-control" name="result" id="result" placeholder="Resultado">
-                                </div>
-                                <div class="col-6">
-                                    <label for="qtd">Quantidade</label>
-                                    <input type="text" class="form-control" name="qtd" id="qtd"
-                                        placeholder="Quantidade">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="row mt-4">
-                        <button type="button" class="btn btn-success col-3 offset-2">Salvar</button>
-                        <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
-                    </div>
+      <!-- Conteúdo da Página  -->
+      <div id="content">
+        <div class="card col-12">
+          <h3 class="mt-4 ml-2 titulo">Controle do Atendimento Profissional</h3>
+          <div class="card-body">
+            <form class="form-group" id="form" name="form">
+              <div class="container">
+                <hr size="4" />
+                <div class="row">
+                  <div class="col-12">
+                    <!-- SearchBar  -->
+                    <h6 class="col-12">Nome do(a) Paciente</h6>
+                    <div id="searchbar-evo" name="evoId"></div>
+                  </div>
+                  <div class="col-6">
+                    <label for="data">Data Do Atendimento</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="date"
+                      id="date"
+                      placeholder="Horário do Atendimento"
+                      required
+                    />
+                  </div>
+                  <div class="col-6">
+                    <label for="qtd">Quantidade de Atendimentos</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="quantify"
+                      id="quantify"
+                      placeholder="Nº Atendimentos"
+                      required
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label for="result">Resultado(s)</label>
+                    <textarea rows="4" cols="50"
+                      type="text"
+                      style="resize: none"
+                      class="form-control"
+                      name="result"
+                      id="result"
+                      placeholder="Descrição detalhada do Atendimento Profissional"
+                      required
+                    ></textarea>
+                  <hr size="4" />
+                  <button
+                    type="submit"
+                    form="form"
+                    id="save-btn"
+                    class="btn btn-success col-3 offset-2">
+                    Salvar
+                  </button>
+                  <button type="button" class="btn btn-danger col-3 offset-2">
+                    Cancelar
+                  </button>
                 </div>
-            </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- JS -->
-    <script src="/public/js/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/main.js"></script>
-    <script src="/public/js/script.js"></script>
-</body>
-
+    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="/frontend/public/js/script.js"></script>
+    <script type="module" src="/frontend/public/js/professionalAttendance.js"></script>
+    <script type="module" src="/frontend/public/js/searchEvo.js"></script>
+  </body>
 </html>

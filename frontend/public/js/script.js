@@ -1,8 +1,24 @@
 /* Carregar o menu lateral */
 const path = ""
-$.get("/html/partials/navbar.html", function (data) {
+$.get("/frontend/html/partials/navbar.html", function (data) {
   $("#nav-placeholder").replaceWith(data);
 });
+/* Carregar a search */
+const pathSearchBar = ""
+$.get("/frontend/html/partials/searchEvo.html", function (data) {
+  $("#searchbar-evo").replaceWith(data);
+});
+/* Carregar a search User*/
+const pathSearchBarUser = ""
+$.get("/frontend/html/partials/searchUser.html", function (data) {
+  $("#searchbar-user").replaceWith(data);
+});
+/* Carregar a search Assisted*/
+const pathSearchBarAssisted = ""
+$.get("/frontend/html/partials/searchAssisted.html", function (data) {
+  $("#searchbar-assisted").replaceWith(data);
+});
+
 
 /* Função Sub Menu */
 $(document).on("click", ".side-menu > ul > li", function (e) {
@@ -26,7 +42,7 @@ $(document).ready(function () {
 
     if (x < max_fields) {
       x++;
-      $.get("familiar_adicional.html", function (data) {
+      $.get("/frontend/html/cadastrar/additionalRelated.html", function (data) {
         $(wrapper).append(data);
       });
     } else {
@@ -37,7 +53,7 @@ $(document).ready(function () {
   /* Remover Form Familiar */
   $(wrapper).on("click", ".delete", function (e) {
     e.preventDefault();
-    $(this).parents("#form_familiar").remove();
+    $(this).parents("#form").remove();
     x--;
   });
 });

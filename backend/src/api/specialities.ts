@@ -6,13 +6,46 @@ import { verifyJWT } from '../fns/verify-jwt'
 import { UserRole } from '../model/enum/user-role'
 import SpecialitiesService from '../services/specialities'
 
-import { isSpecialitiesCreate } from './dto/specialities'
+import {
+    isSpecialitiesCreate,
+    isSpecialitiestRequestUpdate
+} from './dto/specialities'
 import { RequestWithUser } from './user'
 
 export class SpecialitiesRoutes {
 
     public static specialitiesRoutes(app: core.Express) {
         const baseUrl = '/api/v1/specialities'
+        app.get(
+            `${baseUrl}`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
+
+                    if (context.user.userRole === UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Função: Profissional )}'
+                        })
+
+                        return
+                    }
+
+                    const specialitiesService = Container
+                        .get(SpecialitiesService)
+                    const specialities = await specialitiesService
+                        .findAllInfo(context)
+
+                    response.status(200).json(specialities)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
 
         app.get(
             `${baseUrl}/user/:id`,
@@ -150,7 +183,76 @@ export class SpecialitiesRoutes {
                 }
             }
         )
+        app.put(
+            `${baseUrl}/:id`,
+            verifyJWT,
+            async (request: RequestWithUser, response: Response) => {
+                try {
+                    const context = request.context
 
+                    if (context.user.userRole === UserRole.Professional) {
+                        response.status(401).json({
+                            error: 'Usuário não possui permissão para'
+                                + ' esta ação. { (Função: Secretária ) }'
+                        })
+
+                        return
+                    }
+
+                    const body = request.body
+                    if (!isSpecialitiestRequestUpdate(body)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Corpo da Mensagem incorreto }'
+                        })
+
+                        return
+                    }
+
+                    if (!('params' in request) || !('id' in request.params)) {
+                        response.status(400).json({
+                            error: 'Estrutura da requisição inválida.'
+                            + ' { Necessário informar o ID }'
+                        })
+
+                        return
+                    }
+
+                    const id = Number(request.params.id)
+                    const specialitiesService = Container
+                        .get(SpecialitiesService)
+                    const specialitiesRequest = await specialitiesService
+                        .findById(id)
+
+                    if (!specialitiesRequest) {
+                        response.status(404).json({
+                            error: 'Solicitação não encontrada.'
+                        })
+
+                        return
+                    } else if (
+                        specialitiesRequest.organization
+                            .id !== context.organization.id
+                    ) {
+                        response.status(404).json({
+                            error: 'Solicitação não encontrada.'
+                        })
+
+                        return
+                    }
+
+                    const savedSpecialitiestRequest = await specialitiesService
+                        .update(context, id, body)
+
+                    response.status(200).json(savedSpecialitiestRequest)
+                } catch (e) {
+                    response.status(500).json({
+                        error: 'O servidor encontrou uma situação com a qual'
+                        + ` não sabe lidar. {${e}}`
+                    })
+                }
+            }
+        )
         app.delete(
             `${baseUrl}/:id`,
             verifyJWT,
