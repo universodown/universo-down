@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="pt-br">
 
 <head>
@@ -13,131 +9,289 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/public/css/navbar.css" />
-    <link rel="stylesheet" href="/public/css/style.css" />
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
 </head>
 
 <body>
-
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div id="nav-placeholder"></div>
-        </nav>
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div id="nav-placeholder"></div>
+    </nav>
 
-        <!-- Conteúdo da Página  -->
-        <div id="content">
-            <div class="card col-9">
-                <h3 class="mt-4 ml-2 titulo"> Cadastro de Familiar</h3>
-                <hr>
-                <div class="card-body">
-                    <form class="form-group">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" name="nome" id="nome"
-                                        placeholder="Nome Completo">
-                                </div>
-                                <div class="col-4">
-                                    <label for="dtNasc">Data de Nascimento</label>
-                                    <input type="date" class="form-control" name="dtNasc" id="dtNasc"
-                                        placeholder="Nascimento">
-                                </div>
-                                <div class="col-4">
-                                    <label for="documentoCpf">CPF</label>
-                                    <input type="number" class="form-control" name="documentoCpf" id="documentoCpf"
-                                        placeholder="CPF">
-                                </div>
-                                <div class="col-4">
-                                    <label for="sexo">Gênero</label>
-                                    <input type="text" class="form-control" name="sexo" id="sexo" placeholder="Gênero">
-                                </div>
-                                <div class="col-6">
-                                    <label for="estadoCivil">Estado Civil</label>
-                                    <input type="text" class="form-control" name="estadoCivil" id="estadoCivil"
-                                        placeholder="Estado Civil">
-                                </div>
-                                <div class="col-6">
-                                    <label for="relacao">Relação</label>
-                                    <input type="text" class="form-control" name="relacao" id="relacao"
-                                        placeholder="Relação">
-                                </div>
-                                <div class="col-4">
-                                    <label for="rg">RG</label>
-                                    <input type="text" class="form-control" name="rg" id="rg" placeholder="RG">
-                                </div>
-                                <div class="col-4">
-                                    <label for="dtEdicaoRg">Data de Expedição</label>
-                                    <input type="date" class="form-control" name="dtEdicaoRg" id="dtEdicaoRg"
-                                        placeholder="Data de Expedição">
-                                </div>
-                                <div class="col-4">
-                                    <label for="orgaoExpedidorRg">Orgão Expedidor</label>
-                                    <input type="text" class="form-control" name="orgaoExpedidorRg"
-                                        id="orgaoExpedidorRg" placeholder="Orgão Expedidor">
-                                </div>
-                                <div class="col-3">
-                                    <label for="cep">CEP</label>
-                                    <input type="text" class="form-control" name="cep" id="cep" placeholder="CEP">
-                                </div>
-                                <div class="col-3">
-                                    <label for="cidade">Cidade</label>
-                                    <input type="text" class="form-control" name="cidade" id="cidade"
-                                        placeholder="Cidade">
-                                </div>
-                                <div class="col-3">
-                                    <label for="uf">UF</label>
-                                    <input type="text" class="form-control" name="uf" id="uf" placeholder="UF">
-                                </div>
-                                <div class="col-3">
-                                    <label for="numeroCasa">Número</label>
-                                    <input type="number" class="form-control" name="numeroCasa" id="numeroCasa"
-                                        placeholder="Número">
-                                </div>
-                                <div class="col-4">
-                                    <label for="telefone">Rua</label>
-                                    <input type="text" class="form-control" name="telefone" id="telefone"
-                                        placeholder="Rua">
-                                </div>
-                                <div class="col-4">
-                                    <label for="rua">Telefone</label>
-                                    <input type="text" class="form-control" name="rua" id="rua" placeholder="Telefone">
-                                </div>
-                                <div class="col-4">
-                                    <label for="rua">Telefone</label>
-                                    <input type="text" class="form-control" name="rua" id="rua" placeholder="Telefone">
-                                </div>
-                                <div class="col-6">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Email">
-                                </div>
-                            </div>
+    <!-- Conteúdo da Página  -->
+    <div id="content">
+      <div class="card col-12">
+          <h3 class="mt-4 ml-2 titulo"> Cadastro de Familiar</h3>
+          <hr size=4>
+          <div class="card-body">
+              <div class="container">
+                <form class="form-group" id="form" name="form">
+                  <div class="row">
+                    <div class="col-12">
+                      <!-- SearchBar  -->
+                      <h6 class="col-12">Nome do(a) Paciente </h6>
+                      <div id="searchbar-assisted" name="assistedId" required></div>
+                    </div>
+                    <hr size=4>
+                    <div class="col-6">
+                        <label for="nome">Nome do Parente</label>
+                        <input type="text" class="form-control" name="name" id="name"
+                            placeholder="Nome Completo" required>
+                    </div>
+                    <div class="col-3">
+                        <label for="dtNasc">Data de Nascimento</label>
+                        <input type="date" class="form-control" name="birthday" id="birthday"
+                            placeholder="Nascimento" required>
+                    </div>
+                    <div class="col-3 ">
+                      <label for="genero">Gênero</label>
+                      <select name="gender" class="form-control" id="gender" placeholder="Gênero" required>
+                        <option value="male">Masculino</option>
+                        <option value="female">Feminino</option>
+                        <option value="not-Informed">Outros</option>
+                      </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control" name="identification" id="identification"
+                            placeholder="CPF"
+                            maxlength="14"
+                            required>
+                    </div>
+                    <div class="col-4">
+                      <label for="estadoCivil">Estado Civil</label>
+                      <select name="civilStatus" class="form-control" id="civilStatus" placeholder="Estado Civil" required>
+                        <option value="single">Solteiro(a)</option>
+                        <option value="married">Casado(a)</option>
+                        <option value="divorced">Divorciado(a)</option>
+                        <option value="widower">Viúvo(a)</option>
+                        <option value="judicially-separated">Separado Judicialmente</option>
+                      </select>
+                    </div>
+                    <div class="col-4">
+                      <label for="relacionamento">Grau de Relacionamento</label>
+                      <select id="relationship" name="relationship" class="dropdown-toggle" required>
+                        <option value="couple">Companheio(a)</option>
+                        <option value="father">Pai</option>
+                        <option value="mother">Mãe</option>
+                        <option value="father_in_low">Sogro</option>
+                        <option value="mother_in_low">Sogra</option>
+                        <option value="sibling">Irmão(ã)</option>
+                        <option value="grandparent">Avô(ó)</option>
+                        <option value="step-parent">Família Adotiva</option>
+                        <option value="patchwork-family">Enteado(a)</option>
+                      </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="rg">RG</label>
+                        <input type="text" class="form-control" name="generalRegistration" id="generalRegistration" placeholder="Registro Geral" maxlength="13" required>
+                    </div>
+                    <div class="col-4">
+                        <label for="dtEdicaoRg">Data de Expedição</label>
+                        <input type="date" class="form-control" name="issue" id="issue"
+                            placeholder="Data de Expedição"
+                            required>
+                    </div>
+                    <div class="col-4">
+                        <label for="orgaoExpedidorRg">Orgão Expedidor/Estado</label>
+                        <input type="text" class="form-control" name="issuer"
+                            id="issuer" placeholder="Orgão Expedidor"
+                            required>
+                    </div>
+                    <div class="col-4">
+                      <label for="naturalidade">Naturalidade</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="naturalness"
+                        id="naturalness"
+                        placeholder="Naturalidade"
+                        required
+                      />
+                    </div>
+                    <div class="col-4">
+                      <label for="nacionalidade">Nacionalidade</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nationality"
+                        id="nationality"
+                        placeholder="Nacionalidade"
+                        required
+                      />
+                    </div>
+                    <div class="col-4">
+                      <label for="identidadeNacional">Identidade Nacional</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="nationalIdentity"
+                        id="nationalIdentity"
+                        placeholder="Identidade Nacional"
+                        required
+                      />
+                    </div>
+                    <hr size=4>
+                    <div class="col-4">
+                        <label for="rua">Rua</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Rua" required>
+                    </div>
+                    <div class="col-2">
+                        <label for="numeroCasa">Número</label>
+                        <input type="number" class="form-control" name="number" id="number"
+                            placeholder="Número"
+                            required>
+                    </div>
+                    <div class="col-3">
+                        <label for="bairro">Bairro</label>
+                        <input type="text" class="form-control" name="neighborhood" id="neighborhood"
+                            placeholder="Bairro"
+                            required>
+                    </div>
+                    <div class="col-3">
+                        <label for="cep">CEP</label>
+                        <input type="text" class="form-control" name="zipCode" id="zipCode" placeholder="Código Postal" maxlength="9" required>
+                    </div>
+                    <div class="col-4">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control" name="city" id="city"
+                            placeholder="Cidade"
+                            >
+                    </div>
+                    <div class="col-4">
+                      <label for="estado">Estado</label>
+                      <select id="state" name="state" class="dropdown-toggle" required>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        <option value="EX">Estrangeiro</option>
+                      </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" name="phone" id="phone"
+                            placeholder="Telefone" maxlength="16">
+                    </div>
+                    <hr size=4>
+                    <div class="col-3">
+                      <label for="professionalSituation">Situação Profissional</label>
+                      <select
+                      class="dropdown-toggle"
+                      name="professionalSituation"
+                      id="professionalSituation"
+                      placeholder="Escolaridade"
+                      required
+                    >
+                      <option value="0">Escolha uma Opção</option>
+                      <option value="Período Integral">Período Integral</option>
+                      <option value="Meio Período">Meio Período</option>
+                      <option value="Estágio">Estágio</option>
+                      <option value="Desmpregado">Desmpregado</option>
+                      <option value="Estudante">Estudante</option>
+                      <option value="Outro">Outro</option>
+                    </select>
+                    </div>
+                    <div class="col-3">
+                      <label for="salario">Renda Mensal</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="revenue"
+                        id="revenue"
+                        placeholder="Renda Mensal"
+                      />
+                    </div>
+                    <div class="col-3">
+                      <label for="ocupacao">Ocupação</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="occupation"
+                        id="occupation"
+                        placeholder="Ocupação"
+                      />
+                    </div>
+                    <div class="col-3">
+                      <label for="escolaridade">Escolaridade</label>
+                      <select
+                        class="dropdown-toggle"
+                        name="scholarity"
+                        id="scholarity"
+                        placeholder="Escolaridade"
+                        required
+                      >
+                        <option value="elementary-school">Ensino Fundamental</option>
+                        <option value="high_school">Ensino Médio</option>
+                        <option value="university-school">Graduação</option>
+                        <option value="masters-degree">Mestrado</option>
+                        <option value="doctorate-degree">Doutorado</option>
+                      </select>
+                    </div>
+                    <hr size="4" />
+                    <div class="col-6">
+                      <li class="list-group-item">
+                      <label for="ativo" class="me-2">Responsável?</label>
+                        <input
+                          class="form-check-input me-2"
+                          id="responsible"
+                          name="responsible"
+                          type="radio"
+                          value="true"
+                        />Sim
+                        <input
+                          class="form-check-input me-2"
+                          type="radio"
+                          id="disabled"
+                          name="responsible"
+                          value="false"
+                        />Não
+                      </li>
+                    </div>
+                        <div class="row mt-4">
+                            <button type="input" form="form" id="save-btn" class="btn btn-success col-3 offset-2">Salvar</button>
+                            <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
                         </div>
-                    </form>
-                    <div class="container-familiar">
-                        <div class="linha">
-                          <button class="add_form_field">
-                          <p><i class="bi-plus-square-fill"></i></p></button><hr style="height:4px;">
-                        </div>
-                      </div>
-                    <div class="row mt-4">
-                        <button type="button" class="btn btn-success col-3 offset-2">Salvar</button>
-                        <button type="button" class="btn btn-danger col-3 offset-2">Cancelar</button>
                     </div>
                 </div>
             </div>
+          </form>
         </div>
-    </div>
 
-    <!-- JS -->
-    <script src="/public/js/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/main.js"></script>
-    <script src="/public/js/script.js"></script>
+      <!-- JS -->
+      <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
+      <script src="/frontend/public/js/script.js"></script>
+      <script type="Module" src="/frontend/public/js/related.js"></script>
+      <script src="/frontend/public/js/dist/jquery.mask.js"></script>
+      <script src="/frontend/public/js/dist/jquery.mask.min.js"></script>
 </body>
 
 </html>
