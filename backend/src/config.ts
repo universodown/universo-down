@@ -48,11 +48,11 @@ const defaultConfig: Config = {
     },
     database: {
         type: 'mysql',
-        url: 'localhost',
+        url: process.env.MYSQL_DATABASE || 'localhost',
         port: 3306,
-        username: 'root',
-        password: '',
-        name: 'test',
+        username: process.env.MYSQL_USER || 'root',
+        password: process.env.MYSQL_PASS || '',
+        name: process.env.MYSQL_DB || 'test',
         pollSize: 20,
         connectionTimeoutMillis: 30000
     }
