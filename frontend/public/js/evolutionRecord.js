@@ -92,7 +92,7 @@ $("#formUpdate").submit(function (e) {
           
           if (data != "") {
             alert("Atualização Realizada!");
-            window.location.href = "/frontend/html/listar/evolutionRecord.html";
+            window.location.href = "../../html/listar/evolutionRecord.html";
           }
         },
         error: function (err) {
@@ -121,7 +121,7 @@ export function loadInfoDataTable() {
         
         $("#evolutionRecordTable").DataTable({
           language: {
-            url: "/frontend/public/json/DataTable_pt_br.json",
+            url: "../../public/json/DataTable_pt_br.json",
           },
           columnDefs: [
             { className: "align-center" },

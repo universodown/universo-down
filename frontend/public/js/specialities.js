@@ -99,7 +99,7 @@ $("#formUpdate").submit(function (e) {
         
         if (data != "") {
           alert("Atualização Realizada!");
-          window.location.href = "/frontend/html/listar/specialities.html";
+          window.location.href = "../../html/listar/specialities.html";
         }
       },
       error: function (err) {
@@ -124,7 +124,7 @@ export function loadInfoDataTable() {
       success: function (data) {
         $("#specialityTable").DataTable({
           language: {
-            url: "/frontend/public/json/DataTable_pt_br.json",
+            url: "../../public/json/DataTable_pt_br.json",
           },
           columnDefs: [
             { className: "align-center" },

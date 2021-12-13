@@ -82,7 +82,7 @@ $(document).ready(function () {
             if (data != "") {
               alert("Atualização Realizada!");
               window.location.href =
-                "/frontend/html/listar/schoolRequest.html";
+                "../../html/listar/schoolRequest.html";
             }
           },
           error: function (err) {
@@ -112,7 +112,7 @@ export function loadInfoDataTable() {
         
         $("#schoolRequestTable").DataTable({
           language: {
-            url: "/frontend/public/json/DataTable_pt_br.json",
+            url: "../../public/json/DataTable_pt_br.json",
           },
           columnDefs: [
             { className: "align-center" },

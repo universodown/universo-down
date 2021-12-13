@@ -1,6 +1,6 @@
 var baseUrlApi = "http://localhost:3000/api/v1";
-import erroHandler from "/frontend/public/js/fns/erroHandler.js";
-import checkProperties from "/frontend/public/js/fns/checkForm.js";
+import erroHandler from "../../public/js/fns/erroHandler.js";
+import checkProperties from "../../public/js/fns/checkForm.js";
 
 $(document).ready(function () {
   //phone
