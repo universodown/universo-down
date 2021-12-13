@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../public/css/bootstrap.min.css" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
-    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+    <link rel="stylesheet" href="../../public/css/navbar.css" />
+    <link rel="stylesheet" href="../../public/css/style.css" />
 </head>
 
 <body>
@@ -54,7 +54,7 @@
                         <div class="row mt-4">
                             <button type="submit" form="formUpdate" id="save-btn"
                                 class="btn btn-success col-3 offset-2">Salvar</button>
-                            <button type="button" name="cancel-btn" onclick="(window.location='/frontend/html/listar/specialities.html')"
+                            <button type="button" name="cancel-btn" onclick="(window.location='../../html/listar/specialities.html')"
                                 class="btn btn-danger col-3 offset-2">Voltar</button>
                         </div>
                     </form>
@@ -64,11 +64,11 @@
     </div>
 
     <!-- JS -->
-    <script src="/frontend/public/js/dist/jquery-3.6.0.min.js"></script>
-    <script src="/frontend/public/js/script.js"></script>
-    <script type="Module" src="/frontend/public/js/specialities.js"></script>
+    <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
+    <script src="../../public/js/script.js"></script>
+    <script type="Module" src="../../public/js/specialities.js"></script>
     <script type="Module" >
-        import { loadInfoById } from '/frontend/public/js/specialities.js'
+        import { loadInfoById } from '../../public/js/specialities.js'
         $(document).ready(function () {
             loadInfoById();
         });

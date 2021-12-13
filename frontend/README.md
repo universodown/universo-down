@@ -4,7 +4,7 @@ Projeto Universo Down - Web Service
 
 ## Pré-requisitos
 - **LiveServer** (v5.6.1)
-
+- **http-server-spa**
 
 # Inicilizando o ambiente
 ```

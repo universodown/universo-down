@@ -81,7 +81,7 @@ $("#formUpdate").submit(function (e) {
 
         if (data != "") {
           alert("Atualização Realizada!");
-          window.location.href = "/frontend/html/listar/calendar.html";
+          window.location.href = "../../html/listar/calendar.html";
         }
       },
       error: function (err) {
@@ -148,7 +148,7 @@ export function loadInfoDataTable() {
             $("#calendarTable").DataTable({
               bDestroy: true,
               language: {
-                url: "/frontend/public/json/DataTable_pt_br.json",
+                url: "../../public/json/DataTable_pt_br.json",
               },
               columnDefs: [
                 { className: "align-center" },

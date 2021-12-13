@@ -80,7 +80,7 @@ $("#formUpdate").submit(function (e) {
           if (data != "") {
             alert("Atualização Realizada!");
             window.location.href =
-              "/frontend/html/listar/professionalAttendance.html";
+              "../../html/listar/professionalAttendance.html";
           }
         },
         error: function (err) {
@@ -108,7 +108,7 @@ export function loadInfoDataTable() {
         
         $("#specialityTable").DataTable({
           language: {
-            url: "/frontend/public/json/DataTable_pt_br.json",
+            url: "../../public/json/DataTable_pt_br.json",
           },
           columnDefs: [
             { className: "align-center" },
