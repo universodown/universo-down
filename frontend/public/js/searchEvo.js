@@ -27,8 +27,6 @@ function autocomplete(inp, arr) {
         b.innerHTML =
           "<strong>" + value.name.substr(0, val.length) + "</strong>";
         b.innerHTML += value.name.substr(val.length);
-        // b.innerHTML +=
-        // "<strong>" + "  Data: "+ value.date + "</strong>";
         b.innerHTML +=
           "<input type='hidden' id='" +
           value.evolutionRecordId +

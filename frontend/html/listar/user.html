@@ -38,7 +38,9 @@
                     <th class="col-1">Registro</th>
                     <th class="col-6">Nome Completo</th>
                     <th class="col-4">CPF</th>
-                    <th class="col-1">Opções</th>
+                    <th class="col-4">Email</th>
+                    <th class="col-4">Telefone</th>
+                    <th class="col-1">Função</th>
                   </tr>
                 </thead>
               </table>
@@ -72,14 +74,8 @@
             columnDefs: [
               { className: "align-center" },
               {
-                targets: 3,
-                render: function (data, type, row, meta) {
-                  return (
-                    '<input type="button" class="btn btn-primary " id=n-"' +
-                    meta.row +
-                    '" value="Editar"/>'
-                  );
-                },
+                targets: 2,
+                
               },
             ],
             data: data,
@@ -91,6 +87,24 @@
             }, 
           }, { 
             data: "identification" 
+          }, {
+            data: "email"
+          },{
+            data:"phone"
+          }
+          ,{
+            data: "userRole",
+            render: function (data) {
+              if (data === "secretary") {
+                return (data = "Secretária");
+              } else if (data === "professional") {
+                return (data = "Especialista");
+              } else if (data === "social-assistence") {
+                return (data = "Assistente Social");
+              } else {
+                return;
+              }
+            },
           },
         ],
           });
