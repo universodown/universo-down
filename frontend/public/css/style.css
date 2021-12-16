@@ -395,7 +395,7 @@ table.dataTable thead th, table.dataTable thead td {
 }
 select {
   word-wrap: normal;
-  font-size: 2vw !important;
+  font-size: 1.5vw;
 }
 table {
   height: 20px ;
@@ -475,6 +475,12 @@ table {
   h6.col-12 {
     font-size: 1.5vw;
   }
+  #imgIndex {
+    width: 100%;
+    height: 25vw;
+    margin: 0;
+  }
+  
 }
 
 @media (min-width: 768px) and (max-width: 990px) {
@@ -531,78 +537,14 @@ table {
   select#specialityId.col-12 {
     height: 45%;
   }
+  #imgIndex {
+  width: 100%;
+  height: 30vw;
+  margin: 0;
+}
 }
 
-/* @media (max-width: 767px) {
-  #sidebar {
-    margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
-  }
-  #sidebarCollapse span {
-    display: none;
-  }
-  .btn-danger {
-    font-size:  2vh;
-  }
-  .btn-success {
-    font-size:  2vh;
-  }
-  #estrelaIndex {
-    width: 10%;
-    height: 10%;
-  }
-  #scholarity {
-    height: 35%;
-  }
-  #state {
-    height: 60%;
-  }
-  #gender {
-    height: 60%;
-  }
-  label {
-    font-size: 12px;
-  }
-  
-} */
-
-/* @media (min-width: 768px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-  #sidebar.active {
-    margin-left: 180px;
-  }
-  #sidebarCollapse span {
-    display: none;
-  }
-  .btn-danger {
-    font-size:  3vh ;
-  }
-  .btn-success {
-    font-size:  3vh ;
-  }
-  #estrelaIndex {
-    width: 10%;
-    height: 10%;
-  }
-  #scholarity {
-    height: 60%;
-  }
-  #state {
-    height: 60%;
-  }
-  #gender {
-    height: 60%;
-  }
-  label {
-    font-size: 12px;
-  }
-} */
-
-@media (min-width: 426px) and (max-width: 767px) {
+@media (min-width: 431px) and (max-width: 767px) {
   #sidebar {
     margin-left: 0px;
   }
@@ -645,46 +587,32 @@ table {
   select#specialityId.col-12 {
     height: 40%;
   }
+  #estrelaIndex {
+    width: 12%;
+    height: 12%;
+  }
+  #imgIndex {
+    margin: 0;
+    width: 100%;
+    height: 60vw;
+    padding-bottom: 100px;
+  }
 }
+@media (max-width: 430px) {
+  #imgIndex {
+    margin: 0;
+    width: 100%;
+    height: 60vw;
+    padding-bottom: 100px;
 
-/* @media (max-width: 425px) {
-  #sidebar {
-    margin-left: 0px;
-  }
-  #sidebar.active {
-    margin-left: 180px;
-  }
-  #sidebarCollapse span {
-    display: none;
-  }
-  span.wrap-icon.fa.fa-home.p-4 {
-    padding: 0 ;
-  }
-  span.menu-text.p-4 {
-    padding: 0 ;
-    height: 30px ;
-  }
-  .btn-danger {
-    font-size:  2vw ;
-  }
-  .btn-success {
-    font-size:  2vw ;
-  }
-  i.bi.bi-trash::before {
-    font-size: 12px ;
-    margin-right: 100px ;
-  }
-  i.bi.bi-pencil-square::before {
-    font-size: 12px ;
-    margin-right: 10px ;
   }
   #estrelaIndex {
-    width: 15%;
-    height: 15%;
+    margin: 0;
+    width: 15vw;
+    height: 100%;
   }
-} */
-
-@media (min-width: 300) and (max-width: 425px) {
+}
+@media (min-width: 300) {
   #sidebar {
     margin-left: 0px;
   }
@@ -718,9 +646,7 @@ table {
     font-size: 12px;
     margin-right: 10px;
   }
-  #estrelaIndex {
-    width: 15%;
-    height: 15%;
-  }
+  
+
   
 }
