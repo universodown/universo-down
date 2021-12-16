@@ -28,7 +28,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ) }'
+                            + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -58,7 +58,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ) }'
+                            + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -114,7 +114,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Secretaria ) }'
+                            + ' esta ação. { (Função: Secretaria) }'
                         })
 
                         return
@@ -153,7 +153,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ) }'
+                            + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -193,7 +193,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -235,7 +235,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -277,7 +277,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -354,7 +354,7 @@ export class ProfessionalAttendaceRoutes {
                     if (context.user.userRole !== UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return

@@ -52,7 +52,7 @@ export class AssistedRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + ' está ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -107,7 +107,7 @@ export class AssistedRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' está ação. { (Função: Secrétaria) }'
+                            + ' está ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -207,7 +207,7 @@ export class AssistedRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional ) }'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -257,7 +257,7 @@ export class AssistedRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Profissional )}'
+                                + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return

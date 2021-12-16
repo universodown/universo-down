@@ -25,7 +25,7 @@ export class SpecialityRoutes {
                     && context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Assistente Social ) }'
                         })
 
                         return
@@ -53,7 +53,7 @@ export class SpecialityRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -107,7 +107,7 @@ export class SpecialityRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + 'esta ação. { (Função: Secretária)}'
+                            + 'esta ação. { (Função: Secretária) }'
                         })
 
                         return
@@ -150,7 +150,7 @@ export class SpecialityRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -190,7 +190,7 @@ export class SpecialityRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return
@@ -258,7 +258,7 @@ export class SpecialityRoutes {
                     if (context.user.userRole !== UserRole.Secretary) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. { (Função: Secretária )}'
+                                + ' esta ação. { (Função: Secretária ) }'
                         })
 
                         return

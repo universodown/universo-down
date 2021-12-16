@@ -27,7 +27,7 @@ export class EvolutionRecordRoutes {
                     if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Secretaria ) }'
+                            + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -54,10 +54,10 @@ export class EvolutionRecordRoutes {
                 try {
                     const context = request.context
 
-                    if (context.user.userRole !== UserRole.Professional) {
+                    if (context.user.userRole === UserRole.Professional) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. { (Função: Profissional ) }'
+                            + ' esta ação. { (Função: Profissional) }'
                         })
 
                         return
@@ -186,7 +186,7 @@ export class EvolutionRecordRoutes {
                     if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. {( Função: Assistente Social )}'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
@@ -227,7 +227,7 @@ export class EvolutionRecordRoutes {
                     if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                            + ' esta ação. {( Função: Assistente Social )}'
+                            + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
@@ -296,7 +296,7 @@ export class EvolutionRecordRoutes {
                     if (context.user.userRole !== UserRole.SocialAssistence) {
                         response.status(401).json({
                             error: 'Usuário não possui permissão para'
-                                + ' esta ação. {( Função: Assistente Social )}'
+                                + ' esta ação. { (Função: Assistente Social) }'
                         })
 
                         return
