@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Universo Down</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/bootstrap.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/public/css/navbar.css" />
+    <link rel="stylesheet" href="/frontend/public/css/style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Conteúdo da Página  -->
+      <div class="container">
+        <div class="row" id="login-card">
+          <div class="card">
+            <div class="card-body">
+              <div class="col offset-4 mb-5">
+                <img src="/frontend/public/img/logo_open.png" />
+              </div>
+              <form id="form" name"form">
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-user fa-2x"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="input-group mt-3">
+                  <span class="input-group-addon">
+                    <i class="fa fa-lock fa-2x"></i>
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    name="password"
+                    id="password"
+                    placeholder="Senha" autocomplete="off"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <a
+                  href="recoverPassword.html"
+                  class="col"
+                  style="color: #615d5d; font-size: 14px"
+                  >Esqueceu a senha?</a
+                >
+              </div>
+              <div class="mt-3">
+                <button type="submit" form="form" name="login" id="login" value="Login" class="btn btn-success col-12">
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+    <!-- JS -->
+    <script type="module"  src="/frontend/public/js/login.js"></script>
+  </body>
+</html>

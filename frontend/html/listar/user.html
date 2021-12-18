@@ -41,6 +41,7 @@
                     <th class="col-4">Email</th>
                     <th class="col-4">Telefone</th>
                     <th class="col-1">Função</th>
+                    <th class="col-1">Opções</th>
                   </tr>
                 </thead>
               </table>
@@ -55,70 +56,13 @@
   <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
   <script src="../../public/js/script.js"></script>
   <script type="Module" src="../../public/js/fns/erroHandler.js"></script>
+  <script src="../../public/js/dist/jquery.mask.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script>
-
-    var baseUrlApi = "http://ec2-3-88-10-95.compute-1.amazonaws.com:3000/api/v1";
+  <script type="Module" >
+    import { loadInfoDataTable } from '../../public/js/user.js'
     $(document).ready(function () {
-      var data = {};
-      $.ajax({
-        type: "GET",
-        url: baseUrlApi + "/user",
-        headers: {
-          "x-access-token": localStorage.getItem("Authorization"),
-        },
-        dataType: "JSON",
-        success: function (data) {
-          var table = $("#usersTable").DataTable({
-            columnDefs: [
-              { className: "align-center" },
-              {
-                targets: 2,
-                
-              },
-            ],
-            data: data,
-            columns: [{ 
-              data: "id" 
-            }, {  
-              data: function (row, type, set) {
-              return row.firstName + " " + row.lastName;
-            }, 
-          }, { 
-            data: "identification" 
-          }, {
-            data: "email"
-          },{
-            data:"phone"
-          }
-          ,{
-            data: "userRole",
-            render: function (data) {
-              if (data === "secretary") {
-                return (data = "Secretária");
-              } else if (data === "professional") {
-                return (data = "Especialista");
-              } else if (data === "social-assistence") {
-                return (data = "Assistente Social");
-              } else {
-                return;
-              }
-            },
-          },
-        ],
-          });
-        },
-        error: function (err) {
-          alert("erro" + JSON.stringify(err));
-        },
-      });
-      $("#usersTable").on("click", ".btn-primary", function () {
-        var id = $(this).attr("id").match(/\d+/)[0];
-        var data = $("#usersTable").DataTable().row(id).data();
-        window.location.href = "../editar/user.html?id=" + data.id;
-      });
-
+      loadInfoDataTable();
     });
   </script>
 </body>
