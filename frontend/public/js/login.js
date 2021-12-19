@@ -38,9 +38,8 @@ $(document).ready(function () {
         success: function (data) {
           const token = data.token;
           window.localStorage.clear();
-          window.localStorage.setItem("email", email);
           window.localStorage.setItem("Authorization", token);
-          window.location.href = "../../index.html";
+          window.location.href = "../../html/index.html";
         },
         error: function (err) {
           erroHandler(err.status);

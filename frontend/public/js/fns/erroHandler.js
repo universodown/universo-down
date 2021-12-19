@@ -4,19 +4,22 @@ export default function erroHandler(err) {
         return alert("Servidor OffLine!");
         break;
       case 200:
-        return alert("???");
+        return alert("Não Encontrado!");
         break;
       case 304:
-        return alert("Sem Alteração!!");
+        return alert("Sem Alteração!");
         break;
       case 400:
-        return alert("Estrutura de requisição inválida!!");
+        return alert("Estrutura de requisição inválida!");
         break;
       case 401:
         return alert("Usuário não possui permissão para esta ação!");
         break;
+      case 404:
+        return alert("Por favor, verifique os dados e tente novamente!");
+        break;
       case 500:
-        return alert("O servidor encontrou uma situação com a qual não sabe lidar");
+        return alert("O servidor encontrou uma situação com a qual não sabe lidar!");
         break;
       default:
         return alert("Erro Desconhecido: " + err);
