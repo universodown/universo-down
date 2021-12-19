@@ -95,9 +95,9 @@ aside {
 
 aside .toggle {
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 3px;
   position: absolute;
-  right: 0;
+  right: 50px;
   -webkit-transform: translateX(100%);
   -ms-transform: translateX(100%);
   transform: translateX(100%);
@@ -299,7 +299,7 @@ main .post-content .post-meta {
   height: 32px;
   cursor: pointer;
   position: relative;
-  z-index: 99;
+  z-index: 9999;
   float: right;
 }
 
@@ -400,12 +400,6 @@ main .post-content .post-meta {
   background-color: #fff;
 }
 
-/* div.side-menu{
-}
-div.side-menu > ul > li{
-}
-div.side-menu > ul > li:last-child{
-} */
 div.side-menu > ul > li > a,
 div.side-menu > ul > li{
     font-size: 16px;
@@ -415,9 +409,6 @@ div.side-menu > ul > li.active > a{
     color: #fff;
     background-color: rgb(60, 152, 165);
 }
-/* div.side-menu > ul > li.active i.drop-icon{
-
-} */
 
 div.side-menu > ul > li > a{
   display: block;
@@ -425,22 +416,6 @@ div.side-menu > ul > li > a{
 div.side-menu > ul > li .sub-menu{
     display: none;
 }
-/* div.side-menu > ul > li .sub-menu li{
-}
-div.side-menu > ul > li .sub-menu li:hover{
-}
-div.side-menu > ul > li .sub-menu li a{
-}
-div.side-menu > ul > li .sub-menu li:hover a{
-
-}
-div.side-menu > ul > li i{
-
-}
-
-aside .side-inner .nav-menu ul li a {
-
-} */
 
 li a.d-flex.align-items-sm-center.sub {
   background-color: rgb(165, 214, 219);
@@ -471,4 +446,8 @@ span#search.wrap-icon.fa.fa-search {
   padding: 0 !important;
   width: 50px;
   height: 50px;
+}
+
+#logoNavBar {
+  margin-top: 20px;
 }
