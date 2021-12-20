@@ -27,13 +27,17 @@
         <div class="logo">
           <img id="logoNavBar" src="../../public/img/logo.png">
           </div>
+        <div class="logout">
+              <form id="formLogOut" name="formLogOut">
+                <button type="submit" form="formLogOut" class="buttonLogOut" role="button">Sair</a>
+              </form>
+        </div>
         <div class="nav-menu side-menu">
           <ul>
             <li>
               <a href="#" onclick="(window.location='../../html/index.html')" class="d-flex align-items-center">
                 <span class="wrap-icon fa fa-home ml-auto p-2"></span>
-                <span class="menu-text">Pagina Inicial</span></a
-              > <!-- CLOSE -->
+                <span class="menu-text">Pagina Inicial</span></a> 
             </li>
             <li>
               <a href="" class="d-flex align-items-center">
@@ -46,9 +50,9 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/assisted.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-star p-4"></span>
-                    <span class="menu-text p-4">Cadastro de Paciente</span>
+                    <span class="menu-text p-4">Cadastro do(a) Atendido</span>
                   </a>
                 </li>
                 <li>
@@ -56,9 +60,9 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/related.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-user p-4"></span>
-                    <span class="menu-text p-4">Cadastro de Familiar</span>
+                    <span class="menu-text p-4">Cadastro do(a) Familiar</span>
                   </a>
                 </li>
                 <li>
@@ -66,7 +70,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/schoolRequest.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-graduation-cap p-4"></span>
                     <span class="menu-text p-4">Solicitação Escolar</span>
                   </a>
@@ -76,7 +80,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/transportRequest.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-bus p-4"></span>
                     <span class="menu-text p-4">Solicitação de Transporte</span>
                   </a>
@@ -86,7 +90,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/evolutionRecord.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-chart-line p-4"></span>
                     <span class="menu-text p-4">Registro de Evolução</span>
                   </a>
@@ -96,7 +100,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/needSpeciality.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-wheelchair p-4"></span>
                     <span class="menu-text p-4">Registro de Necessidades</span>
                   </a>
@@ -106,7 +110,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/calendar.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-calendar-alt p-4"></span>
                     <span class="menu-text p-4">Agendamento de Consulta</span>
                   </a>
@@ -124,7 +128,7 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/professionalAttendance.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-hands-helping p-4"></span>
                     <span class="menu-text p-4">Atendimento Profissional</span>
                   </a>
@@ -141,9 +145,19 @@
                 <li>
                   <a
                     href="#"
+                    onclick="(window.location='../../html/cadastrar/user.html')"
+                    class="d-flex align-items-sm-center sub"
+                  > 
+                    <span class="wrap-icon fa fa-user-plus p-4"></span>
+                    <span class="menu-text p-4">Cadastro de Usuário</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
                     onclick="(window.location='../../html/cadastrar/speciality.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-stethoscope p-4"></span>
                     <span class="menu-text p-4">Cadastro de Especialidade</span>
                   </a>
@@ -153,9 +167,9 @@
                     href="#"
                     onclick="(window.location='../../html/cadastrar/specialities.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-folder-plus p-4"></span>
-                    <span class="menu-text p-4">Cadastro de Especialidade com Especialista</span>
+                    <span class="menu-text p-4">Cadastro de Especialidade com Profissional</span>
                   </a>
                 </li>
               </ul>
@@ -163,17 +177,47 @@
             <li>
               <a href="" class="d-flex align-items-center">
                 <span class="wrap-icon fa fa-list ml-auto p-2"></span>
-                <span class="menu-text">Relatórios</span>
+                <span class="menu-text">Relatórios/Edição</span>
               </a>
               <ul class="sub-menu">
                 <li>
                   <a
                     href="#"
+                    onclick="(window.location='../../html/listar/user.html')"
+                    class="d-flex align-items-sm-center sub"
+                  > 
+                    <span class="wrap-icon fa fa-user-edit p-4"></span>
+                    <span class="menu-text p-4">Lista dos Usuários</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="(window.location='../../html/listar/assisted.html')"
+                    class="d-flex align-items-sm-center sub"
+                  > 
+                    <span class="wrap-icon fa fa-hospital-user p-4"></span>
+                    <span class="menu-text p-4">Lista dos Paciente</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick="(window.location='../../html/listar/related.html')"
+                    class="d-flex align-items-sm-center sub"
+                  > 
+                    <span class="wrap-icon fa fa-user-friends p-4"></span>
+                    <span class="menu-text p-4">Lista dos Familiares</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
                     onclick="(window.location='../../html/listar/calendar.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-calendar-alt p-4"></span>
-                    <span class="menu-text p-4">Consultar por Especialista</span>
+                    <span class="menu-text p-4">Consultar por Profissional</span>
                   </a>
                 </li>
                 <li>
@@ -182,9 +226,9 @@
                       href="#"
                       onclick="(window.location='../../html/listar/evolutionRecord.html')"
                       class="d-flex align-items-sm-center sub"
-                    > <!-- CLOSE -->
+                    > 
                       <span class="wrap-icon fa fa-chart-line p-4"></span>
-                      <span class="menu-text p-4">Evolução dos Pacientes</span>
+                      <span class="menu-text p-4">Evolução dos Atendidos</span>
                     </a>
                   </li>
                   <li>
@@ -192,7 +236,7 @@
                       href="#"
                       onclick="(window.location='../../html/listar/professionalAttendance.html')"
                       class="d-flex align-items-sm-center sub"
-                    > <!-- CLOSE -->
+                    > 
                       <span class="wrap-icon fas fa-hands-helping p-4"></span>
                       <span class="menu-text p-4">Atendimento Profissional</span>
                     </a>
@@ -202,9 +246,9 @@
                       href="#"
                       onclick="(window.location='../../html/listar/specialities.html')"
                       class="d-flex align-items-sm-center sub"
-                    > <!-- CLOSE -->
+                    > 
                       <span class="wrap-icon fas fa-folder-plus p-4"></span>
-                      <span class="menu-text p-4">Especialista e Especialidades</span>
+                      <span class="menu-text p-4">Profissional e Especialidades</span>
                     </a>
                   </li>
                   <li>
@@ -212,7 +256,7 @@
                       href="#"
                       onclick="(window.location='../../html/listar/speciality.html')"
                       class="d-flex align-items-sm-center sub"
-                    > <!-- CLOSE -->
+                    > 
                       <span class="wrap-icon fa fa-stethoscope p-4"></span>
                       <span class="menu-text p-4">Especialidades</span>
                     </a>
@@ -222,7 +266,7 @@
                     href="#"
                     onclick="(window.location='../../html/listar/transportRequest.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-bus p-4"></span>
                     <span class="menu-text p-4">Solicitação de Transporte</span>
                   </a>
@@ -232,19 +276,9 @@
                     href="#"
                     onclick="(window.location='../../html/listar/schoolRequest.html')"
                     class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
+                  > 
                     <span class="wrap-icon fa fa-graduation-cap p-4"></span>
                     <span class="menu-text p-4">Solicitação Escolar</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    onclick="(window.location='../../html/listar/user.html')"
-                    class="d-flex align-items-sm-center sub"
-                  > <!-- CLOSE -->
-                    <span class="wrap-icon fa fa-users p-4"></span>
-                    <span class="menu-text p-4">Usuários</span>
                   </a>
                 </li>
               </ul>
@@ -258,6 +292,8 @@
   </main>
   <!-- JS -->
     <script src="../../public/js/main.js"></script>
+    <script type="Module" src="../../public/js/logout.js"></script>
+
 </body>
 
 </html>

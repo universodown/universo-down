@@ -28,7 +28,7 @@ export default class AssistedService {
     }
 
     async update(
-        _: Context,
+        context: Context,
         id: number,
         assistedInfo: AssistedUpdate
     ) {
@@ -38,7 +38,9 @@ export default class AssistedService {
 
             return repository.save({
                 ...assisted,
-                ...assistedInfo
+                ...assistedInfo,
+                id,
+                organizationId: context.organization.id
             })
         })
     }

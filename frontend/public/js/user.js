@@ -40,7 +40,7 @@ $(document).ready(function (e) {
       email: $("#email").val(),
       plainPassword: $("#plainPassword").val(),
       plainPasswordConfirmation: $("#plainPasswordConfirmation").val(),
-      adminRole: $("#adminRole").val(),
+      adminRole: adminRole,
       userRole: $("#userRole").val(),
       birthday: $("#birthday").val(),
       gender: $("#gender").val(),
@@ -107,7 +107,6 @@ $(document).ready(function (e) {
       var state = document.getElementById("state");
       var phone = document.getElementById("phone");
       var nationalIdentity = document.getElementById("nationalIdentity");
-      console.log(typeof id)
       var numberId = parseInt(id, 10);
         var data = {
           id: numberId,
@@ -131,7 +130,6 @@ $(document).ready(function (e) {
           nationalIdentity: nationalIdentity.value
         };
     
-    if (checkProperties(data) === false) {
       try {
         $.ajax({
           url: baseUrlApi + "/user/" + numberId,
@@ -158,9 +156,6 @@ $(document).ready(function (e) {
       } catch (error) {
         alert("Erro ao editar! " + error);
       }
-    } else {
-      alert("Campo(s) em Branco!");
-    }
   });
 
 export function loadInfoDataTable() {
@@ -215,7 +210,7 @@ export function loadInfoDataTable() {
                 if (data === "secretary") {
                   return (data = "Secretária");
                 } else if (data === "professional") {
-                  return (data = "Especialista");
+                  return (data = "Profissional");
                 } else if (data === "social-assistence") {
                   return (data = "Assistente Social");
                 } else {

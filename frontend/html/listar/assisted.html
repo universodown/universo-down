@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Listagem de Profissionals e Especialidades </title>
+  <title>Listagem de Atendidos</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,19 +26,19 @@
     <div id="content">
       <div class="card col-12">
         <h3 class="mt-4 ml-2" style="text-align: center">
-          Lista de Profissionals e Especialidades
+          Lista de Atendidos
         </h3>
         <div class="card-body">
           <div class="container">
             <hr size="4" />
             <div class="row row-cols-12">
-              <table id="specialityTable" class="display">
+              <table id="assistedsTable" class="display">
                 <thead class="col-12">
                   <tr>
-                    <th class="col-1">Registro</th>
-                    <th class="col-2">Especialidade</th>
-                    <th class="col-4">Profissional</th>
-                    <th class="col-1">Opções</th>
+                    <th class="col-2">Registro</th>
+                    <th class="col-5">Atendido</th>
+                    <th class="col-3">CPF</th>
+                    <th class="col-2">Opções</th>
                   </tr>
                 </thead>
               </table>
@@ -53,10 +53,11 @@
   <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
   <script src="../../public/js/script.js"></script>
   <script type="Module" src="../../public/js/fns/erroHandler.js"></script>
+  <script src="../../public/js/dist/jquery.mask.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
   <script type="Module" >
-    import { loadInfoDataTable } from '../../public/js/specialities.js'
+    import { loadInfoDataTable } from '../../public/js/assisted.js'
     $(document).ready(function () {
       loadInfoDataTable();
     });
