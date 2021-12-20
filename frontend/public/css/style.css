@@ -291,7 +291,7 @@ tr:nth-child(even) {
 }
 
 /* ---------------------------------------------------
-    CADASTRO DE ESPECIALISTA   
+    CADASTRO DE Profissional   
 ----------------------------------------------------- */
 
 select,
@@ -324,12 +324,6 @@ select,
 .linha p i {
   font-size: 28px;
   color: #3c98a5;
-}
-
-button.add_form_field {
-  border: 0 !important;
-  background-color: transparent;
-  padding: 0 !important;
 }
 
 .delete {

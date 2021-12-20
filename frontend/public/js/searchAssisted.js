@@ -17,7 +17,6 @@ function autocomplete(inp, arr) {
     this.parentNode.appendChild(a);
 
     for (const [key, value] of Object.entries(arr)) {
-      window.localStorage.removeItem("id");
       if (value.name.substr(0, val.length).toLowerCase() == val.toLowerCase()) {
         b = document.createElement("DIV");
         var c = document.createAttribute("CLASS");
@@ -31,6 +30,7 @@ function autocomplete(inp, arr) {
           value.id +
           "' value='" +
           value.name +
+          "' class=teste'" +
           "'>";
         b.addEventListener("click", function (e) {
           inp.value = this.getElementsByTagName("input")[0].value;

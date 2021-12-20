@@ -36,12 +36,11 @@
                                 <div class="col-12">
                                     <h6 class="col-12">Especialidade<h6>
                                         <div class="col-12">
-                                            <input type="hidden" class="form-control mb-4" name="id" id="id"
-                                            placeholder="Nome do(a) Paciente:">
+                                            <input type="hidden" class="form-control mb-4" name="id" id="id">
                                         </div>
                                         <div class="col-12">
                                             <input type="date" value="" class="form-control mb-4" name="date" id="date"
-                                            placeholder="Data de Requisição:">
+                                            >
                                         </div>
                                         <div class="col-12">
                                             <input type="date" class="form-control mb-4" name="responseDate" id="responseDate"
@@ -66,8 +65,8 @@
                         <div class="row mt-4">
                             <button type="submit" form="formUpdate" id="save-btn"
                                 class="btn btn-success col-3 offset-2">Salvar</button>
-                            <button type="reset" name="cancel-btn"
-                                class="btn btn-danger col-3 offset-2">Limpar</button>
+                                <button type="button" name="cancel-btn" onclick="(window.location='../../html/listar/schoolRequest.html')"
+                                class="btn btn-danger col-3 offset-2">Voltar</button>
                         </div>
                     </form>
                 </div>

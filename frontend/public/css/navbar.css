@@ -451,3 +451,22 @@ span#search.wrap-icon.fa.fa-search {
 #logoNavBar {
   margin-top: 20px;
 }
+#formLogOut {
+  margin-left: 20px;
+}
+#buttonLogOut {
+  margin: none;
+  color: none !important;
+  background-color: none !important;
+}
+
+.buttonLogOut {
+  background-color: transparent;
+  color: #3c98a5;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.085rem;
+  font-size: 15px;
+  padding-right: 5px;
+  border: none;
+}

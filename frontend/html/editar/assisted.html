@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Cadastro do Atendido</title>
+    <title>Edição do(a) Atendido</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -26,12 +26,13 @@
       <!-- Conteúdo da Página  -->
       <div id="content">
         <div class="card col-12">
-          <h3 class="mt-4 ml-2 titulo">Cadastro do(a) Atendido</h3>
+          <h3 class="mt-4 ml-2 titulo">Edição do(a) Atendido</h3>
           <div class="card-body">
-            <form class="form-group" id="form">
+            <form class="form-group" id="formUpdate" name="formUpdate">
               <div class="container">
                 <div class="row">
                   <hr size="4" />
+                  <input type="hidden" class="form-control" name="id" id="id">
                   <div class="col-6">
                     <label for="nome">Nome Completo</label>
                     <input
@@ -40,7 +41,6 @@
                       name="name"
                       id="name"
                       placeholder="Nome Completo"
-                      required                      
                     />
                   </div>
                   <div class="col-3">
@@ -51,7 +51,7 @@
                       name="birthday"
                       id="birthday"
                       placeholder="Data de Nascimento"
-                      required  
+                        
                     />
                   </div>
                   <div class="col-3">
@@ -61,7 +61,7 @@
                       class="form-control"
                       id="gender"
                       placeholder="Gênero"
-                      required
+                      
                     >
                       <option value="male">Masculino</option>
                       <option value="female">Feminino</option>
@@ -78,7 +78,7 @@
                       id="identification"
                       placeholder="CPF"
                       maxlength="14"
-                      required
+                      
                     />
                   </div>
                   <div class="col-4">
@@ -90,7 +90,7 @@
                       id="generalRegistration"
                       placeholder="Registro Geral"
                       maxlength="13"
-                      required
+                      
                     />
                   </div>
 
@@ -102,7 +102,7 @@
                       name="issue"
                       id="issue"
                       placeholder="Data de Expedição"
-                      required
+                      
                     />
                   </div>
                   <div class="col-5">
@@ -115,7 +115,7 @@
                       name="issuer"
                       id="issuer"
                       placeholder="Orgão Emissor/Estado"
-                      required
+                      
                     />
                   </div>
 
@@ -128,7 +128,7 @@
                       name="address"
                       id="address"
                       placeholder="Endereço"
-                      required
+                      
                     />
                   </div>
                   <div class="col-3">
@@ -139,7 +139,7 @@
                       name="number"
                       id="number"
                       placeholder="Número Residêncial"
-                      required
+                      
                     />
                   </div>
                   <div class="col-3">
@@ -150,7 +150,7 @@
                       name="neighborhood"
                       id="neighborhood"
                       placeholder="Bairro"
-                      required
+                      
                     />
                   </div>
                   <div class="col-3">
@@ -162,7 +162,7 @@
                       id="zipCode"
                       placeholder="CEP"
                       maxlength="9"
-                      required
+                      
                     />
                   </div>
                   <div class="col-3">
@@ -173,7 +173,7 @@
                       name="city"
                       id="city"
                       placeholder="Cidade"
-                      required
+                      
                     />
                   </div>
                   <div class="col-3">
@@ -217,6 +217,7 @@
                       name="phone"
                       id="phone"
                       placeholder="(DDD+)"
+                      
                     />
                   </div>
 
@@ -229,7 +230,7 @@
                       name="naturalness"
                       id="naturalness"
                       placeholder="Naturalidade"
-                      required
+                      
                     />
                   </div>
 
@@ -241,7 +242,7 @@
                       name="nationality"
                       id="nationality"
                       placeholder="Nacionalidade"
-                      required
+                      
                     />
                   </div>
 
@@ -253,6 +254,7 @@
                       name="nationalIdentity"
                       id="nationalIdentity"
                       placeholder="Identidade Nacional"
+                      
                     />
                   </div>
 
@@ -266,7 +268,8 @@
                       name="socialIdentificationNumber"
                       id="socialIdentificationNumber"
                       placeholder="Numero Identificação Nacional"
-                      />
+                      
+                    />
                   </div>
 
                   <div class="col-4">
@@ -287,7 +290,7 @@
                       name="scholarity"
                       id="scholarity"
                       placeholder="Escolaridade"
-                      required
+                      
                     >
                       <option value="elementary-school">Ensino Fundamental</option>
                       <option value="high_school">Ensino Médio</option>
@@ -310,7 +313,7 @@
                   <hr size=4 />
                   <div class="col-12">
                     <h6 for="foto" class="p-2">Amostra da Imagem</h6>
-                      <img id="preview" style="width: 200px; heigth: 200px;"src="#" alt="Amostra da Imagem" />
+                      <img id="preview" type="file" style="width: 200px; heigth: 100%;"src="#" alt="Amostra da Imagem" onload="encodeImgtoBase64(this)"/>
                     <h6 for="foto" class="mt-5 p-2">Escolha uma Foto</h6>
                       <input type="file" name="file" id="photo" onchange="encodeImgtoBase64(this)">
                       <textarea style="display: none;" name="txt" id="txt" ></textarea>
@@ -349,7 +352,7 @@
                       <input
                         class="form-check-input me-2"
                         type="radio"
-                        id="disable"
+                        id="disable2"
                         name="active"
                         value="false"
                       />Não
@@ -368,14 +371,15 @@
                   </div>
                 </div>
               </div>
+            
+
             <hr />
             <div class="row mt-4">
-              <button type="submit" form="form" id="save-btn" class="btn btn-success col-3 offset-2">
+              <button type="submit" form="formUpdate" id="save-btn" class="btn btn-success col-3 offset-2">
                 Salvar
               </button>
-              <button type="reset" id="cancel-btn" class="btn btn-danger col-3 offset-2">
-                Cancelar
-              </button>
+              <button type="button" name="cancel-btn" onclick="(window.location='../../html/listar/assisted.html')"
+              class="btn btn-danger col-3 offset-2">Voltar</button>
             </form>
             </div>
           </div>
@@ -389,23 +393,30 @@
     <script type="Module" src="../../public/js/assisted.js"></script>
     <script src="../../public/js/dist/jquery.mask.js"></script>
     <script src="../../public/js/dist/jquery.mask.min.js"></script>
-    
+
+    <script type="Module" >
+        import { loadInfoById } from '../../public/js/assisted.js'
+        $(document).ready(function () {
+          loadInfoById();
+        });
+    </script>
+
     <script type="text/javascript">
       function encodeImgtoBase64(element) {
-        var photo = element.files[0];
+        var file = element.files[0];
         var reader = new FileReader();
-        reader.onloadend = function() {
-          $("#txt").val(reader.result);
+        
+        reader.onload = function() {
           $("#preview").attr("src", reader.result);
+          
         }
-        reader.readAsDataURL(photo);
+        reader.readAsDataURL(file);
       }
         const img = document.getElementById("preview")
         img.addEventListener("error", function(event) {
           event.target.src = "../../public/img/estrela.png"
           event.onerror = null
         })
-      
     </script>
   </body>
 </html>
