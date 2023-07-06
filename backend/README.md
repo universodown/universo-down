@@ -1,5 +1,5 @@
-# universo-down
-Projeto Universo Down - SENAC/SC
+# projeto_de_controle_de_atendimento
+Projeto de controle de atendimento - SENAC/SC
 
 ## Pré-requisitos
 - **NodeJS** (14.18.0)

@@ -1,6 +1,6 @@
-# universo_down
+# Projeto de controle de atendimento
 
-Projeto Universo Down - Web Service
+Projeto de controle de atendimento - Web Service
 
 ## Pré-requisitos
 - **LiveServer** (v5.6.1)
@@ -10,7 +10,7 @@ Projeto Universo Down - Web Service
 ```
 1. Apertar: F1 ou ctrl+shift+p
 2. Digitar: "Live Server: Open with Live Server"
-3. A página inicial irá abrir no endereço: 
+3. A página inicial irá abrir no endereço:
     - http://127.0.0.1:5501/index.html ou http://127.0.0.1:5501/
 obs: a porta pode mudar em alguns casos
 
@@ -59,7 +59,7 @@ feat: add hat wobble
 
 ### References:
 
-* https://www.conventionalcommits.org/ 
+* https://www.conventionalcommits.org/
 * https://seesparkbox.com/foundry/semantic_commit_messages
 * http://karma-runner.github.io/1.0/dev/git-commit-msg.html
 
@@ -68,10 +68,10 @@ feat: add hat wobble
 
 Example
 
-<scope> 
+<scope>
 
 frontend
-    
+
 ## Organização das pastas
 
 As pastas desse projeto devem ser organizadas conforme exemplo a seguir:
@@ -87,18 +87,18 @@ frontend
 │   ├── css
 │   ├── img
 │   └── js
-|   
+|
 ├── html
 │   ├── cadastrar
-│   │   └── 
+│   │   └──
 │   ├── listar
-│   │   └── 
+│   │   └──
 │   ├── admin
-│   │   └── 
+│   │   └──
 │   ├── usuarios
-│   │   └── 
+│   │   └──
 │   ├── partials
-│   │   └── 
+│   │   └──
 |   ├──
 |   ├──
 |

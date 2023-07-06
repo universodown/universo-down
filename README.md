@@ -1,3 +1,3 @@
 ![Backend Build](https://github.com/jacksjm/universo-down/actions/workflows/lint.yml/badge.svg)
-# universo-down
-Projeto Universo Down - SENAC/SC
+# Projeto de controle de atendimento
+Projeto de controle de atendimento - SENAC/SC
