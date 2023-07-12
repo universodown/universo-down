@@ -1,7 +1,7 @@
 {
-  "name": "projeto_de_controle_de_atendimento",
+  "name": "projeto_raios_de_esperanca",
   "version": "1.0.0",
-  "description": "Projeto SENAC-SC Projeto de controle de atendimento",
+  "description": "Projeto SENAC-SC Projeto Raios de Esperança",
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/jacksjm/universo-down.git"
   },
   "keywords": [
-    "projeto_de_controle_de_atendimento;",
+    "projeto_raios_de_esperanca;",
     "senac-sc"
   ],
   "author": "SENAC-SC/Joinville",

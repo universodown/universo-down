@@ -1,6 +1,6 @@
-# Projeto de controle de atendimento
+# Projeto Raios de Esperança
 
-Projeto de controle de atendimento - Web Service
+Projeto Raios de Esperança - Web Service
 
 ## Pré-requisitos
 - **LiveServer** (v5.6.1)

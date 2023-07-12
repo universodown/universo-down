@@ -98,10 +98,10 @@ export const apiDoc = {
     swagger: '2.0',
     basePath: '/',
     info: {
-        title: 'projeto_de_controle_de_atendimento',
-        description: 'Documentação da api projeto_de_controle_de_atendimento,'
+        title: 'projeto_raios_de_esperanca',
+        description: 'Documentação da api projeto_raios_de_esperanca,'
             + ' que disponibiliza os endpoints para controle da aplicação do'
-            + ' Projeto de controle de atendimento.',
+            + ' Projeto Raios de Esperança.',
         version: '1.0.0'
     },
     host: 'localhost:3000',
