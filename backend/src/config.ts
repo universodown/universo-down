@@ -40,7 +40,7 @@ const logLevel = getLogLevel(process.env.LOG_LEVEL)
 
 const defaultConfig: Config = {
     port: Number(process.env.PORT) || 3000,
-    jwtSecret: process.env.SECRET || 'controleatendimento',
+    jwtSecret: process.env.SECRET || 'raiosdeesperanca',
     logs: {
         color: true,
         level: logLevel,
