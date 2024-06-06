@@ -1,5 +1,5 @@
-# universo-down
-Projeto Universo Down - SENAC/SC
+# projeto_raios_de_esperanca
+Projeto Raios de Esperança - SENAC/SC
 
 ## Pré-requisitos
 - **NodeJS** (14.18.0)
