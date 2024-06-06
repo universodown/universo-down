@@ -1,4 +1,4 @@
-var baseUrlApi = "http://ec2-3-88-10-95.compute-1.amazonaws.com:3000/api/v1";
+var baseUrlApi = `${process.env.ENDPOINT}/api/v1`;
 import erroHandler from "../js/fns/erroHandler.js";
 import checkProperties from "../js/fns/checkForm.js";
 
