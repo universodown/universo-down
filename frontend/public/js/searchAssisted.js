@@ -1,4 +1,4 @@
-var baseUrlApi = "http://localhost:3000/api/v1";
+var baseUrlApi = "http://3.130.150.80/api/api/v1";
 
 function autocomplete(inp, arr) {
   var currentFocus;
