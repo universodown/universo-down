@@ -1,4 +1,4 @@
-var baseUrlApi = "http://3.130.150.80/api/api/v1";
+var baseUrlApi = "http://3.130.150.80/api/v1";
 import erroHandler from "../../public/js/fns/erroHandler.js";
 
 $(document).ready(function () {

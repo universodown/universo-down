@@ -1,4 +1,4 @@
-var baseUrlApi = "http://3.130.150.80/api/api/v1";
+var baseUrlApi = "http://3.130.150.80/api/v1";
 
 import erroHandler from "../js/fns/erroHandler.js";
 import checkProperties from "../js/fns/checkForm.js";
