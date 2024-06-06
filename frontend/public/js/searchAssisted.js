@@ -1,4 +1,4 @@
-var baseUrlApi = `${process.env.ENDPOINT}/api/v1`;
+var baseUrlApi = "http://localhost:3000/api/v1";
 
 function autocomplete(inp, arr) {
   var currentFocus;

@@ -1,4 +1,4 @@
-var baseUrlApi = `${process.env.ENDPOINT}/api/v1`;
+var baseUrlApi = "http://localhost:3000/api/v1";
 import erroHandler from "../../public/js/fns/erroHandler.js";
 
 $(document).ready(function () {
