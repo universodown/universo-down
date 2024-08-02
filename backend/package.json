@@ -59,7 +59,7 @@
     "morgan": "1.10.0",
     "mysql": "2.18.1",
     "reflect-metadata": "0.1.13",
-    "swagger-ui-express": "4.1.6",
+    "swagger-ui-express": "4.6.3",
     "typedi": "0.10.0",
     "typeorm": "0.2.38",
     "typeorm-test-transactions": "^3.6.1",
