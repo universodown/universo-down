@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Listagem de Profissionals e Especialidades </title>
+  <title>Listagem de Profissionais e Especialidades</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -14,6 +14,10 @@
   <!-- CSS -->
   <link rel="stylesheet" href="../../public/css/navbar.css" />
   <link rel="stylesheet" href="../../public/css/style.css" />
+
+  <!-- DataTables CSS e Buttons -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css" />
 </head>
 
 <body>
@@ -26,7 +30,7 @@
     <div id="content">
       <div class="card col-12">
         <h3 class="mt-4 ml-2" style="text-align: center">
-          Lista de Profissionals e Especialidades
+          Lista de Profissionais e Especialidades
         </h3>
         <div class="card-body">
           <div class="container">
@@ -49,15 +53,44 @@
       </div>
     </div>
   </div>
+
   <!-- JS -->
   <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
   <script src="../../public/js/script.js"></script>
   <script type="Module" src="../../public/js/fns/erroHandler.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script type="Module" >
-    import { loadInfoDataTable } from '../../public/js/specialities.js'
+
+  <!-- DataTables Buttons e pdfmake -->
+  <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+
+  <script type="module">
+    import { loadInfoDataTable } from '../../public/js/specialities.js';
+
     $(document).ready(function () {
+      // Inicialização do DataTable com botão de exportação para PDF
+      $('#specialityTable').DataTable({
+        paging: true,
+        searching: true,
+        ordering: true,
+        info: true,
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+        },
+        dom: 'Bfrtip', // Inclui os botões acima da tabela
+        buttons: [
+          {
+            extend: 'pdfHtml5',
+            text: 'Exportar para PDF',
+            title: 'Lista de Profissionais e Especialidades',
+            className: 'btn btn-primary' // Personalização do botão
+          }
+        ]
+      });
+
       loadInfoDataTable();
     });
   </script>
