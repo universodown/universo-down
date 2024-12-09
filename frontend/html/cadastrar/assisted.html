@@ -369,6 +369,92 @@
                 </div>
               </div>
             <hr />
+
+  <!-- Documentos de Saúde -->
+  <div class="row mt-3">
+    <div class="col-6">
+      <label for="susCardNumber">Número do Cartão SUS</label>
+      <input
+        type="text"
+        class="form-control"
+        name="susCardNumber"
+        id="susCardNumber"
+        placeholder="Número do Cartão SUS"
+      />
+    </div>
+  </div>
+
+   <!-- Flags para Condições de Saúde -->
+   <div class="row mt-3">
+    <div class="col-3">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="autismFlag"
+          id="autismFlag"
+        />
+        <label class="form-check-label" for="autismFlag">
+          Autista
+        </label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="cardiopathyFlag"
+          id="cardiopathyFlag"
+        />
+        <label class="form-check-label" for="cardiopathyFlag">
+          Cardiopata
+        </label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="diabetesFlag"
+          id="diabetesFlag"
+        />
+        <label class="form-check-label" for="diabetesFlag">
+          Diabético
+        </label>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="hypertensionFlag"
+          id="hypertensionFlag"
+        />
+        <label class="form-check-label" for="hypertensionFlag">
+          Hipertenso
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campo para Condições de Saúde Adicionais -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <label for="additionalConditions">Outras Condições de Saúde</label>
+      <textarea
+        class="form-control"
+        name="additionalConditions"
+        id="additionalConditions"
+        rows="3"
+        placeholder="Digite aqui outras condições de saúde que o paciente possui, caso existam..."
+      ></textarea>
+    </div>
+  </div>
+
+  <hr />
             <div class="row mt-4">
               <button type="submit" form="form" id="save-btn" class="btn btn-success col-3 offset-2">
                 Salvar

@@ -98,10 +98,10 @@ export const apiDoc = {
     swagger: '2.0',
     basePath: '/',
     info: {
-        title: 'universo-down',
-        description: 'Documentação da api universo-down,'
+        title: 'projeto_raios_de_esperanca',
+        description: 'Documentação da api projeto_raios_de_esperanca,'
             + ' que disponibiliza os endpoints para controle da aplicação do'
-            + ' Universo Down.',
+            + ' Projeto Raios de Esperança.',
         version: '1.0.0'
     },
     host: 'localhost:3000',

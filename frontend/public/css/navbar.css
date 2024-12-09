@@ -87,7 +87,7 @@ aside {
 ----------------------------------------------------- */
 
 .show-sidebar aside {
-  width: 260px;
+  width: 300px;
   -webkit-transform: translateX(0%);
   -ms-transform: translateX(0%);
   transform: translateX(0%);
@@ -228,7 +228,7 @@ aside .side-inner .nav-menu ul li a {
   padding-right: 23px;
   padding-top: 7px;
   padding-bottom: 10px;
-  color: #b1b1b1; 
+  color: #b1b1b1;
   position: relative;
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
@@ -240,7 +240,7 @@ aside .side-inner .nav-menu ul li a:hover {
   outline: none;
 }
 aside .side-inner .nav-menu ul li a:hover {
-  color: #FFF;
+  color: #fff;
   background: rgb(60, 152, 165);
 }
 
@@ -253,7 +253,6 @@ aside .side-inner .nav-menu ul li a .menu-text {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   transition: 0.3s all ease;
-
 }
 .show-sidebar aside .side-inner .nav-menu ul li a .menu-text {
   -webkit-transition: 0s all ease;
@@ -401,20 +400,20 @@ main .post-content .post-meta {
 }
 
 div.side-menu > ul > li > a,
-div.side-menu > ul > li{
-    font-size: 16px;
+div.side-menu > ul > li {
+  font-size: 16px;
 }
 div.side-menu > ul > li:hover > a,
-div.side-menu > ul > li.active > a{
-    color: #fff;
-    background-color: rgb(60, 152, 165);
+div.side-menu > ul > li.active > a {
+  color: #fff;
+  background-color: rgb(60, 152, 165);
 }
 
-div.side-menu > ul > li > a{
+div.side-menu > ul > li > a {
   display: block;
 }
-div.side-menu > ul > li .sub-menu{
-    display: none;
+div.side-menu > ul > li .sub-menu {
+  display: none;
 }
 
 li a.d-flex.align-items-sm-center.sub {
@@ -440,7 +439,6 @@ span.wrap-icon.fa.fa-home.p-4 {
 
 span.menu-text.p-4 {
   padding: 0px 0px 0px 5px !important;
-
 }
 span#search.wrap-icon.fa.fa-search {
   padding: 0 !important;

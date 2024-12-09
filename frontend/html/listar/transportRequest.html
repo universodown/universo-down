@@ -4,30 +4,30 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Solicitaçao De Transporte</title>
+  <title>Solicitação de Transporte</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../../public/css/bootstrap.min.css" />
-
-  <!-- CSS -->
   <link rel="stylesheet" href="../../public/css/navbar.css" />
   <link rel="stylesheet" href="../../public/css/style.css" />
+  
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 </head>
 
 <body>
   <div class="wrapper">
-    <!-- Sidebar  -->
+    <!-- Sidebar -->
     <nav id="sidebar">
       <div id="nav-placeholder"></div>
     </nav>
-    <!-- Conteúdo da Página  -->
+
+    <!-- Conteúdo da Página -->
     <div id="content">
       <div class="card col-12">
-        <h3 class="mt-4 ml-2" style="text-align: center">
-            Lista de solicitações de transportes
-        </h3>
+        <h3 class="mt-4 ml-2" style="text-align: center">Lista de solicitações de transportes</h3>
         <div class="card-body">
           <div class="container">
             <hr size="4" />
@@ -52,14 +52,20 @@
       </div>
     </div>
   </div>
-  <!-- JS -->
+
+  <!-- jQuery, DataTables e Scripts adicionais -->
   <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
-  <script src="../../public/js/script.js"></script>
-  <script type="Module" src="../../public/js/fns/erroHandler.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script type="Module" >
-    import { loadInfoDataTable } from '../../public/js/transportRequest.js'
+
+  <!-- Script principal e de funções -->
+  <script src="../../public/js/script.js"></script>
+  <script type="module" src="../../public/js/fns/erroHandler.js"></script>
+
+  <!-- Script de inicialização da DataTable -->
+  <script type="module">
+    // Importando função do arquivo correto (transportRequest.js)
+    import { loadInfoDataTable } from '../../public/js/transportRequest.js';
+
     $(document).ready(function () {
       loadInfoDataTable();
     });

@@ -1,7 +1,7 @@
 {
-  "name": "universo-down",
+  "name": "projeto_raios_de_esperanca",
   "version": "1.0.0",
-  "description": "Projeto SENAC-SC Universo Down",
+  "description": "Projeto SENAC-SC Projeto Raios de Esperança",
   "main": "src/index.js",
   "scripts": {
     "build": "tsc",
@@ -17,7 +17,7 @@
     "url": "git+https://github.com/jacksjm/universo-down.git"
   },
   "keywords": [
-    "universo-down;",
+    "projeto_raios_de_esperanca;",
     "senac-sc"
   ],
   "author": "SENAC-SC/Joinville",

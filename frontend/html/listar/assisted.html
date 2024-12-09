@@ -14,6 +14,9 @@
   <!-- CSS -->
   <link rel="stylesheet" href="../../public/css/navbar.css" />
   <link rel="stylesheet" href="../../public/css/style.css" />
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 </head>
 
 <body>
@@ -41,25 +44,81 @@
                     <th class="col-2">Opções</th>
                   </tr>
                 </thead>
+                <tbody>
+                  <!-- Exemplo de dados, ajuste conforme necessário -->
+                  <tr>
+                    <td>001</td>
+                    <td>João Silva</td>
+                    <td>123.456.789-00</td>
+                    <td>Editar | Excluir</td>
+                  </tr>
+                  <tr>
+                    <td>002</td>
+                    <td>Maria Souza</td>
+                    <td>987.654.321-00</td>
+                    <td>Editar | Excluir</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
             <hr size="4" />
+            <!-- Botão para gerar o PDF -->
+            <button id="generatePDF" class="btn btn-primary">Gerar PDF</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
   <!-- JS -->
   <script src="../../public/js/dist/jquery-3.6.0.min.js"></script>
   <script src="../../public/js/script.js"></script>
   <script type="Module" src="../../public/js/fns/erroHandler.js"></script>
   <script src="../../public/js/dist/jquery.mask.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  
+  <!-- jsPDF e jsPDF-AutoTable para gerar PDF da tabela -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+  
   <script type="Module" >
     import { loadInfoDataTable } from '../../public/js/assisted.js'
     $(document).ready(function () {
       loadInfoDataTable();
+      
+      // Função para gerar o PDF da tabela
+      document.getElementById('generatePDF').addEventListener('click', function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Título do PDF
+        doc.text("Lista de Atendidos", 14, 10);
+
+        // Coleta os dados da tabela
+        const table = document.getElementById("assistedsTable");
+        const data = [];
+
+        for (let i = 1; i < table.rows.length; i++) {
+          const row = table.rows[i];
+          const rowData = [
+            row.cells[0].innerText,
+            row.cells[1].innerText,
+            row.cells[2].innerText,
+            row.cells[3].innerText,
+          ];
+          data.push(rowData);
+        }
+
+        // Adiciona os dados da tabela ao PDF
+        doc.autoTable({
+          head: [["Registro", "Atendido", "CPF", "Opções"]],
+          body: data,
+          startY: 20,
+        });
+
+        // Salva o PDF
+        doc.save("lista_de_atendidos.pdf");
+      });
     });
   </script>
 </body>
